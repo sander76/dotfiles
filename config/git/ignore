@@ -1,0 +1,5 @@
+.rtx.toml
+venv/
+.venv/
+.vscode/*
+.nox/
