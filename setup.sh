@@ -5,6 +5,10 @@ set -eu
 set -x
 # Ensure config directory exists
 mkdir -p ~/.config
+
+# below the section of symlinks from this repo to the original
+# locations.
+
 # Link Git config if it doesn’t exist
 [ ! -e ~/.config/git ] && ln -s "$PWD/config/git" ~/.config/git
 
