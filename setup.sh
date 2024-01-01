@@ -7,3 +7,7 @@ set -x
 mkdir -p ~/.config
 # Link Git config if it doesn’t exist
 [ ! -e ~/.config/git ] && ln -s "$PWD/config/git" ~/.config/git
+
+# zshell stuff
+[ ! -e ~/.zshrc ] && ln -s "$PWD/zshrc" ~/.zshrc 
+[ ! -e ~/.zprofile ] && ln -s "$PWD/zprofile" ~/.zprofile
