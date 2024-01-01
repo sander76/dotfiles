@@ -11,3 +11,6 @@ mkdir -p ~/.config
 # zshell stuff
 [ ! -e ~/.zshrc ] && ln -s "$PWD/zshrc" ~/.zshrc 
 [ ! -e ~/.zprofile ] && ln -s "$PWD/zprofile" ~/.zprofile
+
+# rtx
+[ ! -e ~/.config/rtx ] && ln -s "$PWD/config/rtx" ~/.config/rtx
