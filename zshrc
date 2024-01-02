@@ -75,7 +75,7 @@ precmd_functions+=(set_terminal_title)
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions git-open)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,3 +129,8 @@ alias pipx="python ~/bin/pipx.pyz"
 
 eval "$(starship init zsh)"
 eval "$(rtx activate)"
+
+# fzf keybindings
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+# fzf fuzzy auto-completion.
+source /usr/share/doc/fzf/examples/completion.zsh
