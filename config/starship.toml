@@ -1,0 +1,20 @@
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = " [×](bold red)"
+
+
+[python]
+style = "yellow"
+detect_files = []
+detect_extensions = []
+symbol = "venv-"
+format = "[$symbol$version]($style) "
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+repo_root_style = "fg:yellow"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = "git:"

@@ -21,3 +21,6 @@ mkdir -p ~/.config
 
 # rtx
 [ ! -e ~/.config/rtx ] && ln -s "$PWD/config/rtx" ~/.config/rtx
+
+# starship
+[ ! -e ~/.config/starship.toml ] && ln -s "$PWD/config/starship.toml" ~/.config/starship.toml
