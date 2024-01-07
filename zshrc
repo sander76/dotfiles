@@ -128,7 +128,7 @@ alias pipx="python ~/bin/pipx.pyz"
 # autoload -Uz compinit && compinit
 
 eval "$(starship init zsh)"
-eval "$(rtx activate)"
+eval "$(~/.local/bin/mise activate zsh)"
 
 # fzf keybindings
 source /usr/share/doc/fzf/examples/key-bindings.zsh

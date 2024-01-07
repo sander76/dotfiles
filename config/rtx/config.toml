@@ -1,5 +1,0 @@
-[tools]
-python = "3.11.6"
-
-[settings]
-experimental = true
