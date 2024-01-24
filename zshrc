@@ -130,9 +130,7 @@ alias pipx="python ~/bin/pipx.pyz"
 eval "$(starship init zsh)"
 eval "$(~/.local/bin/mise activate zsh)"
 
-# fzf keybindings
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-# fzf fuzzy auto-completion.
-source /usr/share/doc/fzf/examples/completion.zsh
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
