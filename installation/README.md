@@ -1,42 +1,144 @@
+# New system installation notes.
 
-# zshell
+Some general notes and instructions on bootstrapping a new linux installation.
 
-# Rust
-install rustup, https://rustup.rs/
+```
+sudo apt update && sudo apt upgrade
 
-## install "you-should-use"
+sudo apt install git curl build-essential cmake
+```
 
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
+<!-- ## github cli
 
+convenient for authenticating with github.
 
-# ulauncher, 
-https://ulauncher.io/
-
-# tldr 
-https://github.com/pepa65/tldr-bash-client
-
-# bat
-
-# rtx/mise
-https://mise.jdx.dev/getting-started.html#alternate-installation-methods
-
-# vscode
-
-# beekeeper
-
-# fzf
-https://github.com/junegunn/fzf#using-git
+https://github.com/cli/cli/blob/trunk/docs/install_linux.md -->
 
 
-# pipx
-download pipx zipfile (.pyx) and copy to ~/bin/
 
-# fira nerd font
+
+## import your dotfiles
+
+```
+mkdir ~/repos
+cd repos
+git clone https://github.com/sander76/dotfiles.git
+cd dotfiles
+./setup.sh
+
+```
+
+
+## fira nerd font
+
+https://www.nerdfonts.com/
+
 copy FiraCode folder to ~/.local/share/fonts. (~/.local/share/fonts/FiraCode/<all ttf files here>)
 
 
-# starship shell
-`cargo install starship --locked`
+## zshell / ohmyzsh
 
-# pcloud drive
+IMPORTANT: log out and log in again. Otherwise it will not work.
+
+- sudo apt install zsh
+- https://ohmyz.sh/#install (use curl)
+- the alias for the .zshrc file seems to break during this. run setup.sh again from the dotfiles repo
+- install plugins:
+
+    ```
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use
+    ```
+
+
+
+
+## starship shell
+
+```
+curl -sS https://starship.rs/install.sh | sh
+```
+
+## pcloud drive
+
+
+## rtx/mise
+
+```
+curl https://mise.jdx.dev/install.sh | sh
+```
+
+install python build environments: https://github.com/pyenv/pyenv/wiki#suggested-build-environment (scroll to the Ubuntu section)
+
+### install python globals:
+
+```
+mise ls-remote python
+mise install python@3.11.6
+
+```
+
+### .mise.toml file
+
+put in your local repo folder.
+
+```toml
+[tools]
+python = [{ version = '3.11', virtualenv = '.venv' },'3.10.13','3.12.1']
+```
+## vscode
+
+download `.deb` package
+
+```
+sudo dpkg -i vscode...
+```
+
+## ulauncher, 
+
+https://ulauncher.io/#Download
+
+- make CTRL-CTRL the hotkey
+- add opener to plugin: https://github.com/sander76/ulauncher-opener
+- add CTRL-SPACE to system wide shortcut (wayland and ulauncher don't play nice together)
+
+## tldr 
+https://github.com/pepa65/tldr-bash-client#installation
+
+
+## fzf
+https://github.com/junegunn/fzf#using-git
+
+
+## pipx
+
+- download pipx zipfile (.pyx) and copy to `~/bin/` (https://pipx.pypa.io/stable/#using-pipx-without-installing-via-zipapp)
+- the alias is already defined. So you should be able to run `pipx` now directly from you terminal.
+
+## ripgrep
+
+
+## flatpak
+
+
+
+## shutter
+
+screenshot tool
+
+# git delta
+
+https://github.com/dandavison/delta/releases
+sudo dpkg -i git-delta_0.16.5_amd64.deb
+
+## beekeeper
+
+## Rust
+install rustup, https://rustup.rs/
+
+## Freecad
+
+## Prusa slicer
+
+## Superslicer
 
