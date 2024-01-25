@@ -8,14 +8,18 @@ sudo apt update && sudo apt upgrade
 sudo apt install git curl build-essential cmake
 ```
 
-<!-- ## github cli
+## github cli
 
 convenient for authenticating with github.
 
-https://github.com/cli/cli/blob/trunk/docs/install_linux.md -->
+https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 
 
+### authenticate your workstation with github.
 
+```
+gh auth login
+```
 
 ## import your dotfiles
 
@@ -51,8 +55,6 @@ IMPORTANT: log out and log in again. Otherwise it will not work.
     ```
 
 
-
-
 ## starship shell
 
 ```
@@ -74,7 +76,7 @@ install python build environments: https://github.com/pyenv/pyenv/wiki#suggested
 
 ```
 mise ls-remote python
-mise install python@3.11.6
+mise install python@3.11
 
 ```
 
