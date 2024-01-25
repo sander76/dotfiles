@@ -3,8 +3,10 @@
 Some general notes and instructions on bootstrapping a new linux installation.
 
 ```
-sudo apt update && sudo apt upgrade
+# add latest upstream git ppa.
+sudo add-apt-repository ppa:git-core/ppa
 
+sudo apt update && sudo apt upgrade
 sudo apt install git curl build-essential cmake
 ```
 
@@ -119,12 +121,32 @@ https://github.com/junegunn/fzf#using-git
 
 ## ripgrep
 
+```
+sudo apt install ripgrep
+```
 
 ## flatpak
 
+```
+sudo apt install flatpak
+```
 
+add flathub repository.
 
-## shutter
+https://flathub.org/setup/Ubuntu
+
+## snapshot/annotation tool
+
+install ksnip.
+
+```
+sudo apt install ksnip
+```
+
+By default ksnip does not add itself to the 'open with' list when viewing an image.
+To enable this:
+
+- 
 
 screenshot tool
 
