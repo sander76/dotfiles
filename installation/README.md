@@ -10,6 +10,8 @@ sudo apt update && sudo apt upgrade
 sudo apt install git curl build-essential cmake
 ```
 
+
+
 ## github cli
 
 convenient for authenticating with github.
@@ -137,8 +139,6 @@ https://flathub.org/setup/Ubuntu
 
 ## snapshot/annotation tool
 
-install ksnip.
-
 ```
 sudo apt install ksnip
 ```
@@ -146,7 +146,8 @@ sudo apt install ksnip
 By default ksnip does not add itself to the 'open with' list when viewing an image.
 To enable this:
 
-- 
+- open the `/usr/share/applications/org.ksnip.ksnip.desktop` file
+- In the `[Desktop Entry]` append ` %F` to the `Exec=ksnip` line.
 
 screenshot tool
 
