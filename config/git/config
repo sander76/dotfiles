@@ -14,8 +14,6 @@
 [interactive]
 	diffFilter = delta --color-only
 
-[merge]
-	conflictStyle = zdiff3
 
 [credential "https://github.com"]
 	helper = 
