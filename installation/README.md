@@ -109,8 +109,11 @@ https://ulauncher.io/#Download
 - add CTRL-SPACE to system wide shortcut (wayland and ulauncher don't play nice together)
 
 ## tldr 
+
+
 https://github.com/pepa65/tldr-bash-client#installation
 
+(First run can take a while due to caching.)
 
 ## fzf
 https://github.com/junegunn/fzf#using-git
@@ -167,3 +170,14 @@ install rustup, https://rustup.rs/
 
 ## Superslicer
 
+## Docker
+
+Install docker engine: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+to run docker without sudo:
+
+```
+sudo groupadd docker
+newgrp docker
+sudo usermod -aG docker $USER
+```
