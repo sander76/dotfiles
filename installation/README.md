@@ -78,6 +78,8 @@ install python build environments: https://github.com/pyenv/pyenv/wiki#suggested
 
 ### install python globals:
 
+> Unsure whether I want to switch to pre-compiled binaries.
+
 ```
 mise ls-remote python
 mise install python@3.11
@@ -107,6 +109,13 @@ https://ulauncher.io/#Download
 - make CTRL-CTRL the hotkey
 - add opener to plugin: https://github.com/sander76/ulauncher-opener
 - add CTRL-SPACE to system wide shortcut (wayland and ulauncher don't play nice together)
+
+## zellij
+
+make sure cargo is installed.
+
+compile zellij using `cargo`: https://zellij.dev/documentation/installation
+
 
 ## tldr 
 

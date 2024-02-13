@@ -24,3 +24,6 @@ mkdir -p ~/.config
 
 # starship
 [ ! -e ~/.config/starship.toml ] && ln -s "$PWD/config/starship.toml" ~/.config/starship.toml
+
+# vscode custom spell dictionary
+[ ! -e ~/.config/vscode_dictionary ] && ln -s "$PWD/config/vscode_dictionary" ~/.config/vscode_dictionary
