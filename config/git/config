@@ -23,6 +23,7 @@
 	email = s.teunissen@gmail.com
 [pager]
 	branch = false
+	log = true
 
 [includeIf "gitdir:~/alliander/"]
         path = ~/alliander/.gitconfig

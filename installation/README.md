@@ -10,6 +10,12 @@ sudo apt update && sudo apt upgrade
 sudo apt install git curl build-essential cmake
 ```
 
+# git delta
+
+git is configured using this tool.
+
+https://github.com/dandavison/delta/releases
+sudo dpkg -i git-delta_0.16.5_amd64.deb
 
 
 ## github cli
@@ -163,10 +169,6 @@ To enable this:
 
 screenshot tool
 
-# git delta
-
-https://github.com/dandavison/delta/releases
-sudo dpkg -i git-delta_0.16.5_amd64.deb
 
 ## beekeeper
 
