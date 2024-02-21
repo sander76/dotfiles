@@ -190,3 +190,7 @@ sudo groupadd docker
 newgrp docker
 sudo usermod -aG docker $USER
 ```
+
+## Disable bell sound in shell
+
+uncomment or add `set bell-style none` in the `/etc/inputrc` file.
