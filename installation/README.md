@@ -17,6 +17,12 @@ git is configured using this tool.
 https://github.com/dandavison/delta/releases
 sudo dpkg -i git-delta_0.16.5_amd64.deb
 
+## taplo toml formatter
+
+```bash
+cargo install taplo-cli --locked
+  | gzip -d - | install -m 755 /dev/stdin /usr/local/bin/taplo
+```
 
 ## github cli
 
