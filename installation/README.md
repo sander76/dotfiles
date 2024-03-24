@@ -202,3 +202,19 @@ sudo usermod -aG docker $USER
 ## Disable bell sound in shell
 
 uncomment or add `set bell-style none` in the `/etc/inputrc` file.
+
+## vscode
+
+debug configuration:
+
+```
+{
+  "name": "Python: Debug Tests",
+  "type": "debugpy",
+  "request": "launch",
+  "program": "${file}",
+  "purpose": ["debug-test"],
+  "console": "integratedTerminal",
+  "justMyCode": false
+}
+```
