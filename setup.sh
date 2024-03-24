@@ -27,3 +27,6 @@ mkdir -p ~/.config
 
 # vscode custom spell dictionary
 [ ! -e ~/.config/vscode_dictionary ] && ln -s "$PWD/config/vscode_dictionary" ~/.config/vscode_dictionary
+
+# run or raise
+[ ! -e ~/.config/run-or-raise ] && ln -s "$PWD/config/run-or-raise" ~/.config/run-or-raise

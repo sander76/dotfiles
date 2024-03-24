@@ -187,6 +187,8 @@ install rustup, https://rustup.rs/
 
 ## Superslicer
 
+An alternative to prusa slicer.
+
 ## Docker
 
 Install docker engine: https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
@@ -218,3 +220,11 @@ debug configuration:
   "justMyCode": false
 }
 ```
+
+## run or raise
+
+activate a currently running application using shortcut or start the application.
+
+A gnome shell plugin: https://extensions.gnome.org/extension/1336/run-or-raise/
+
+check `~/.config/run-or-raise/shortcuts.conf` for current shortcuts.
