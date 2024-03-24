@@ -124,6 +124,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 alias k9s="~/bin/k9s_Linux_x86_64/k9s"
 alias pipx="python ~/bin/pipx.pyz"
 
+# autocompletions.
 # fpath+=~/.zfunc
 # autoload -Uz compinit && compinit
 
