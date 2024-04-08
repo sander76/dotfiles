@@ -118,9 +118,6 @@ export PATH="/usr/local/go/bin:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
 
-
-# eval "$(direnv hook zsh)"
-
 alias k9s="~/bin/k9s_Linux_x86_64/k9s"
 alias pipx="python ~/bin/pipx.pyz"
 
@@ -135,3 +132,6 @@ eval "$(~/.local/bin/mise activate zsh)"
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+. "$HOME/.cargo/env"
+
+eval "$(direnv hook zsh)"

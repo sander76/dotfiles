@@ -27,3 +27,4 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export EDITOR="code --wait"
+. "$HOME/.cargo/env"
