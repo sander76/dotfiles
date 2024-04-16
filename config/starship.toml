@@ -146,6 +146,7 @@ symbol = " "
 
 [python]
 symbol = " "
+detect_files=[]
 
 [rlang]
 symbol = "󰟔 "

@@ -126,7 +126,7 @@ alias pipx="python ~/bin/pipx.pyz"
 # autoload -Uz compinit && compinit
 
 eval "$(starship init zsh)"
-eval "$(~/.local/bin/mise activate zsh)"
+# eval "$(~/.local/bin/mise activate zsh)"
 
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
