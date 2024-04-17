@@ -80,13 +80,18 @@ curl -sS https://starship.rs/install.sh | sh
 ## pcloud drive
 
 
-## rtx/mise
+<!-- ## rtx/mise
 
 ```
 curl https://mise.jdx.dev/install.sh | sh
 ```
 
-install python build environments: https://github.com/pyenv/pyenv/wiki#suggested-build-environment (scroll to the Ubuntu section)
+install python build environments: https://github.com/pyenv/pyenv/wiki#suggested-build-environment (scroll to the Ubuntu section) -->
+
+## pyenv
+
+https://github.com/pyenv/pyenv-installer?tab=readme-ov-file#installation--update--uninstallation
+https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv
 
 ### install python globals:
 

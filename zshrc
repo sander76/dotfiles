@@ -106,10 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH="$HOME/bin/tekton_cli:$PATH"
-export PATH="$HOME/bin/openshift_cli:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-export PATH="/usr/local/go/bin:$PATH"
 
 # export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init --path)"
@@ -118,7 +114,6 @@ export PATH="/usr/local/go/bin:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
 
-alias k9s="~/bin/k9s_Linux_x86_64/k9s"
 alias pipx="python ~/bin/pipx.pyz"
 
 # autocompletions.
@@ -135,3 +130,9 @@ export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-
 . "$HOME/.cargo/env"
 
 eval "$(direnv hook zsh)"
+
+# Created by `pipx` on 2024-04-16 12:09:18
+export PATH="$PATH:/home/sander/.local/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
