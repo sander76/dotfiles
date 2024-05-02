@@ -1,7 +1,7 @@
+hexlify
 mypy
 pydantic
 pytest
 ruff
 venv
 virtualenv
-pydantic
