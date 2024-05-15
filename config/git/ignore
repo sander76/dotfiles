@@ -1,8 +1,11 @@
-.mise.toml
-.envrc
 venv/
 .venv/
-.vscode/*
+.vscode/
 .nox/
-*.pyc
+private/
+htmlcov
+
+.mise.toml
+.envrc
+.pyc
 .coverage
