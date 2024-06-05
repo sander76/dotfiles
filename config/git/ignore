@@ -4,8 +4,10 @@ venv/
 .nox/
 private/
 htmlcov
+__pycache__
 
 .mise.toml
 .envrc
 .pyc
 .coverage
+.python-version

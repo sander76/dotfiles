@@ -110,11 +110,12 @@ source $ZSH/oh-my-zsh.sh
 # export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init --path)"
 # eval "$(pyenv virtualenv-init -)"
-
+export PATH="$HOME/bin/act_Linux_x86_64:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
 
 alias pipx="python ~/bin/pipx.pyz"
+alias py="python"
 
 # autocompletions.
 # fpath+=~/.zfunc
@@ -133,6 +134,10 @@ eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2024-04-16 12:09:18
 export PATH="$PATH:/home/sander/.local/bin"
+
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+source "$HOME/.rye/env"
+
+export PATH="$PATH:/opt/nvim-linux64/bin"

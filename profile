@@ -28,3 +28,4 @@ fi
 
 export EDITOR="code --wait"
 . "$HOME/.cargo/env"
+. "$HOME/.rye/env"
