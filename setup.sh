@@ -30,3 +30,6 @@ mkdir -p ~/.config
 
 # run or raise
 [ ! -e ~/.config/run-or-raise ] && ln -s "$PWD/config/run-or-raise" ~/.config/run-or-raise
+
+# nano config
+[ ! -e ~/.nanorc ] && ln -s "$PWD/nanorc" ~/.nanorc
