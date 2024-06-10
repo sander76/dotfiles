@@ -106,29 +106,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init --path)"
-# eval "$(pyenv virtualenv-init -)"
-export PATH="$HOME/bin/act_Linux_x86_64:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
-
 
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 
-# autocompletions.
-# fpath+=~/.zfunc
-# autoload -Uz compinit && compinit
 
 eval "$(starship init zsh)"
-# eval "$(~/.local/bin/mise activate zsh)"
-
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
+# fzf and keybindings.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 eval "$(direnv hook zsh)"
 
@@ -139,5 +129,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 source "$HOME/.rye/env"
-
-export PATH="$PATH:/opt/nvim-linux64/bin"
