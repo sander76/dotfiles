@@ -19,8 +19,6 @@ mkdir -p ~/.config
 # .zprofile file.
 [ ! -e ~/.profile ] && ln -s "$PWD/profile" ~/.profile
 
-# mise
-[ ! -e ~/.config/mise ] && ln -s "$PWD/config/mise" ~/.config/mise
 
 # starship
 [ ! -e ~/.config/starship.toml ] && ln -s "$PWD/config/starship.toml" ~/.config/starship.toml
