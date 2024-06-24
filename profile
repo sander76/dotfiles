@@ -26,6 +26,4 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export EDITOR="code --wait"
-. "$HOME/.cargo/env"
-. "$HOME/.rye/env"
+
