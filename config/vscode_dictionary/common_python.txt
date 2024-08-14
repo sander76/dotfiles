@@ -1,8 +1,11 @@
+dateutil
 freezegun
 hexlify
 mypy
 pydantic
 pytest
+relativedelta
 ruff
+sqlalchemy
 venv
 virtualenv
