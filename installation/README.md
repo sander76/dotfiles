@@ -80,14 +80,6 @@ curl -sS https://starship.rs/install.sh | sh
 ## pcloud drive
 
 
-<!-- ## rtx/mise
-
-```
-curl https://mise.jdx.dev/install.sh | sh
-```
-
-install python build environments: https://github.com/pyenv/pyenv/wiki#suggested-build-environment (scroll to the Ubuntu section) -->
-
 ## pyenv
 
 https://github.com/pyenv/pyenv-installer?tab=readme-ov-file#installation--update--uninstallation
@@ -233,3 +225,11 @@ activate a currently running application using shortcut or start the application
 A gnome shell plugin: https://extensions.gnome.org/extension/1336/run-or-raise/
 
 check `~/.config/run-or-raise/shortcuts.conf` for current shortcuts.
+
+## disable capslock
+
+install gnome-tweaks
+
+<keyboard><Additional Layout Options>
+
+Find the disable caps-lock.
