@@ -85,30 +85,13 @@ curl -sS https://starship.rs/install.sh | sh
 https://github.com/pyenv/pyenv-installer?tab=readme-ov-file#installation--update--uninstallation
 https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv
 
-### install python globals:
 
-> Unsure whether I want to switch to pre-compiled binaries.
-
-```
-mise ls-remote python
-mise install python@3.11
-
-```
-
-### .mise.toml file
-
-put in your local repo folder.
-
-```toml
-[tools]
-python = [{ version = '3.11', virtualenv = '.venv' },'3.10.13','3.12.1']
-```
 ## vscode
 
 download `.deb` package
 
 ```
-sudo dpkg -i vscode...
+sudo dpkg -i vscode
 ```
 
 ## ulauncher, 
