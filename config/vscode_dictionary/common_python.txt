@@ -1,8 +1,14 @@
+automodule
+autouse
 dateutil
 freezegun
 hexlify
+icdiff
 mypy
+noxfile
+pipx
 pydantic
+Pyflakes
 pytest
 relativedelta
 ruff
