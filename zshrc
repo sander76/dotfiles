@@ -111,9 +111,6 @@ export PIP_REQUIRE_VIRTUALENV=true
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
-gch() {
- git checkout “$(git branch --all | fzf| tr -d ‘[:space:]’)”
-}
 
 eval "$(starship init zsh)"
 
