@@ -31,3 +31,6 @@ mkdir -p ~/.config
 
 # nano config
 [ ! -e ~/.nanorc ] && ln -s "$PWD/nanorc" ~/.nanorc
+
+# kanata
+[ ! -e ~/.config/kanata ] && ln -s "$PWD/config/kanata" ~/.config/kanata

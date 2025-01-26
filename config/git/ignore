@@ -6,6 +6,8 @@ private/
 htmlcov
 __pycache__
 
+pyrightconfig.json
+
 .mise.toml
 .envrc
 .pyc
