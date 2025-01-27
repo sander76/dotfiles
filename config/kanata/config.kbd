@@ -3,7 +3,7 @@
 )
 
 (defsrc
-  a s d f ; j
+  a s d f j k l ;
 )
 
 (defvar
@@ -28,5 +28,7 @@
   @d
   @f
   @j
+  @k
+  @l
   @;
 )
