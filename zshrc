@@ -106,7 +106,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
-
+alias dasel="~/bin/dasel_linux_amd64"
 eval "$(starship init zsh)"
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
