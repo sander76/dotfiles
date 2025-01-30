@@ -75,7 +75,7 @@ precmd_functions+=(set_terminal_title)
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,8 +105,14 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
+# use fzf to filter out projects and open them in vscode.
 alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
 alias dasel="~/bin/dasel_linux_amd64"
+alias lazydocker="~/bin/lazydocker_0.24.1_Linux_x86_64/lazydocker"
+
+alias gco="git checkout"
+alias gp="git push"
+alias gpf="git push --force-with-lease --force-if-includes"
 eval "$(starship init zsh)"
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
