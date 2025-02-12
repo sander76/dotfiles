@@ -107,7 +107,11 @@ alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 # use fzf to filter out projects and open them in vscode.
 alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
+
+# toml/json/yaml cli parsing
 alias dasel="~/bin/dasel_linux_amd64"
+
+# tui for managing your docker containers.
 alias lazydocker="~/bin/lazydocker_0.24.1_Linux_x86_64/lazydocker"
 
 alias gco="git checkout"
@@ -125,6 +129,8 @@ eval "$(direnv hook zsh)"
 
 # Created by `pipx` on 2024-04-16 12:09:18
 export PATH="$PATH:/home/sander/.local/bin"
+export PATH="$PATH:/home/sander/bin"
+
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
