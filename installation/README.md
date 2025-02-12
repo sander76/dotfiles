@@ -203,6 +203,11 @@ debug configuration:
 
 ## run or raise
 
+possible alternative:
+use dconf editor and change this setting:
+
+![something](./dconf_editor.png)
+
 activate a currently running application using shortcut or start the application.
 
 A gnome shell plugin: https://extensions.gnome.org/extension/1336/run-or-raise/
