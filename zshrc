@@ -1,8 +1,21 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+bindkey=-e
+
+zstyle :compinstall filename '/home/sander/.zshrc'
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+autoload -Uz compinit
+compinit
+
+eval "$(starship init zsh)"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -75,9 +88,9 @@ precmd_functions+=(set_terminal_title)
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions)
+# plugins=(zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
@@ -108,6 +121,8 @@ alias py="python"
 # use fzf to filter out projects and open them in vscode.
 alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
 
+# use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
+alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
 # toml/json/yaml cli parsing
 alias dasel="~/bin/dasel_linux_amd64"
 
@@ -117,7 +132,10 @@ alias lazydocker="~/bin/lazydocker_0.24.1_Linux_x86_64/lazydocker"
 alias gco="git checkout"
 alias gp="git push"
 alias gpf="git push --force-with-lease --force-if-includes"
-eval "$(starship init zsh)"
+alias grbc="git rebase --continue"
+
+alias l='ls -lah'
+alias ll='ls -lh'
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 

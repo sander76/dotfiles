@@ -26,6 +26,9 @@ mkdir -p ~/.config
 # vscode custom spell dictionary
 [ ! -e ~/.config/vscode_dictionary ] && ln -s "$PWD/config/vscode_dictionary" ~/.config/vscode_dictionary
 
+# vscode rst snippets
+[ ! -e ~/.config/Code/User/snippets/restructured_text.code-snippets ] && ln -s "$PWD/config/vscode/restructured_test.json.code-snippets" ~/.config/Code/User/snippets/restructured_text.code-snippets
+
 # run or raise
 [ ! -e ~/.config/run-or-raise ] && ln -s "$PWD/config/run-or-raise" ~/.config/run-or-raise
 
