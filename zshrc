@@ -1,5 +1,6 @@
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
+HISTSIZE=100000
+SAVEHIST=100000
 bindkey=-e
 
 zstyle :compinstall filename '/home/sander/.zshrc'

@@ -37,6 +37,10 @@ https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 gh auth login
 ```
 
+## ghostty
+https://github.com/mkasberg/ghostty-ubuntu?tab=readme-ov-file
+
+
 ## import your dotfiles
 
 ```
