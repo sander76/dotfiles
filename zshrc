@@ -1,6 +1,11 @@
 HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
+
+# zsh history stuff. `man  zshoptions` for more info
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+
 bindkey=-e
 
 zstyle :compinstall filename '/home/sander/.zshrc'

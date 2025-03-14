@@ -13,7 +13,7 @@
 
 (defalias
   a (tap-hold $tap-time $hold-time a lmet)
-  s (tap-hold $tap-time $hold-time s (layer-toggle nav))
+  s (tap-hold $tap-time $hold-time s lalt)
   d (tap-hold $tap-time $hold-time d lsft)
   f (tap-hold $tap-time $hold-time f lctl)
   j (tap-hold $tap-time $hold-time j rctl)
@@ -26,6 +26,3 @@
   @a  @s  @d  @f  h   @j  @k  @l  @;
 )
 
-(deflayer nav
-  @a  s  @d   @f   left   down   up  rght   ;
-)
