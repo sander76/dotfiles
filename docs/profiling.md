@@ -1,3 +1,5 @@
+UPDATE: py-spy is my favorite tool again.
+
 Much troubles with all different profiles. The one that -in the end- did the job was cProfile.
 
 
@@ -13,3 +15,4 @@ to visualize the `.prof` file:
 to run:
 
 `snakevis trace_file.prof`
+

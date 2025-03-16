@@ -20,15 +20,32 @@ https://github.com/yannicklescure/wiki-md/blob/main/nextcloud/enable-video-previ
 
 ## start backgroud task for preview generator
 
-create a systemd service (only do this once.):
-`sudo systemd-run --unit=preview_generation --uid=www-data php /var/www/nextcloud/occ -vv preview:generate-all`
+A systemd service is available: `preview-generator`
 
-start the service:
-`sudo systemctl start preview_generation`
+```
+[Unit]
+Description=Album preview generator
 
-watch progress:
-`sudo journalctl -y preview_generation -f`
+[Service]
+Type=simple
+User=www-data
+ExecStart=php /var/www/nextcloud/occ -v preview:generate-all
 
+[Install]
+WantedBy=default.target
+```
+
+to start the service: `sudo systemctl restart preview-generator`
+to watch progress: `sudo journalctl -u preview-generator`
+
+create a cronjob to start it periodically:
+
+```
+crontab -e
+
+# add this line:
+0 1 * * * /usr/bin/systemctl restart preview-generator
+```
 
 ## external access
 
