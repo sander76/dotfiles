@@ -125,7 +125,7 @@ export PIP_REQUIRE_VIRTUALENV=true
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 # use fzf to filter out projects and open them in vscode.
-alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
+alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs env -u PYTHONPATH  code"
 
 # use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
 alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"

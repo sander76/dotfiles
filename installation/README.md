@@ -40,6 +40,48 @@ gh auth login
 ## ghostty
 https://github.com/mkasberg/ghostty-ubuntu?tab=readme-ov-file
 
+## kanata
+
+download binary: https://github.com/jtroo/kanata/releases
+
+create a service (`kanata.service`) inside your `~/.config/systemd/user` folder:
+(make it point to the right executable.)
+
+
+```
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:%h/.cargo/bin
+
+#   Uncomment the 4 lines beneath this to increase process priority
+#   of Kanata in case you encounter lagginess when resource constrained.
+#   WARNING: doing so will require the service to run as an elevated user such as root.
+#   Implementing least privilege access is an exercise left to the reader.
+#
+# CPUSchedulingPolicy=rr
+# CPUSchedulingPriority=99
+# IOSchedulingClass=realtime
+# Nice=-20
+Type=simple
+ExecStart=/usr/bin/sh -c 'exec $$(which kanata) --cfg $${HOME}/.config/kanata/config.kbd'
+Restart=no
+
+[Install]
+WantedBy=default.target
+```
+
+```
+systemctl --user daemon-reload
+systemctl --user enable kanata.service
+```
+
+to restart:
+```
+systemctl --user restart kanata.service
+```
 
 ## import your dotfiles
 

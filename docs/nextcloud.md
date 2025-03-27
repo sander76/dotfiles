@@ -41,7 +41,7 @@ to watch progress: `sudo journalctl -u preview-generator`
 create a cronjob to start it periodically:
 
 ```
-crontab -e
+sudo crontab -e
 
 # add this line:
 0 1 * * * /usr/bin/systemctl restart preview-generator
@@ -50,3 +50,18 @@ crontab -e
 ## external access
 
 install `certbot` on dietpi
+
+
+## tasks:
+
+create an app account!
+
+## ssh:
+
+### user data folder.
+- login using dietpi@...
+- switch to su (`su`)
+- goto /mnt
+- use `ls -la` to view the mount to nextcloud-userdata
+- navigate there.
+- view total size `du -h --max-depth=1 nextcloud_data`
