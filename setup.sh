@@ -37,3 +37,6 @@ mkdir -p ~/.config
 
 # kanata
 [ ! -e ~/.config/kanata ] && ln -s "$PWD/config/kanata" ~/.config/kanata
+
+# clear pylance cache
+[ ! -e ~/bin/clear_pylance_cache.sh ] && ln -s "$PWD/scripts/clear_pylance_cache.sh" ~/bin/clear_pylance_cache.sh

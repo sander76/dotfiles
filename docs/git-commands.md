@@ -21,6 +21,8 @@ more info: https://www.baeldung.com/ops/git-remove-tracked-files-gitignore
 
 ## change parent branch
 
+https://stackoverflow.com/questions/29914052/how-to-git-rebase-a-branch-with-the-onto-command
+
 ```
 git rebase --onto master feature-branch
                      |       |
@@ -55,3 +57,26 @@ A---B---C---D  master
 `git log --follow --patch -- name-of-file`
 
 The --patch/-p flag generates patch text, i.e. diffs of the file across commits. The --follow flag will include changes across renames in our change log. Note that --follow will only work if we’re looking at a single file – we should remove this flag if we’re viewing the history of multiple files, or want to exclude history past the file’s most recent renaming.
+
+## rebase dev branch on updated main branch:
+
+```
+git fetch origin main:main
+git rebase main
+```
+
+or when on dev branch:
+
+```
+git pull -r origin main
+```
+
+## breaking a big branch into smaller ones.
+
+`git log --oneline --decorate`
+
+`git cherry-pick <hash of commit>`
+
+## stacked pr
+
+https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/

@@ -65,3 +65,16 @@ create an app account!
 - use `ls -la` to view the mount to nextcloud-userdata
 - navigate there.
 - view total size `du -h --max-depth=1 nextcloud_data`
+
+## how to backup
+
+https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html
+https://github.com/nextcloud/backup?tab=readme-ov-file#handle-external-storages
+
+https://rclone.org/
+
+## update to new version of nextcloud.
+
+If update fails on the web version, you could try and use the cli which provides more info:
+
+in your ssh session: `sudo -u www-data php /var/www/nextcloud/updater/updater.phar`

@@ -125,7 +125,25 @@ export PIP_REQUIRE_VIRTUALENV=true
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 # use fzf to filter out projects and open them in vscode.
-alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs env -u PYTHONPATH  code"
+
+alias vc='~/bin/vc.sh'
+# vc() {
+#     local selected_repo
+#     if [ $# -eq 0 ]; then
+#         selected_repo=$(find ~/repos ~/baringa -maxdepth 1 -type d | fzf)
+#     else
+#         selected_repo=$(find ~/repos ~/baringa -maxdepth 1 -type d | fzf -q "$1")
+#     fi
+    
+#     if [ -n "$selected_repo" ]; then
+        
+#         # cd "$selected_repo"
+#         code -n $selected_repo
+#     fi
+# }
+# alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
+
+alias yazi='~/bin/yazi-x86_64-unknown-linux-gnu/yazi'
 
 # use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
 alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
@@ -142,6 +160,8 @@ alias grbc="git rebase --continue"
 
 alias l='ls -lah'
 alias ll='ls -lh'
+
+
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
