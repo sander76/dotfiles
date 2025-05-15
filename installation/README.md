@@ -277,6 +277,8 @@ Find the disable caps-lock.
 
 ## run or raise
 
+[not using anymore ?]
+
 > trying to replace this with tweaking the gsettings (see below.)
 
 possible alternative:
@@ -289,3 +291,20 @@ activate a currently running application using shortcut or start the application
 A gnome shell plugin: https://extensions.gnome.org/extension/1336/run-or-raise/
 
 check `~/.config/run-or-raise/shortcuts.conf` for current shortcuts.
+
+
+## libsecret
+
+Set secrets as env variables using the keyring.
+
+`apt install libsecret-tools`
+
+store a secret:
+
+`secret-tool store --label='my token' token mistral-codestral`  
+in human language: "give me the token value of mistral-codestral"
+>> enter a password
+
+get a secret:
+`secret-tool lookup token mistral-codestral`
+>> token will be returned.

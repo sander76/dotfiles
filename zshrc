@@ -127,21 +127,6 @@ alias py="python"
 # use fzf to filter out projects and open them in vscode.
 
 alias vc='~/bin/vc.sh'
-# vc() {
-#     local selected_repo
-#     if [ $# -eq 0 ]; then
-#         selected_repo=$(find ~/repos ~/baringa -maxdepth 1 -type d | fzf)
-#     else
-#         selected_repo=$(find ~/repos ~/baringa -maxdepth 1 -type d | fzf -q "$1")
-#     fi
-    
-#     if [ -n "$selected_repo" ]; then
-        
-#         # cd "$selected_repo"
-#         code -n $selected_repo
-#     fi
-# }
-# alias vc="find  ~/baringa ~/repos -maxdepth 1 -type d | fzf | xargs code"
 
 alias yazi='~/bin/yazi-x86_64-unknown-linux-gnu/yazi'
 
@@ -175,6 +160,7 @@ eval "$(direnv hook zsh)"
 export PATH="$PATH:/home/sander/.local/bin"
 export PATH="$PATH:/home/sander/bin"
 
+export MISTRAL_API_KEY=$(secret-tool lookup token mistral-codestral)
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

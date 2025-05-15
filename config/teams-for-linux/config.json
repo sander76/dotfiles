@@ -1,0 +1,7 @@
+{
+    "clearStorageData": {
+        "storages": [
+            "localstorage"
+        ]
+    }
+}

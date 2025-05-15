@@ -79,4 +79,6 @@ git pull -r origin main
 
 ## stacked pr
 
+https://www.codetinkerer.com/2023/10/01/stacked-branches-with-vanilla-git.html
+
 https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/

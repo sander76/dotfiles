@@ -40,3 +40,9 @@ mkdir -p ~/.config
 
 # clear pylance cache
 [ ! -e ~/bin/clear_pylance_cache.sh ] && ln -s "$PWD/scripts/clear_pylance_cache.sh" ~/bin/clear_pylance_cache.sh
+
+# teams-for-linux settings
+[ ! -e ~/.var/app/com.github.IsmaelMartinez.teams_for_linux/config/teams-for-linux/config.json ] && ln -s "$PWD/config/teams-for-linux/config.json" ~/.var/app/com.github.IsmaelMartinez.teams_for_linux/config/teams-for-linux/config.json
+
+# vc script to open vscode folder from the terminal using fzf
+[ ! -e ~/bin/vc.sh ] && ln -s "$PWD/bin/vc.sh" ~/bin/vc.sh
