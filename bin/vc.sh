@@ -9,3 +9,4 @@ if [ -n "$selected_repo" ]; then
     code $selected_repo
 fi
 
+cd "$selected_repo"
