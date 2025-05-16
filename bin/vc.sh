@@ -5,8 +5,8 @@ else
 fi
 
 if [ -n "$selected_repo" ]; then
-    # cd "$selected_repo"
-    export Path="$selected_repo:$PATH"
+    cd "$selected_repo"
+    # export Path="$selected_repo:$PATH"
     code -n $selected_repo
 fi
 
