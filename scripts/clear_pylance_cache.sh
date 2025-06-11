@@ -2,7 +2,7 @@
 
 set -e
 
-cd ~/.vscode/extensions/ms-python.vscode-pylance-2025.3.2/dist/.cache
+cd ~/.vscode/extensions/ms-python.vscode-pylance-2025.5.1/dist/.cache
 
 if [ -d "global_indices" ]; then
     rm -rf global_indices

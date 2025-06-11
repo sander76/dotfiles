@@ -1,0 +1,107 @@
+[clipboard-indicator]
+enable-keybindings=true
+
+[dash-to-dock]
+app-hotkey-1=['<Super>r']
+app-hotkey-2=['<Super>f']
+app-hotkey-3=['<Super>c']
+app-hotkey-4=['<Super>t']
+click-action='cycle-windows'
+dash-max-icon-size=40
+dock-fixed=false
+dock-position='RIGHT'
+extend-height=true
+hotkeys-show-dock=false
+multi-monitor=false
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+
+[ding]
+check-x11wayland=true
+
+[highlight-focus]
+border-color='#e5a50a'
+border-width=7
+disable-hiding=true
+
+[jiggle]
+effect=0
+fireworks-spark-trail=10
+growth-speed=1.0
+shake-threshold=49
+shrink-speed=0.25
+spotlight-hide-speed=0.20999999999999999
+spotlight-show-speed=0.40000000000000002
+spotlight-size=180
+
+[switcher]
+launcher-stats='{"org.gnome.Terminal.desktop":1,"com.mattjakeman.ExtensionManager.desktop":1}'
+show-switcher=['<Super>space']
+
+[tactile]
+col-0=2
+col-1=1
+col-2=1
+col-3=0
+layout-2-col-0=2
+layout-2-col-3=0
+layout-2-row-1=0
+layout-2-row-2=0
+monitor-0-layout=1
+row-1=0
+show-tiles=['<Super>j']
+tile-0-0=['j']
+tile-1-0=['k']
+tile-2-0=['l']
+tile-3-0=['semicolon']
+
+[tiling-assistant]
+activate-layout0=@as []
+activate-layout1=@as []
+activate-layout2=@as []
+activate-layout3=@as []
+active-window-hint=1
+active-window-hint-color='rgb(211,0,0)'
+active-window-hint-inner-border-size=3
+auto-tile=@as []
+center-window=@as []
+debugging-free-rects=@as []
+debugging-show-tiled-rects=@as []
+default-move-mode=0
+disable-tile-groups=true
+dynamic-keybinding-behavior=0
+dynamic-keybinding-behaviour=0
+import-layout-examples=false
+last-version-installed=46
+overridden-settings={'org.gnome.mutter.edge-tiling': <@mb nothing>, 'org.gnome.desktop.wm.keybindings.maximize': <@mb nothing>, 'org.gnome.desktop.wm.keybindings.unmaximize': <@mb nothing>, 'org.gnome.mutter.keybindings.toggle-tiled-left': <@mb nothing>, 'org.gnome.mutter.keybindings.toggle-tiled-right': <@mb nothing>}
+restore-window=['<Super>Down']
+search-popup-layout=@as []
+tile-bottom-half=['<Super>KP_2']
+tile-bottom-half-ignore-ta=@as []
+tile-bottomleft-quarter=['<Super>KP_1']
+tile-bottomleft-quarter-ignore-ta=@as []
+tile-bottomright-quarter=['<Super>KP_3']
+tile-bottomright-quarter-ignore-ta=@as []
+tile-edit-mode=@as []
+tile-left-half=['<Super>Left', '<Super>KP_4']
+tile-left-half-ignore-ta=@as []
+tile-maximize=['<Super>Up', '<Super>KP_5']
+tile-maximize-horizontally=@as []
+tile-maximize-vertically=@as []
+tile-right-half=['<Super>Right', '<Super>KP_6']
+tile-right-half-ignore-ta=@as []
+tile-top-half=['<Super>KP_8']
+tile-top-half-ignore-ta=@as []
+tile-topleft-quarter=['<Super>KP_7']
+tile-topleft-quarter-ignore-ta=@as []
+tile-topright-quarter=['<Super>KP_9']
+tile-topright-quarter-ignore-ta=@as []
+tiling-popup-all-workspace=true
+toggle-always-on-top=@as []
+toggle-tiling-popup=@as []
+window-gap=0
+
+[tophat]
+cpu-display='chart'
+mount-to-monitor='/'
+show-disk=false

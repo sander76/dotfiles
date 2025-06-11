@@ -18,6 +18,7 @@ pipx
 pydantic
 Pyflakes
 pylint
+pyproject
 pytest
 relativedelta
 ruff

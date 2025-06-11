@@ -126,7 +126,7 @@ alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 # use fzf to filter out projects and open them in vscode.
 
-alias vc='~/bin/vc.sh'
+alias vc='source ~/bin/vc.sh'
 
 alias yazi='~/bin/yazi-x86_64-unknown-linux-gnu/yazi'
 
@@ -161,9 +161,15 @@ export PATH="$PATH:/home/sander/.local/bin"
 export PATH="$PATH:/home/sander/bin"
 
 export MISTRAL_API_KEY=$(secret-tool lookup token mistral-codestral)
+export OPENAI_API_KEY=$(secret-tool lookup token openai)
+export ANTHROPIC_API_KEY=$(secret-tool lookup token claude)
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
 . "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

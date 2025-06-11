@@ -1,5 +1,6 @@
 [core]
 	pager = delta
+	excludesFile = ~/.config/git/ignore
 
 [delta]
 	# https://dandavison.github.io/delta/configuration.html
@@ -16,8 +17,12 @@
 
 
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://baringa@dev.azure.com/"]
+    helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+
+
 [user]
 	name = Sander Teunissen
 	email = s.teunissen@gmail.com
@@ -53,3 +58,8 @@
 
 [fetch]
 	prune = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

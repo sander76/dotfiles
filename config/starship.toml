@@ -1,3 +1,4 @@
+
 [character]
 success_symbol= '[➜](bold green)'
 error_symbol='[✖](bold red)'
@@ -22,6 +23,7 @@ symbol = " "
 
 [directory]
 truncation_length = 5
+truncate_to_repo = false
 
 read_only = " 󰌾"
 

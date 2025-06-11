@@ -15,3 +15,5 @@ pyrightconfig.json
 .python-version
 
 .aider*
+
+CONVENTIONS.md

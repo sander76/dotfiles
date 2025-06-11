@@ -1,3 +1,7 @@
+# ssh login
+
+ssh dietpi@192.168.188.156
+
 update thumbnails. `ncc preview:generate-all`
 
 use systemd to issue update command:
@@ -78,3 +82,22 @@ https://rclone.org/
 If update fails on the web version, you could try and use the cli which provides more info:
 
 in your ssh session: `sudo -u www-data php /var/www/nextcloud/updater/updater.phar`
+
+## new client version on linux machine
+
+inside your `.config/autostart` folder are `.Desktop` files.
+One of them is `Nextcloud.desktop`
+
+```
+[Desktop Entry]
+Name=Nextcloud
+GenericName=File Synchronizer
+Exec="/home/sander/bin/Nextcloud-3.16.0-x86_64.AppImage" --background
+Terminal=false
+Icon=Nextcloud
+Categories=Network
+Type=Application
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=10
+```
