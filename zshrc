@@ -124,10 +124,12 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
+
 # use fzf to filter out projects and open them in vscode.
+alias vc='source ~/repos/dotfiles/scripts/vc.sh'
 
-alias vc='source ~/bin/vc.sh'
-
+# cdd into a folder quickly starting
+alias cdd='source ~/repos/dotfiles/scripts/find_folders.sh'
 alias yazi='~/bin/yazi-x86_64-unknown-linux-gnu/yazi'
 
 # use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
@@ -173,3 +175,5 @@ eval "$(pyenv init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source /home/sander/.config/broot/launcher/bash/br

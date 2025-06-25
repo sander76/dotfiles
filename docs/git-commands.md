@@ -82,3 +82,9 @@ git pull -r origin main
 https://www.codetinkerer.com/2023/10/01/stacked-branches-with-vanilla-git.html
 
 https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
+
+## diff with filter
+
+view the diff between current and main branch, excluding any *.lock file:
+
+git diff main ':(exclude)*.lock'

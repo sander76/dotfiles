@@ -135,7 +135,7 @@ download `.deb` package
 sudo dpkg -i vscode
 ```
 
-## ulauncher, 
+## ulauncher,
 
 > not using this anymore.
 
@@ -153,7 +153,7 @@ make sure cargo is installed.
 compile zellij using `cargo`: https://zellij.dev/documentation/installation
 
 
-## tldr 
+## tldr
 
 
 https://github.com/pepa65/tldr-bash-client#installation
@@ -301,10 +301,17 @@ Set secrets as env variables using the keyring.
 
 store a secret:
 
-`secret-tool store --label='my token' token mistral-codestral`  
+`secret-tool store --label='my token' token mistral-codestral`
 in human language: "give me the token value of mistral-codestral"
 >> enter a password
 
 get a secret:
 `secret-tool lookup token mistral-codestral`
 >> token will be returned.
+
+
+## export shortcuts
+
+https://gshortcuts.jpinillos.dev/
+
+shortcuts.yaml located at `installation/shortcuts.yaml`

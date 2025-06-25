@@ -1,0 +1,60 @@
+builtin:
+    org.gnome.desktop.wm.keybindings:
+        - key: switch-input-source
+          bindings: []
+        - key: maximize
+          bindings: []
+        - key: switch-to-workspace-1
+          bindings:
+            - <Super>1
+        - key: unmaximize
+          bindings: []
+        - key: switch-to-workspace-2
+          bindings:
+            - <Super>2
+        - key: move-to-workspace-1
+          bindings:
+            - <Alt><Super>1
+        - key: switch-to-workspace-3
+          bindings:
+            - <Super>3
+        - key: show-desktop
+          bindings: []
+        - key: move-to-workspace-2
+          bindings:
+            - <Alt><Super>2
+        - key: switch-to-workspace-4
+          bindings:
+            - <Super>4
+        - key: move-to-workspace-3
+          bindings:
+            - <Alt><Super>3
+        - key: switch-input-source-backward
+          bindings: []
+        - key: move-to-workspace-4
+          bindings:
+            - <Alt><Super>4
+    org.gnome.mutter.keybindings:
+        - key: toggle-tiled-left
+          bindings: []
+        - key: toggle-tiled-right
+          bindings: []
+    org.gnome.shell.keybindings:
+        - key: switch-to-application-1
+          bindings: []
+        - key: toggle-message-tray
+          bindings: []
+        - key: switch-to-application-4
+          bindings: []
+        - key: focus-active-notification
+          bindings: []
+        - key: switch-to-application-2
+          bindings: []
+        - key: show-screen-recording-ui
+          bindings: []
+        - key: toggle-quick-settings
+          bindings:
+            - disabled
+        - key: switch-to-application-3
+          bindings: []
+custom: []
