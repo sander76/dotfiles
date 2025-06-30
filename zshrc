@@ -127,6 +127,8 @@ alias py="python"
 
 # use fzf to filter out projects and open them in vscode.
 alias vc='source ~/repos/dotfiles/scripts/vc.sh'
+# same, but now in zed editor.
+alias vv='source ~/repos/dotfiles/scripts/vv.sh'
 
 # cdd into a folder quickly starting
 alias cdd='source ~/repos/dotfiles/scripts/find_folders.sh'
@@ -148,7 +150,8 @@ alias grbc="git rebase --continue"
 alias l='ls -lah'
 alias ll='ls -lh'
 
-
+# cd into the root of the git folder.
+alias r='cd $(git rev-parse --show-toplevel)'
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
@@ -177,3 +180,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source /home/sander/.config/broot/launcher/bash/br
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word

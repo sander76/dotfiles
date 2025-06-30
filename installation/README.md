@@ -259,6 +259,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-1 "['<Super>r']
 gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-2 "['<Super>f']"  # firefox
 gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-3 "['<Super>c']"  # vs code
 gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-4 "['<Super>t']"  # teams
+gsettings set org.gnome.shell.extensions.dash-to-dock app-hotkey-5 "['<Super>v']"  # zed editor
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action "cycle-windows"
 gsettings set org.gnome.shell.extensions.dash-to-dock hotkeys-show-dock "false"
 

@@ -12,6 +12,8 @@ https://stackoverflow.com/questions/17983068/delete-local-git-branches-after-del
 ## remove tracked files
 
 ```
+# add files to .gitignore first.(if needed)
+
 git rm --cached <filename>
 git commit -m "<Message>"
 ```
