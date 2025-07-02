@@ -19,10 +19,6 @@
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 
-[credential "https://baringa@dev.azure.com/"]
-    helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
-
-
 [user]
 	name = Sander Teunissen
 	email = s.teunissen@gmail.com
@@ -63,3 +59,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret

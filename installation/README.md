@@ -37,6 +37,21 @@ https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 gh auth login
 ```
 
+# git credential manager lib secret:
+
+```sh
+# Install dependencies
+$ sudo apt install make gcc git libsecret-1-0 libsecret-1-dev libglib2.0-dev
+
+# Compile binary
+$ sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
+
+# Configure git to use binary as credential storage
+$ git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+```
+
+
+
 ## ghostty
 https://github.com/mkasberg/ghostty-ubuntu?tab=readme-ov-file
 
