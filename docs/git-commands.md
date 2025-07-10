@@ -85,6 +85,40 @@ https://www.codetinkerer.com/2023/10/01/stacked-branches-with-vanilla-git.html
 
 https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
 
+example of three stacked branches on main:
+
+```
+* branch_3
+|
+* branch_2
+|
+* branch_1
+|
+* main
+```
+
+change is made in branch_1
+
+```
+* branch_1 (with new commit)
+|
+|  * branch_3
+|  |
+|  * branch_2
+|  |
+| /
+*/  old branch_1 from which branch_2 originally branched from.
+```
+
+rebase both branch_2 and 3 on the latest commit of branch_1:
+
+```
+git checkout branch_3  # the top of the stack.
+
+git rebase branch_1 --update-refs
+
+```
+
 ## diff with filter
 
 view the diff between current and main branch, excluding any *.lock file:
