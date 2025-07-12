@@ -331,3 +331,10 @@ get a secret:
 https://gshortcuts.jpinillos.dev/
 
 shortcuts.yaml located at `installation/shortcuts.yaml`
+
+
+## just
+https://github.com/casey/just
+
+uv tool install rust-just
+
