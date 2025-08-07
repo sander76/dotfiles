@@ -153,6 +153,11 @@ alias ll='ls -lh'
 # cd into the root of the git folder.
 alias r='cd $(git rev-parse --show-toplevel)'
 
+alias pts='~/repos/dotfiles/scripts/list_tests.sh tests | fzf | xargs uv run pytest'
+alias ptlf='pytest --lf'
+
+alias fls='source ~/bin/scripts/opener.sh'
+
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
 # fzf and keybindings.
@@ -179,7 +184,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source /home/sander/.config/broot/launcher/bash/br
-
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+
+# A function to visually change directories with nval
+lcd() {
+    # Run lstr and capture the selected path into a variable.
+    
+    local selected_dir
+    selected_dir=$(navl)
+
+    # If the user selected a path (and didn't just quit), `cd` into it.
+    # Check if the selection is a directory.
+    if [[ -n "$selected_dir" && -d "$selected_dir" ]]; then
+        cd "$selected_dir"
+    fi
+}

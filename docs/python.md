@@ -16,7 +16,7 @@ with all your aliases.
 
 - pytest --stepwise
 
-- 
+- uv run pytest tests -x  # stop testing on first fail. (speedup ?)
 
 ### just
 
