@@ -15,10 +15,6 @@
 [interactive]
 	diffFilter = delta --color-only
 
-
-[credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
-
 [user]
 	name = Sander Teunissen
 	email = s.teunissen@gmail.com
