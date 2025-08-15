@@ -37,6 +37,15 @@ FILENAME=$(basename "$DOWNLOAD_URL")
 TEMP_FILE="$TEMP_DIR/$FILENAME"
 EXTRACT_DIR="$TEMP_DIR/extracted"
 
+# Validate file extension
+if [[ "$FILENAME" != *.tar.gz && "$FILENAME" != *.zip ]]; then
+    echo "✗ Error: Unsupported file format"
+    echo ""
+    echo "Only .tar.gz and .zip files are supported."
+    echo "Provided file: $FILENAME"
+    exit 1
+fi
+
 echo "Starting installation..."
 echo ""
 
@@ -92,18 +101,6 @@ elif [[ "$FILENAME" == *.zip ]]; then
         fi
     else
         echo "✗ unzip command not found. Please install unzip package."
-        rm -f "$TEMP_FILE"
-        rm -rf "$EXTRACT_DIR"
-        exit 1
-    fi
-else
-    echo "Copying binary file..."
-    # Assume it's a direct binary, remove extension and copy
-    BINARY_NAME=$(echo "$FILENAME" | sed 's/\.[^.]*$//')
-    if cp "$TEMP_FILE" "$EXTRACT_DIR/$BINARY_NAME"; then
-        echo "✓ Binary copied to extraction directory"
-    else
-        echo "✗ Failed to copy binary"
         rm -f "$TEMP_FILE"
         rm -rf "$EXTRACT_DIR"
         exit 1
