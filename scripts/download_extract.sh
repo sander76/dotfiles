@@ -15,9 +15,10 @@ usage() {
     echo "This script will:"
     echo "  1. Check if ~/bin directory exists"
     echo "  2. Download the binary from the provided URL"
-    echo "  3. Extract it to ~/bin"
-    echo "  4. Make it executable"
-    echo "  5. Clean up temporary files"
+    echo "  3. Extract it to a temporary folder"
+    echo "  4. Copy binaries to ~/bin"
+    echo "  5. Make them executable"
+    echo "  6. Clean up temporary files"
     exit 1
 }
 
@@ -34,6 +35,7 @@ INSTALL_DIR="$HOME/bin"
 # Extract filename from URL
 FILENAME=$(basename "$DOWNLOAD_URL")
 TEMP_FILE="$TEMP_DIR/$FILENAME"
+EXTRACT_DIR="$TEMP_DIR/extracted"
 
 echo "Starting installation..."
 echo ""
@@ -52,6 +54,12 @@ if [ ! -d "$INSTALL_DIR" ]; then
 fi
 echo "✓ Install directory exists"
 
+# Create extraction directory
+echo "Creating extraction directory..."
+rm -rf "$EXTRACT_DIR"
+mkdir -p "$EXTRACT_DIR"
+echo "✓ Extraction directory created"
+
 # Download the file
 echo "Downloading $FILENAME..."
 if curl -L -f -o "$TEMP_FILE" "$DOWNLOAD_URL"; then
@@ -63,46 +71,61 @@ fi
 
 if [[ "$FILENAME" == *.tar.gz ]]; then
     echo "Extracting tar.gz archive..."
-    if tar -xzf "$TEMP_FILE" -C "$INSTALL_DIR"; then
+    if tar -xzf "$TEMP_FILE" -C "$EXTRACT_DIR"; then
         echo "✓ Extraction completed successfully"
     else
         echo "✗ Extraction failed"
         rm -f "$TEMP_FILE"
+        rm -rf "$EXTRACT_DIR"
         exit 1
     fi
 elif [[ "$FILENAME" == *.zip ]]; then
     echo "Extracting zip archive..."
     if command -v unzip >/dev/null 2>&1; then
-        if unzip -o "$TEMP_FILE" -d "$INSTALL_DIR"; then
+        if unzip -o "$TEMP_FILE" -d "$EXTRACT_DIR"; then
             echo "✓ Extraction completed successfully"
         else
             echo "✗ Extraction failed"
             rm -f "$TEMP_FILE"
+            rm -rf "$EXTRACT_DIR"
             exit 1
         fi
     else
         echo "✗ unzip command not found. Please install unzip package."
         rm -f "$TEMP_FILE"
+        rm -rf "$EXTRACT_DIR"
         exit 1
     fi
 else
     echo "Copying binary file..."
     # Assume it's a direct binary, remove extension and copy
     BINARY_NAME=$(echo "$FILENAME" | sed 's/\.[^.]*$//')
-    if cp "$TEMP_FILE" "$INSTALL_DIR/$BINARY_NAME"; then
-        echo "✓ Binary copied successfully"
-        FILENAME="$BINARY_NAME"
+    if cp "$TEMP_FILE" "$EXTRACT_DIR/$BINARY_NAME"; then
+        echo "✓ Binary copied to extraction directory"
     else
         echo "✗ Failed to copy binary"
         rm -f "$TEMP_FILE"
+        rm -rf "$EXTRACT_DIR"
         exit 1
     fi
 fi
 
+# Copy extracted files to install directory and make executable
+echo "Installing binaries..."
+find "$EXTRACT_DIR" -type f -executable -o -name "*" | while read -r file; do
+    if [ -f "$file" ] && [ -x "$file" -o ! -d "$file" ]; then
+        basename_file=$(basename "$file")
+        echo "Installing $basename_file..."
+        cp "$file" "$INSTALL_DIR/"
+        chmod +x "$INSTALL_DIR/$basename_file"
+    fi
+done
+echo "✓ Installation completed"
 
-# Clean up temporary file
+# Clean up temporary files
 echo "Cleaning up..."
 rm -f "$TEMP_FILE"
+rm -rf "$EXTRACT_DIR"
 echo "✓ Cleanup completed"
 
 echo ""
