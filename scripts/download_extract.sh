@@ -35,9 +35,7 @@ INSTALL_DIR="$HOME/bin"
 FILENAME=$(basename "$DOWNLOAD_URL")
 TEMP_FILE="$TEMP_DIR/$FILENAME"
 
-echo "Starting fzf installation..."
-echo "Download URL: $DOWNLOAD_URL"
-echo "Install directory: $INSTALL_DIR"
+echo "Starting installation..."
 echo ""
 
 # Check if install directory exists
@@ -63,7 +61,6 @@ else
     exit 1
 fi
 
-# Check if file is a tar.gz archive
 if [[ "$FILENAME" == *.tar.gz ]]; then
     echo "Extracting tar.gz archive..."
     if tar -xzf "$TEMP_FILE" -C "$INSTALL_DIR"; then
@@ -102,10 +99,6 @@ else
     fi
 fi
 
-# Make binaries executable
-echo "Setting executable permissions..."
-find "$INSTALL_DIR" -type f -name "fzf*" -exec chmod +x {} \;
-echo "✓ Permissions set"
 
 # Clean up temporary file
 echo "Cleaning up..."
