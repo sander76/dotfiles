@@ -200,3 +200,12 @@ lcd() {
         cd "$selected_dir"
     fi
 }
+
+cddl() {
+  local selection
+  selection=$(navl <"$TTY") || return
+  LBUFFER+="$selection"
+
+}
+zle -N cddl
+bindkey '^n' cddl
