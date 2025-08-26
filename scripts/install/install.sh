@@ -24,8 +24,8 @@ install_packages() {
 # Function to display help
 show_help() {
     echo "Usage: $0 {terminal|full}"
-    echo "  terminal - Install only terminal packages"
-    echo "  full     - Install terminal and system packages"
+    echo "  terminal - Install only terminal packages (works for wsl too.)"
+    echo "  full     - Install terminal and system packages. this assumes you're running linux system (not wsl.)"
 }
 
 # Main script logic
