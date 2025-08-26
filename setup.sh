@@ -29,17 +29,12 @@ mkdir -p ~/.config
 # vscode rst snippets
 [ ! -e ~/.config/Code/User/snippets/restructured_text.code-snippets ] && ln -s "$PWD/config/vscode/restructured_test.json.code-snippets" ~/.config/Code/User/snippets/restructured_text.code-snippets
 
-# run or raise
-[ ! -e ~/.config/run-or-raise ] && ln -s "$PWD/config/run-or-raise" ~/.config/run-or-raise
-
 # nano config
 [ ! -e ~/.nanorc ] && ln -s "$PWD/nanorc" ~/.nanorc
 
 # kanata
 [ ! -e ~/.config/kanata ] && ln -s "$PWD/config/kanata" ~/.config/kanata
 
-# clear pylance cache
-[ ! -e ~/bin/clear_pylance_cache.sh ] && ln -s "$PWD/scripts/clear_pylance_cache.sh" ~/bin/clear_pylance_cache.sh
 
 # teams-for-linux settings
 [ ! -e ~/.var/app/com.github.IsmaelMartinez.teams_for_linux/config/teams-for-linux/config.json ] && ln -s "$PWD/config/teams-for-linux/config.json" ~/.var/app/com.github.IsmaelMartinez.teams_for_linux/config/teams-for-linux/config.json
