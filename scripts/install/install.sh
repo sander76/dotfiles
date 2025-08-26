@@ -90,6 +90,8 @@ ensure_config_dir() {
     fi
 }
 
+#AI! change the cli to allow for a group to be installed like this: install.sh --group=full. Or an individual function like this install.sh --single=install_kanata
+
 # Main script logic
 case "$1" in
     "terminal")
