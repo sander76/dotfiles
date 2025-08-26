@@ -77,9 +77,15 @@ install_packages() {
 
 # Function to display help
 show_help() {
-    echo "Usage: $0 {terminal|full}"
-    echo "  terminal - Install only terminal packages (works for wsl too.)"
-    echo "  full     - Install terminal and system packages. this assumes you're running linux system (not wsl.)"
+    echo "Usage: $0 [OPTIONS]"
+    echo "Options:"
+    echo "  --group=terminal    Install only terminal packages (works for wsl too.)"
+    echo "  --group=full        Install terminal and system packages. this assumes you're running linux system (not wsl.)"
+    echo "  --single=FUNCTION   Install a single package function (e.g., install_kanata)"
+    echo ""
+    echo "Legacy usage (deprecated):"
+    echo "  $0 terminal         Same as --group=terminal"
+    echo "  $0 full             Same as --group=full"
 }
 
 # Function to ensure ~/.config directory exists
@@ -90,10 +96,41 @@ ensure_config_dir() {
     fi
 }
 
-#AI! change the cli to allow for a group to be installed like this: install.sh --group=full. Or an individual function like this install.sh --single=install_kanata
+# Function to check if a function exists
+function_exists() {
+    declare -f "$1" > /dev/null
+    return $?
+}
 
 # Main script logic
 case "$1" in
+    --group=terminal)
+        echo "Installing terminal packages..."
+        install_packages "${TERMINAL_FUNCTIONS[@]}"
+        echo "Installation complete!"
+        ;;
+    --group=full)
+        echo "Installing all packages (terminal + system)..."
+        install_packages "${TERMINAL_FUNCTIONS[@]}"
+        install_packages "${SYSTEM_FUNCTIONS[@]}"
+        echo "Installation complete!"
+        ;;
+    --single=*)
+        FUNCTION_NAME="${1#--single=}"
+        if function_exists "$FUNCTION_NAME"; then
+            echo "Installing single package: $FUNCTION_NAME"
+            if ! $FUNCTION_NAME; then
+                echo "Error: $FUNCTION_NAME failed"
+                exit 1
+            fi
+            echo "Installation complete!"
+        else
+            echo "Error: Function '$FUNCTION_NAME' does not exist"
+            echo "Available functions:"
+            printf "  %s\n" "${TERMINAL_FUNCTIONS[@]}" "${SYSTEM_FUNCTIONS[@]}"
+            exit 1
+        fi
+        ;;
     "terminal")
         echo "Installing terminal packages..."
         install_packages "${TERMINAL_FUNCTIONS[@]}"
