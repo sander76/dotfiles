@@ -117,8 +117,9 @@ ensure_config_dir() {
 }
 
 # Function to check if a function exists
+# declare -f outputs the definition of a function if it exists, returns 0 on success
 function_exists() {
-    declare -f "$1" > /dev/null #AI! what does declare do ?
+    declare -f "$1" > /dev/null
     return $?
 }
 
