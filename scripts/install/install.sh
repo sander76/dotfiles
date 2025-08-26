@@ -75,13 +75,37 @@ install_packages() {
     fi
 }
 
+# Function to show what would be installed (dry run)
+show_packages() {
+    local functions=("$@")
+    for func in "${functions[@]}"; do
+        # Extract package name from function name (remove "install_" prefix)
+        local package_name="${func#install_}"
+        echo "  - $package_name (via $func)"
+    done
+}
+
 # Function to display help
 show_help() {
     echo "Usage: $0 [OPTIONS]"
+    echo ""
     echo "Options:"
     echo "  --group=terminal    Install only terminal packages (works for wsl too.)"
     echo "  --group=full        Install terminal and system packages. this assumes you're running linux system (not wsl.)"
     echo "  --single=FUNCTION   Install a single package function (e.g., install_kanata)"
+    echo "  --dry-run           Show what would be installed without actually installing"
+    echo ""
+    echo "Examples:"
+    echo "  $0 --group=terminal"
+    echo "  $0 --group=full"
+    echo "  $0 --single=install_fzf"
+    echo "  $0 --group=terminal --dry-run"
+    echo ""
+    echo "Available functions:"
+    echo "  Terminal packages:"
+    printf "    %s\n" "${TERMINAL_FUNCTIONS[@]}"
+    echo "  System packages:"
+    printf "    %s\n" "${SYSTEM_FUNCTIONS[@]}"
 }
 
 # Function to ensure ~/.config directory exists
@@ -98,28 +122,54 @@ function_exists() {
     return $?
 }
 
+# Check for dry-run flag
+DRY_RUN=false
+if [[ "$*" == *"--dry-run"* ]]; then
+    DRY_RUN=true
+    # Remove --dry-run from arguments
+    set -- "${@/--dry-run/}"
+fi
+
 # Main script logic
 case "$1" in
     --group=terminal)
-        echo "Installing terminal packages..."
-        install_packages "${TERMINAL_FUNCTIONS[@]}"
-        echo "Installation complete!"
+        if [ "$DRY_RUN" = true ]; then
+            echo "Would install terminal packages:"
+            show_packages "${TERMINAL_FUNCTIONS[@]}"
+        else
+            echo "Installing terminal packages..."
+            install_packages "${TERMINAL_FUNCTIONS[@]}"
+            echo "Installation complete!"
+        fi
         ;;
     --group=full)
-        echo "Installing all packages (terminal + system)..."
-        install_packages "${TERMINAL_FUNCTIONS[@]}"
-        install_packages "${SYSTEM_FUNCTIONS[@]}"
-        echo "Installation complete!"
+        if [ "$DRY_RUN" = true ]; then
+            echo "Would install all packages (terminal + system):"
+            echo "Terminal packages:"
+            show_packages "${TERMINAL_FUNCTIONS[@]}"
+            echo "System packages:"
+            show_packages "${SYSTEM_FUNCTIONS[@]}"
+        else
+            echo "Installing all packages (terminal + system)..."
+            install_packages "${TERMINAL_FUNCTIONS[@]}"
+            install_packages "${SYSTEM_FUNCTIONS[@]}"
+            echo "Installation complete!"
+        fi
         ;;
     --single=*)
         FUNCTION_NAME="${1#--single=}"
         if function_exists "$FUNCTION_NAME"; then
-            echo "Installing single package: $FUNCTION_NAME"
-            if ! $FUNCTION_NAME; then
-                echo "Error: $FUNCTION_NAME failed"
-                exit 1
+            if [ "$DRY_RUN" = true ]; then
+                echo "Would install single package:"
+                show_packages "$FUNCTION_NAME"
+            else
+                echo "Installing single package: $FUNCTION_NAME"
+                if ! $FUNCTION_NAME; then
+                    echo "Error: $FUNCTION_NAME failed"
+                    exit 1
+                fi
+                echo "Installation complete!"
             fi
-            echo "Installation complete!"
         else
             echo "Error: Function '$FUNCTION_NAME' does not exist"
             echo "Available functions:"
