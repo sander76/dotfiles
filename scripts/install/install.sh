@@ -118,7 +118,7 @@ ensure_config_dir() {
 
 # Function to check if a function exists
 function_exists() {
-    declare -f "$1" > /dev/null
+    declare -f "$1" > /dev/null #AI! what does declare do ?
     return $?
 }
 
