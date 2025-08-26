@@ -29,7 +29,7 @@ install_starship() {
 }
 
 install_tlrc() {
-    echo "Installing tlrc..."
+    echo "Installing tlrc (aka tldr)..."
     if ! brew install tlrc; then
         return 1
     fi
@@ -103,3 +103,5 @@ case "$1" in
         exit 1
         ;;
 esac
+
+#AI! add a function to check for the existence of a `~/.config` folder. If it does not exist, create one. Do not call this function yet.
