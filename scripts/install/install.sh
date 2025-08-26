@@ -82,10 +82,6 @@ show_help() {
     echo "  --group=terminal    Install only terminal packages (works for wsl too.)"
     echo "  --group=full        Install terminal and system packages. this assumes you're running linux system (not wsl.)"
     echo "  --single=FUNCTION   Install a single package function (e.g., install_kanata)"
-    echo ""
-    echo "Legacy usage (deprecated):"
-    echo "  $0 terminal         Same as --group=terminal"
-    echo "  $0 full             Same as --group=full"
 }
 
 # Function to ensure ~/.config directory exists
@@ -130,17 +126,6 @@ case "$1" in
             printf "  %s\n" "${TERMINAL_FUNCTIONS[@]}" "${SYSTEM_FUNCTIONS[@]}"
             exit 1
         fi
-        ;;
-    "terminal")
-        echo "Installing terminal packages..."
-        install_packages "${TERMINAL_FUNCTIONS[@]}"
-        echo "Installation complete!"
-        ;;
-    "full")
-        echo "Installing all packages (terminal + system)..."
-        install_packages "${TERMINAL_FUNCTIONS[@]}"
-        install_packages "${SYSTEM_FUNCTIONS[@]}"
-        echo "Installation complete!"
         ;;
     "")
         show_help
