@@ -32,3 +32,7 @@ $ ./setup.sh
 ```
 
 Boom, you’re done.
+
+## docker / testing
+
+docker run -v /repos/dotfiles:/dotfiles -it ubuntu:latest

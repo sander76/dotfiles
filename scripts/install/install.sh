@@ -1,5 +1,16 @@
 #!/bin/bash
 
+ensure_brew() {
+    apt update -y && apt upgrade -y
+    apt install curl -y
+
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | sh
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+}
+
 # Package-specific installation functions
 install_fzf() {
     echo "Installing fzf..."
@@ -47,12 +58,20 @@ install_kanata() {
     echo "Note: kanata may require additional system configuration"
 }
 
+install_uv() {
+    echo "Installing uv package manager..."
+    if ! brew install uv; then
+        return 1
+    fi
+}
+
 # Function collections
 TERMINAL_FUNCTIONS=(
     "install_fzf"
     "install_git_delta"
     "install_starship"
     "install_tlrc"
+    "install_uv"
 )
 
 SYSTEM_FUNCTIONS=(
