@@ -82,6 +82,14 @@ show_help() {
     echo "  full     - Install terminal and system packages. this assumes you're running linux system (not wsl.)"
 }
 
+# Function to ensure ~/.config directory exists
+ensure_config_dir() {
+    if [ ! -d "$HOME/.config" ]; then
+        echo "Creating ~/.config directory..."
+        mkdir -p "$HOME/.config"
+    fi
+}
+
 # Main script logic
 case "$1" in
     "terminal")
@@ -103,5 +111,3 @@ case "$1" in
         exit 1
         ;;
 esac
-
-#AI! add a function to check for the existence of a `~/.config` folder. If it does not exist, create one. Do not call this function yet.
