@@ -4,12 +4,10 @@
 install_fzf() {
     echo "Installing fzf..."
     if ! brew install fzf; then
-        echo "Error: Failed to install fzf"
         return 1
     fi
     # Add fzf key bindings and fuzzy completion
     if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
-        echo "Warning: fzf post-install setup failed"
         return 1
     fi
 }
@@ -17,7 +15,6 @@ install_fzf() {
 install_git_delta() {
     echo "Installing git-delta..."
     if ! brew install git-delta; then
-        echo "Error: Failed to install git-delta"
         return 1
     fi
     # No additional setup needed
@@ -26,7 +23,6 @@ install_git_delta() {
 install_starship() {
     echo "Installing starship..."
     if ! brew install starship; then
-        echo "Error: Failed to install starship"
         return 1
     fi
     # No additional setup needed (config is already in your dotfiles)
@@ -35,7 +31,6 @@ install_starship() {
 install_tlrc() {
     echo "Installing tlrc..."
     if ! brew install tlrc; then
-        echo "Error: Failed to install tlrc"
         return 1
     fi
     # No additional setup needed
@@ -44,7 +39,6 @@ install_tlrc() {
 install_kanata() {
     echo "Installing kanata..."
     if ! brew install kanata; then
-        echo "Error: Failed to install kanata"
         return 1
     fi
     # Add any system-level setup here if needed
