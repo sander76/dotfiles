@@ -38,6 +38,7 @@ install_tlrc() {
 
 install_kanata() {
     echo "Installing kanata..."
+    #AI! explain what happens here
     if ! brew install kanata; then
         return 1
     fi
