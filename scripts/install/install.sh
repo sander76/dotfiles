@@ -3,32 +3,50 @@
 # Package-specific installation functions
 install_fzf() {
     echo "Installing fzf..."
-    brew install fzf
+    if ! brew install fzf; then
+        echo "Error: Failed to install fzf"
+        return 1
+    fi
     # Add fzf key bindings and fuzzy completion
-    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+    if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
+        echo "Warning: fzf post-install setup failed"
+        return 1
+    fi
 }
 
 install_git_delta() {
     echo "Installing git-delta..."
-    brew install git-delta
+    if ! brew install git-delta; then
+        echo "Error: Failed to install git-delta"
+        return 1
+    fi
     # No additional setup needed
 }
 
 install_starship() {
     echo "Installing starship..."
-    brew install starship
+    if ! brew install starship; then
+        echo "Error: Failed to install starship"
+        return 1
+    fi
     # No additional setup needed (config is already in your dotfiles)
 }
 
 install_tlrc() {
     echo "Installing tlrc..."
-    brew install tlrc
+    if ! brew install tlrc; then
+        echo "Error: Failed to install tlrc"
+        return 1
+    fi
     # No additional setup needed
 }
 
 install_kanata() {
     echo "Installing kanata..."
-    brew install kanata
+    if ! brew install kanata; then
+        echo "Error: Failed to install kanata"
+        return 1
+    fi
     # Add any system-level setup here if needed
     echo "Note: kanata may require additional system configuration"
 }
@@ -48,9 +66,17 @@ SYSTEM_FUNCTIONS=(
 # Function to install packages
 install_packages() {
     local functions=("$@")
+    local failed=0
     for func in "${functions[@]}"; do
-        $func
+        if ! $func; then
+            echo "Error: $func failed"
+            failed=1
+        fi
     done
+    if [ $failed -eq 1 ]; then
+        echo "Some packages failed to install"
+        exit 1
+    fi
 }
 
 # Function to display help
