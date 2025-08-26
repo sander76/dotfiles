@@ -39,7 +39,8 @@ install_tlrc() {
 install_kanata() {
     echo "Installing kanata..."
     # Install kanata keyboard remapping tool via homebrew
-    if ! brew install kanata; then #AI! what would be the return value of `brew install kanata`?
+    # brew install returns 0 on success, non-zero on failure
+    if ! brew install kanata; then
         return 1
     fi
     # Add any system-level setup here if needed
