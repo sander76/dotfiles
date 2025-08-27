@@ -1,7 +1,11 @@
 #!/bin/bash
 
 ensure_brew() {
-    #AI! do a check wether brew is already installed.
+    # Check if brew is already installed
+    if command -v brew &> /dev/null; then
+        echo "Homebrew is already installed"
+        return 0
+    fi
     
     apt update -y && apt upgrade -y
     apt install curl -y
