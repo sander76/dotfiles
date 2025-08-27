@@ -15,8 +15,16 @@ ensure_brew() {
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
+    apt install build-essential -y
+
     # Reload the .bashrc file for the changes to take effect
     source ~/.bashrc
+    brew install gcc
+}
+install_git(){
+    add-apt-repository ppa:git-core/ppa
+    apt update -y
+    apt install git -y
 }
 
 # Source the fzf installation function
@@ -42,10 +50,6 @@ install_starship() {
 install_fzf() {
     echo "Installing fzf..."
     if ! brew install fzf; then
-        return 1
-    fi
-    # Add fzf key bindings and fuzzy completion
-    if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
         return 1
     fi
 
@@ -143,12 +147,18 @@ show_help() {
     printf "    %s\n" "${SYSTEM_FUNCTIONS[@]}"
 }
 
-# Function to ensure ~/.config directory exists
-ensure_config_dir() {
+install_reqs(){
     if [ ! -d "$HOME/.config" ]; then
         echo "Creating ~/.config directory..."
         mkdir -p "$HOME/.config"
     fi
+    if [ ! -d "$HOME/repos" ]; then
+        echo "Creating ~/repos folder..."
+        mkdir -p "$HOME/repos"
+    fi
+
+    install_git
+    ensure_brew
 }
 
 # Function to check if a function exists
@@ -158,6 +168,8 @@ function_exists() {
     return $?
 }
 
+
+
 # Check for dry-run flag
 DRY_RUN=false
 if [[ "$*" == *"--dry-run"* ]]; then
@@ -166,7 +178,8 @@ if [[ "$*" == *"--dry-run"* ]]; then
     set -- "${@/--dry-run/}"
 fi
 
-ensure_brew
+#AI! set an environment varialble : HOMEBREW_NO_INSTALL_CLEANUP=1
+
 # Main script logic
 case "$1" in
     --group=terminal)
@@ -174,6 +187,7 @@ case "$1" in
             echo "Would install terminal packages:"
             show_packages "${TERMINAL_FUNCTIONS[@]}"
         else
+            install_reqs
             echo "Installing terminal packages..."
             install_packages "${TERMINAL_FUNCTIONS[@]}"
             echo "Installation complete!"
@@ -187,6 +201,7 @@ case "$1" in
             echo "System packages:"
             show_packages "${SYSTEM_FUNCTIONS[@]}"
         else
+            install_reqs
             echo "Installing all packages (terminal + system)..."
             install_packages "${TERMINAL_FUNCTIONS[@]}"
             install_packages "${SYSTEM_FUNCTIONS[@]}"
@@ -200,6 +215,7 @@ case "$1" in
                 echo "Would install single package:"
                 show_packages "$FUNCTION_NAME"
             else
+                install_reqs
                 echo "Installing single package: $FUNCTION_NAME"
                 if ! $FUNCTION_NAME; then
                     echo "Error: $FUNCTION_NAME failed"
