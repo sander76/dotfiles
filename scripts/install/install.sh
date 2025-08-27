@@ -178,7 +178,7 @@ if [[ "$*" == *"--dry-run"* ]]; then
     set -- "${@/--dry-run/}"
 fi
 
-#AI! set an environment varialble : HOMEBREW_NO_INSTALL_CLEANUP=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # Main script logic
 case "$1" in
