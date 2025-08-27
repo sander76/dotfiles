@@ -2,7 +2,7 @@
 
 ensure_brew() {
     # Check if brew is already installed
-    if command -v brew &> /dev/null; then #AI? explain what happens here
+    if command -v brew &> /dev/null; then
         echo "Homebrew is already installed"
         return 0
     fi
@@ -15,7 +15,8 @@ ensure_brew() {
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
-    # AI! reload the .bashrc file for the changes to take effect
+    # Reload the .bashrc file for the changes to take effect
+    source ~/.bashrc
 }
 
 # Source the fzf installation function
