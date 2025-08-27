@@ -1,4 +1,5 @@
 #!/bin/bash
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 ensure_brew() {
     # Check if brew is already installed
@@ -8,39 +9,40 @@ ensure_brew() {
     fi
     
     apt update -y && apt upgrade -y
-    apt install curl -y
+    apt install curl build-essential -y
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 
-    apt install build-essential -y
 
     # Reload the .bashrc file for the changes to take effect
     source ~/.bashrc
-    brew install gcc
+    brew install -q gcc
 }
+
 install_git(){
+    echo "Installing git..."
     add-apt-repository ppa:git-core/ppa
     apt update -y
     apt install git -y
+
 }
 
-# Source the fzf installation function
-source "$(dirname "$0")/install_fzf.sh"
 
 install_git_delta() {
     echo "Installing git-delta..."
-    if ! brew install git-delta; then
+    if ! brew install -q git-delta; then
         return 1
     fi
-    # No additional setup needed
+    
+    [ ! -e ~/.config/git ] && ln -s "$PWD/config/git" ~/.config/git
 }
 
 install_starship() {
     echo "Installing starship..."
-    if ! brew install starship; then
+    if ! brew install -q starship; then
         return 1
     fi
     # No additional setup needed (config is already in your dotfiles)
@@ -49,7 +51,7 @@ install_starship() {
 
 install_fzf() {
     echo "Installing fzf..."
-    if ! brew install fzf; then
+    if ! brew install -q fzf; then
         return 1
     fi
 
@@ -61,7 +63,7 @@ install_fzf() {
 
 install_tlrc() {
     echo "Installing tlrc (aka tldr)..."
-    if ! brew install tlrc; then
+    if ! brew install -q tlrc; then
         return 1
     fi
     # No additional setup needed
@@ -71,7 +73,7 @@ install_kanata() {
     echo "Installing kanata..."
     # Install kanata keyboard remapping tool via homebrew
     # brew install returns 0 on success, non-zero on failure
-    if ! brew install kanata; then
+    if ! brew install -q kanata; then
         return 1
     fi
     # Add any system-level setup here if needed
@@ -80,7 +82,7 @@ install_kanata() {
 
 install_uv() {
     echo "Installing uv package manager..."
-    if ! brew install uv; then
+    if ! brew install -q uv; then
         return 1
     fi
 }
@@ -178,7 +180,6 @@ if [[ "$*" == *"--dry-run"* ]]; then
     set -- "${@/--dry-run/}"
 fi
 
-export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # Main script logic
 case "$1" in

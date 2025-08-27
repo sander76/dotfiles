@@ -122,25 +122,16 @@ export PIP_REQUIRE_VIRTUALENV=true
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias pipx="python ~/bin/pipx.pyz"
 alias py="python"
 
 # use fzf to filter out projects and open them in vscode.
 alias vc='source ~/repos/dotfiles/scripts/vc.sh'
-# same, but now in zed editor.
-alias vv='source ~/repos/dotfiles/scripts/vv.sh'
 
 # cdd into a folder quickly starting
 alias cdd='source ~/repos/dotfiles/scripts/find_folders.sh'
-alias yazi='~/bin/yazi-x86_64-unknown-linux-gnu/yazi'
 
 # use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
 alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
-# toml/json/yaml cli parsing
-alias dasel="~/bin/dasel_linux_amd64"
-
-# tui for managing your docker containers.
-alias lazydocker="~/bin/lazydocker_0.24.1_Linux_x86_64/lazydocker"
 
 alias gco="git checkout"
 alias gp="git push"
@@ -166,23 +157,11 @@ source ~/repos/fzf-git.sh/fzf-git.sh
 
 eval "$(direnv hook zsh)"
 
-# Created by `pipx` on 2024-04-16 12:09:18
-export PATH="$PATH:/home/sander/.local/bin"
 export PATH="$PATH:/home/sander/bin"
 
-export MISTRAL_API_KEY=$(secret-tool lookup token mistral-codestral)
-export OPENAI_API_KEY=$(secret-tool lookup token openai)
-export ANTHROPIC_API_KEY=$(secret-tool lookup token claude)
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-. "$HOME/.cargo/env"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
