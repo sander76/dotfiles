@@ -1,27 +1,19 @@
 #!/bin/bash
 
 ensure_brew() {
+    #AI! do a check wether brew is already installed.
+    
     apt update -y && apt upgrade -y
     apt install curl -y
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    # curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | sh
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 }
 
-# Package-specific installation functions
-install_fzf() {
-    echo "Installing fzf..."
-    if ! brew install fzf; then
-        return 1
-    fi
-    # Add fzf key bindings and fuzzy completion
-    if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
-        return 1
-    fi
-}
+# Source the fzf installation function
+source "$(dirname "$0")/install_fzf.sh"
 
 install_git_delta() {
     echo "Installing git-delta..."
@@ -38,6 +30,23 @@ install_starship() {
     fi
     # No additional setup needed (config is already in your dotfiles)
 }
+
+
+install_fzf() {
+    echo "Installing fzf..."
+    if ! brew install fzf; then
+        return 1
+    fi
+    # Add fzf key bindings and fuzzy completion
+    if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
+        return 1
+    fi
+
+    cd ~/repos || exit
+    git clone https://github.com/junegunn/fzf-git.sh.git
+
+}
+
 
 install_tlrc() {
     echo "Installing tlrc (aka tldr)..."
@@ -150,6 +159,7 @@ if [[ "$*" == *"--dry-run"* ]]; then
     set -- "${@/--dry-run/}"
 fi
 
+ensure_brew
 # Main script logic
 case "$1" in
     --group=terminal)
