@@ -5,14 +5,14 @@ set -e
 PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 echo "$PARENT_FOLDER"
 
-# "$PARENT_FOLDER/prepare.sh"
+"$PARENT_FOLDER/prepare.sh"
 
-# # use custom repo to get the latest git version.
-# add-apt-repository ppa:git-core/ppa -y
-# apt update -y
-# apt install git -y
+# use custom repo to get the latest git version.
+add-apt-repository ppa:git-core/ppa -y
+apt update -y
+apt install git -y
 
-# ~/bin/eget https://github.com/dandavison/delta --to ~/bin
+~/bin/eget https://github.com/dandavison/delta --to ~/bin
 
 
 # Link Git config if it doesn't exist
