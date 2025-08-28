@@ -2,7 +2,7 @@
 set -e
 
 # make sure we have our preparations done.
-PARENT_FOLDER="$(dirname "${BASH_SOURCE[0]}")"
+PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 echo "$PARENT_FOLDER"
 
 # "$PARENT_FOLDER/prepare.sh"
@@ -16,5 +16,4 @@ echo "$PARENT_FOLDER"
 
 
 # Link Git config if it doesn't exist
-#AI! the PARENT_FOLDER is not a fully resolved path. creating the symbolic link below fails as a result. How to resolve ? 
 [ ! -e ~/.config/git ] && ln -s "$PARENT_FOLDER/git" ~/.config/git
