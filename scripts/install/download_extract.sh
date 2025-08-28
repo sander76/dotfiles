@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#AI! check if this script is run with sudo rights
+
 # Exit immediately if any command fails
 set -e
 
@@ -7,18 +9,7 @@ set -e
 if ! command -v curl &> /dev/null; then
     echo "curl not found. Installing curl..."
     if command -v apt-get &> /dev/null; then
-        sudo apt-get update && sudo apt-get install -y curl
-    elif command -v yum &> /dev/null; then
-        sudo yum install -y curl
-    elif command -v dnf &> /dev/null; then
-        sudo dnf install -y curl
-    elif command -v pacman &> /dev/null; then
-        sudo pacman -S --noconfirm curl
-    elif command -v brew &> /dev/null; then
-        brew install curl
-    else
-        echo "Error: Could not install curl. Please install it manually using your package manager."
-        exit 1
+        apt update && sudo apt install -y curl
     fi
 fi
 
