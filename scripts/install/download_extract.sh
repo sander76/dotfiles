@@ -1,6 +1,11 @@
 #!/bin/bash
 
-#AI! check if this script is run with sudo rights
+# Check if script is run with sudo rights
+if [ "$EUID" -ne 0 ]; then
+    echo "Error: This script requires sudo privileges to install packages."
+    echo "Please run with: sudo $0"
+    exit 1
+fi
 
 # Exit immediately if any command fails
 set -e
@@ -9,7 +14,7 @@ set -e
 if ! command -v curl &> /dev/null; then
     echo "curl not found. Installing curl..."
     if command -v apt-get &> /dev/null; then
-        apt update && sudo apt install -y curl
+        apt update && apt install -y curl
     fi
 fi
 
