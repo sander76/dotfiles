@@ -18,7 +18,7 @@ manage_pre_requisits(){
     mkdir -p ~/.config
 
     apt update
-    apt install software-properties-common curl -y
+    apt install software-properties-common curl zip unzip -y
 
     # Check if eget is installed, if not install it
     if [ ! -f "$eget_location" ]; then
