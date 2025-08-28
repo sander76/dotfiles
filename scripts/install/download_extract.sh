@@ -1,6 +1,20 @@
 #!/bin/bash
 
-#AI! check if eget is installed. If not, install it.
+# Check if eget is installed, if not install it
+if ! command -v eget &> /dev/null; then
+    echo "eget not found. Installing eget..."
+    curl https://zyedidia.github.io/eget.sh | sh
+    # Move eget to a directory in PATH if it's not already there
+    if [ -f ./eget ]; then
+        mkdir -p ~/bin
+        mv ./eget ~/bin/
+        chmod +x ~/bin/eget
+        # Add ~/bin to PATH for this session if not already there
+        if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+            export PATH="$HOME/bin:$PATH"
+        fi
+    fi
+fi
 
 # Download fzf binary using eget and store it in ~/bin folder
 
