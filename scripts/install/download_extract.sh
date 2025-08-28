@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# Check if script has write permissions to ~/bin directory
-if [ ! -w "$HOME" ]; then
-    echo "Error: No write permission to home directory. Please run this script as the user (not root)."
-    exit 1
-fi
+#AI! running this script gives me an error message (curl not found.), but the script keeps running. If an error occurs exit the script immediately
 
 # Create ~/bin directory if it doesn't exist
 mkdir -p ~/bin
