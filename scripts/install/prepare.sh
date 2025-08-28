@@ -29,8 +29,7 @@ manage_pre_requisits(){
 
 
     # Check if eget is installed, if not install it
-    #AI! replace the below check with a check for the existence of the eget_location
-    if ! command -v eget &> /dev/null; then
+    if [ ! -f "$eget_location" ]; then
         echo "eget not found. Installing eget..."
         curl https://zyedidia.github.io/eget.sh | sh
         # Move eget to a directory in PATH if it's not already there
@@ -46,4 +45,3 @@ manage_pre_requisits(){
 }
 
 manage_pre_requisits
-
