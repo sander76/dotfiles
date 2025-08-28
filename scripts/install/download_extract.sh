@@ -1,9 +1,19 @@
 #!/bin/bash
 
-#AI! check if this script is run with user rights to do the below `chmod +x ~/bin/eget` command
+# Check if script has write permissions to ~/bin directory
+if [ ! -w "$HOME" ]; then
+    echo "Error: No write permission to home directory. Please run this script as the user (not root)."
+    exit 1
+fi
 
 # Create ~/bin directory if it doesn't exist
 mkdir -p ~/bin
+
+# Check if we can write to ~/bin
+if [ ! -w "$HOME/bin" ]; then
+    echo "Error: No write permission to ~/bin directory."
+    exit 1
+fi
 
 # Check if eget is installed, if not install it
 if ! command -v eget &> /dev/null; then
