@@ -14,7 +14,5 @@ apt install git -y
 ~/bin/eget https://github.com/dandavison/delta --to ~/bin
 
 
-# Link Git config if it doesn’t exist
-
-#AI! the file location of "$PWD/config/git" is not correct. the actual location is two levels 
-[ ! -e ~/.config/git ] && ln -s "$PWD/config/git" ~/.config/git
+# Link Git config if it doesn't exist
+[ ! -e ~/.config/git ] && ln -s "../../config/git" ~/.config/git
