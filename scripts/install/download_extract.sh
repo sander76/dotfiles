@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#AI! running this script gives me an error message (curl not found.), but the script keeps running. If an error occurs exit the script immediately
+# Exit immediately if any command fails
+set -e
 
 # Create ~/bin directory if it doesn't exist
 mkdir -p ~/bin
@@ -8,6 +9,12 @@ mkdir -p ~/bin
 # Check if we can write to ~/bin
 if [ ! -w "$HOME/bin" ]; then
     echo "Error: No write permission to ~/bin directory."
+    exit 1
+fi
+
+# Check if curl is available
+if ! command -v curl &> /dev/null; then
+    echo "Error: curl is not installed. Please install curl first."
     exit 1
 fi
 
