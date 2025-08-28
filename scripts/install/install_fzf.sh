@@ -1,16 +1,11 @@
 #!/bin/bash
 
-install_fzf() {
-    echo "Installing fzf..."
-    if ! brew install fzf; then
-        return 1
-    fi
-    # Add fzf key bindings and fuzzy completion
-    if ! $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc; then
-        return 1
-    fi
+#AI! run the "download_extract.sh" script in here.
 
-    cd ~/repos || exit
-    git clone https://github.com/junegunn/fzf-git.sh.git
+# Use eget to download fzf from GitHub releases
+eget junegunn/fzf --to ~/bin
 
-}
+# Make the binary executable
+chmod +x ~/bin/fzf
+
+echo "fzf has been downloaded and installed to ~/bin/fzf"
