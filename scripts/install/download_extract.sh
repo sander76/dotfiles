@@ -4,6 +4,7 @@
 set -e
 
 # Check if curl is available first
+#AI! is curl does not exist, install it.
 if ! command -v curl &> /dev/null; then
     echo "Error: curl is not installed. Please install curl first."
     exit 1
@@ -13,7 +14,6 @@ fi
 mkdir -p ~/bin
 
 
-# j
 # Check if eget is installed, if not install it
 if ! command -v eget &> /dev/null; then
     echo "eget not found. Installing eget..."
