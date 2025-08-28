@@ -1,6 +1,10 @@
 #!/bin/bash
 
-#AI! run the "download_extract.sh" script in here.
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Run the download_extract.sh script
+"$SCRIPT_DIR/download_extract.sh"
 
 # Use eget to download fzf from GitHub releases
 eget junegunn/fzf --to ~/bin
