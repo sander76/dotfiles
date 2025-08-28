@@ -1,23 +1,19 @@
 #!/bin/bash
 
+
+
 # Exit immediately if any command fails
+#AI! I get two error messages now:
+# curl: command not found
+# eget: command not found
+# it should exit on the first "command not found" message
 set -e
 
 # Create ~/bin directory if it doesn't exist
 mkdir -p ~/bin
 
-# Check if we can write to ~/bin
-if [ ! -w "$HOME/bin" ]; then
-    echo "Error: No write permission to ~/bin directory."
-    exit 1
-fi
 
-# Check if curl is available
-if ! command -v curl &> /dev/null; then
-    echo "Error: curl is not installed. Please install curl first."
-    exit 1
-fi
-
+# j
 # Check if eget is installed, if not install it
 if ! command -v eget &> /dev/null; then
     echo "eget not found. Installing eget..."
