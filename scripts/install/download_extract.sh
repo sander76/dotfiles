@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#AI! check if eget is installed. If not, install it.
+
 # Download fzf binary using eget and store it in ~/bin folder
 
 # Create ~/bin directory if it doesn't exist
