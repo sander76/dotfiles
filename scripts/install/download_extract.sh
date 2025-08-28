@@ -1,13 +1,13 @@
 #!/bin/bash
 
-
-
 # Exit immediately if any command fails
-#AI! I get two error messages now:
-# curl: command not found
-# eget: command not found
-# it should exit on the first "command not found" message
 set -e
+
+# Check if curl is available first
+if ! command -v curl &> /dev/null; then
+    echo "Error: curl is not installed. Please install curl first."
+    exit 1
+fi
 
 # Create ~/bin directory if it doesn't exist
 mkdir -p ~/bin
