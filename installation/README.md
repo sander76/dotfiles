@@ -1,3 +1,5 @@
+
+
 # New system installation notes.
 
 Some general notes and instructions on bootstrapping a new linux installation.
@@ -9,6 +11,10 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt update && sudo apt upgrade
 sudo apt install git curl build-essential cmake
 ```
+
+# install ruff
+
+curl -LsSf https://astral.sh/uv/install.sh | 
 
 # git delta
 
@@ -338,3 +344,4 @@ https://github.com/casey/just
 
 uv tool install rust-just
 
+https://github.com/essembeh/gnome-extensions-cli
