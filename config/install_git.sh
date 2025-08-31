@@ -25,3 +25,6 @@ sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
 # Link Git config if it doesn't exist
 # Get the original user's home directory
 [ ! -e ~/.config/git ] && ln -s "$PARENT_FOLDER/git" ~/.config/git
+
+
+# goto `https://github.com/settings/tokens` to set a pat.
