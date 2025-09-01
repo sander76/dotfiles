@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+#AI! check for existence of the  git command. If exists exit this script. If git exists, check if the ppa is git-core. If so, exit, otherwise continue
+
 # make sure we have our preparations done.
 PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 echo "$PARENT_FOLDER"
