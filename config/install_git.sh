@@ -1,7 +1,20 @@
 #!/bin/bash
 set -e
 
-#AI! check for existence of the  git command. If exists exit this script. If git exists, check if the ppa is git-core. If so, exit, otherwise continue
+# Check if git command exists
+if command -v git &> /dev/null; then
+    echo "Git is already installed."
+    
+    # Check if git-core PPA is already added
+    if apt-cache policy git | grep -q "git-core/ppa"; then
+        echo "Git is installed from git-core PPA. Exiting."
+        exit 0
+    else
+        echo "Git is installed but not from git-core PPA. Continuing with installation."
+    fi
+else
+    echo "Git is not installed. Proceeding with installation."
+fi
 
 # make sure we have our preparations done.
 PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
