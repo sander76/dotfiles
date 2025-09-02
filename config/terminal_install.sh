@@ -3,8 +3,34 @@
 # Get the directory where this script is located
 SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
-#AI! given a list of script names loop through them and execute them
+# List of scripts to execute
+SCRIPTS=(
+    "install_git.sh"
+    "install_fzf.sh"
+    "install_starship.sh"
+    "install_uv.sh"
+    "install_tldr.sh"
+    "install_direnv.sh"
+    "install_docker.sh"
+    "install_flatpak.sh"
+    "install_nerdfont.sh"
+)
 
+# Loop through and execute each script
+for script in "${SCRIPTS[@]}"; do
+    script_path="$SCRIPT_DIR/$script"
+    if [ -f "$script_path" ]; then
+        echo "Executing $script..."
+        if bash "$script_path"; then
+            echo "✓ $script completed successfully"
+        else
+            echo "✗ $script failed"
+            exit 1
+        fi
+    else
+        echo "⚠ Script not found: $script_path"
+    fi
+done
 
 TARGET_BASHRC="$SCRIPT_DIR/terminal/bashrc"
 HOME_BASHRC="$HOME/.bashrc"
