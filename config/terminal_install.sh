@@ -3,7 +3,7 @@
 # Get the directory where this script is located
 SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
-
+#AI! given a list of script names loop through them and execute them
 
 
 TARGET_BASHRC="$SCRIPT_DIR/terminal/bashrc"
