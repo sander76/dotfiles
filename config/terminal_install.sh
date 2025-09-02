@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Get the directory where this script is located
+#AI! do not cd into the SCRIPT_DIR folder
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 TARGET_BASHRC="$REPO_ROOT/config/terminal/bashrc"
