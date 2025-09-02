@@ -28,7 +28,7 @@ sudo apt update -y
 sudo apt -y install git
 
 # Install git delta
-~/bin/eget https://github.com/dandavison/delta --to ~/bin
+~/bin/eget https://github.com/dandavison/delta --to ~/bin --asset ^musl
 
 
 # Install lib secret

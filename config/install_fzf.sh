@@ -4,7 +4,7 @@ set -e
 "$(dirname "${BASH_SOURCE[0]}")/prepare.sh"
 
 # Use eget to download fzf from GitHub releases
-~/bin/eget junegunn/fzf --to ~/bin
+~/bin/eget junegunn/fzf --to ~/bin --asset ^musl
 
 # Make the binary executable
 chmod +x ~/bin/fzf

@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# todo: check for existence of nerdfont.
-
-# make sure we have our preparations done.
 
 # Download and install FiraCode Nerd Font Mono
 FONT_DIR="$HOME/.local/share/fonts/FiraCode"
