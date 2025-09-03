@@ -1,9 +1,10 @@
 #!/bin/bash
+set -ex
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
-# List of scripts to execute
+# this looks for scripts inside the above "SCRIPT_DIR" folder.
 SCRIPTS=(
     "install_git.sh"
     "install_fzf.sh"
@@ -12,8 +13,9 @@ SCRIPTS=(
     "install_tldr.sh"
     "install_direnv.sh"
     "install_docker.sh"
-    "install_flatpak.sh"
     "install_nerdfont.sh"
+    "install_flatpak.sh"
+    "install_nano.sh"
 )
 
 # Loop through and execute each script
