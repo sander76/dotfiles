@@ -10,3 +10,6 @@ set -e
 chmod +x ~/bin/fzf
 
 echo "fzf has been downloaded and installed to ~/bin/fzf"
+
+cd ~/repos || exit
+git clone https://github.com/junegunn/fzf-git.sh.git

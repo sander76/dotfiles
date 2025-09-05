@@ -16,6 +16,7 @@ manage_pre_requisits(){
     # Create ~/bin directory if it doesn't exist
     mkdir -p ~/bin
     mkdir -p ~/.config
+    mkdir -p ~/repos
 
     sudo apt update
     sudo apt install software-properties-common curl zip unzip -y

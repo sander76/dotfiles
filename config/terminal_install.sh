@@ -52,10 +52,26 @@ if [ -e "$HOME_BASHRC" ]; then
         exit 0
         
     else
-        # It's a regular file, ask to backup and replace
         echo "⚠ ~/.bashrc exists but does not point to $TARGET_BASHRC"
-        echo "FIX THIS FIRST."
-        exit 1
+        echo "Current target: $CURRENT_TARGET"
+        echo "Desired target: $TARGET_BASHRC"
+        echo ""
+        read -p "Do you want to replace ~/.bashrc with a symlink to $TARGET_BASHRC? (y/N): " -n 1 -r
+        echo ""
+        
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            # Backup the existing file
+            backup_file="$HOME/.bashrc.backup.$(date +%Y%m%d_%H%M%S)"
+            mv "$HOME_BASHRC" "$backup_file"
+            echo "✓ Backed up existing ~/.bashrc to $backup_file"
+            
+            # Create the symlink
+            ln -s "$TARGET_BASHRC" "$HOME_BASHRC"
+            echo "✓ Created symlink ~/.bashrc -> $TARGET_BASHRC"
+        else
+            echo "Exiting without making changes."
+            exit 1
+        fi
     fi
 else
     ln -s "$TARGET_BASHRC" "$HOME_BASHRC"
