@@ -1,0 +1,6 @@
+FROM ubuntu:25.04
+
+# RUN yes | unminimize
+
+RUN apt update && apt -y install sudo
+

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"

@@ -32,8 +32,8 @@ sudo apt -y install git
 
 
 # Install lib secret
-sudo apt -y install make gcc git libsecret-1-0 libsecret-1-dev libglib2.0-dev
-sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
+# sudo apt -y install gnome-keyring make gcc libsecret-1-0 libsecret-1-dev libglib2.0-dev
+# sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
 
 
 
