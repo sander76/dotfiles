@@ -2,64 +2,11 @@
 
 # New system installation notes.
 
-Some general notes and instructions on bootstrapping a new linux installation.
-
-```
-# add latest upstream git ppa.
-sudo add-apt-repository ppa:git-core/ppa
-
-sudo apt update && sudo apt upgrade
-sudo apt install git curl build-essential cmake
-```
 
 # install ruff
 
 curl -LsSf https://astral.sh/uv/install.sh | 
 
-# git delta
-
-git is configured using this tool.
-
-https://github.com/dandavison/delta/releases
-sudo dpkg -i git-delta_0.16.5_amd64.deb
-
-## taplo toml formatter
-
-```bash
-cargo install taplo-cli --locked
-  | gzip -d - | install -m 755 /dev/stdin /usr/local/bin/taplo
-```
-
-## github cli
-
-convenient for authenticating with github.
-
-https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-
-
-### authenticate your workstation with github.
-
-```
-gh auth login
-```
-
-# git credential manager lib secret:
-
-```sh
-# Install dependencies
-$ sudo apt install make gcc git libsecret-1-0 libsecret-1-dev libglib2.0-dev
-
-# Compile binary
-$ sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
-
-# Configure git to use binary as credential storage
-$ git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
-```
-
-
-
-## ghostty
-https://github.com/mkasberg/ghostty-ubuntu?tab=readme-ov-file
 
 ## kanata
 
@@ -104,26 +51,6 @@ to restart:
 systemctl --user restart kanata.service
 ```
 
-## import your dotfiles
-
-```
-mkdir ~/repos
-cd repos
-git clone https://github.com/sander76/dotfiles.git
-cd dotfiles
-./setup.sh
-
-```
-
-
-## fira nerd font
-
-https://www.nerdfonts.com/
-
-copy FiraCode folder to ~/.local/share/fonts. (~/.local/share/fonts/FiraCode/<all ttf files here>)
-
-
-## zshell
 
 IMPORTANT: log out and log in again. Otherwise it will not work.
 
@@ -133,19 +60,8 @@ IMPORTANT: log out and log in again. Otherwise it will not work.
 
 
 
-## starship shell
-
-```
-curl -sS https://starship.rs/install.sh | sh
-```
 
 ## pcloud drive
-
-
-## pyenv
-
-https://github.com/pyenv/pyenv-installer?tab=readme-ov-file#installation--update--uninstallation
-https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv
 
 
 ## vscode
@@ -156,39 +72,6 @@ download `.deb` package
 sudo dpkg -i vscode
 ```
 
-## ulauncher,
-
-> not using this anymore.
-
-https://ulauncher.io/#Download
-
-- make CTRL-CTRL the hotkey
-- add opener to plugin: https://github.com/sander76/ulauncher-opener
-- add CTRL-SPACE to system wide shortcut (wayland and ulauncher don't play nice together)
-
-## zellij
-
-
-make sure cargo is installed.
-
-compile zellij using `cargo`: https://zellij.dev/documentation/installation
-
-
-## tldr
-
-
-https://github.com/pepa65/tldr-bash-client#installation
-
-(First run can take a while due to caching.)
-
-## fzf
-https://github.com/junegunn/fzf#using-git
-
-
-## pipx
-
-- download pipx zipfile (.pyx) and copy to `~/bin/` (https://pipx.pypa.io/stable/#using-pipx-without-installing-via-zipapp)
-- the alias is already defined. So you should be able to run `pipx` now directly from you terminal.
 
 ## ripgrep
 
@@ -196,15 +79,6 @@ https://github.com/junegunn/fzf#using-git
 sudo apt install ripgrep
 ```
 
-## flatpak
-
-```
-sudo apt install flatpak
-```
-
-add flathub repository.
-
-https://flathub.org/setup/Ubuntu
 
 ## snapshot/annotation tool
 
@@ -221,10 +95,6 @@ To enable this:
 screenshot tool
 
 
-## beekeeper
-
-## Rust
-install rustup, https://rustup.rs/
 
 ## Freecad
 
@@ -297,39 +167,7 @@ install gnome-tweaks
 
 Find the disable caps-lock.
 
-## run or raise
 
-[not using anymore ?]
-
-> trying to replace this with tweaking the gsettings (see below.)
-
-possible alternative:
-use dconf editor and change this setting:
-
-![something](./dconf_editor.png)
-
-activate a currently running application using shortcut or start the application.
-
-A gnome shell plugin: https://extensions.gnome.org/extension/1336/run-or-raise/
-
-check `~/.config/run-or-raise/shortcuts.conf` for current shortcuts.
-
-
-## libsecret
-
-Set secrets as env variables using the keyring.
-
-`apt install libsecret-tools`
-
-store a secret:
-
-`secret-tool store --label='my token' token mistral-codestral`
-in human language: "give me the token value of mistral-codestral"
->> enter a password
-
-get a secret:
-`secret-tool lookup token mistral-codestral`
->> token will be returned.
 
 
 ## export shortcuts

@@ -144,7 +144,15 @@ alias ll='ls -lh'
 # cd into the root of the git folder.
 alias r='cd $(git rev-parse --show-toplevel)'
 
-alias pts='~/repos/dotfiles/scripts/list_tests.sh tests | fzf | xargs uv run pytest'
+pts() {
+    local selected_test
+    selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf)
+    if [[ -n "$selected_test" ]]; then
+          print -z "uv run pytest $selected_test"
+    fi
+}
+zle -N pts
+
 alias ptlf='pytest --lf'
 
 alias fls='source ~/bin/scripts/opener.sh'

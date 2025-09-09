@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# DEPRECATED!!
+# Only here for reference and scared to remove at this point.
+
 # Enable shell script strictness
 set -eu
 # Enable command tracing
