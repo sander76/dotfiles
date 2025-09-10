@@ -11,5 +11,10 @@ chmod +x ~/bin/fzf
 
 echo "fzf has been downloaded and installed to ~/bin/fzf"
 
-cd ~/repos || exit
-git clone https://github.com/junegunn/fzf-git.sh.git
+if [ -d "$HOME/repos/fzf-git.sh" ]; then
+    echo "fzf-git already available."
+    exit 0
+else
+    cd ~/repos || exit
+    git clone https://github.com/junegunn/fzf-git.sh.git
+fi

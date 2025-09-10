@@ -14,8 +14,9 @@ SCRIPTS=(
     "install_direnv.sh"
     "install_docker.sh"
     "install_nerdfont.sh"
-    "install_flatpak.sh"
+    # "install_flatpak.sh"
     "install_nano.sh"
+    # "install_bleh.sh"
 )
 
 # Loop through and execute each script

@@ -2,8 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#BLE
-# [[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
 
 # If not running interactively, don't do anything
 case $- in
@@ -50,6 +48,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias gco="git checkout"
+alias gp="git push"
+alias gpf="git push --force-with-lease --force-if-includes"
+alias grbc="git rebase --continue"
+
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
@@ -67,15 +71,17 @@ eval "$("$HOME"/bin/fzf --bash)"
 eval "$(/usr/local/bin/starship init bash)"
 eval "$(direnv hook bash)"
 
+# open repos using fzf
+alias vc='source ~/repos/dotfiles/scripts/vc.sh'
+
+# cd into the root of the git folder.
+alias r='cd $(git rev-parse --show-toplevel)'
+
+# use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
+alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
 
 
+# . "$HOME/.local/bin/env"
 
-. "$HOME/.local/bin/env"
-
-## PATHS
-#AI! inside the repos/dotfiles/scripts folder I have several bash scripts I want to be able to run from anywhere.
-# to make this happen I have added this folder to the PATH environment variable. But this doesn't seem to work. I guess I made a mistake ?
-export PATH="$PATH:$HOME/bin:$HOME/repos/dotfiles/scripts:$HOME/.local/bin"
-
-# BLEH
-# [[ ! ${BLE_VERSION-} ]] || ble-attach
+# export PATH="$HOME/repos/dotfiles/scripts:$PATH:$HOME/bin:$HOME/.local/bin:"
+# PATH="$HOME/repos/dotfiles/scripts:$PATH"
