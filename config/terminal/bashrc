@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+#BLE
+# [[ $- == *i* ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -56,8 +59,6 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 
 
-## PATHS
-export PATH="$PATH:$HOME/bin:$HOME/repos/dotfiles/scripts:$HOME/.local/bin"
 
 ## EVALS and executions.
 source ~/repos/fzf-git.sh/fzf-git.sh
@@ -70,3 +71,11 @@ eval "$(direnv hook bash)"
 
 
 . "$HOME/.local/bin/env"
+
+## PATHS
+#AI! inside the repos/dotfiles/scripts folder I have several bash scripts I want to be able to run from anywhere.
+# to make this happen I have added this folder to the PATH environment variable. But this doesn't seem to work. I guess I made a mistake ?
+export PATH="$PATH:$HOME/bin:$HOME/repos/dotfiles/scripts:$HOME/.local/bin"
+
+# BLEH
+# [[ ! ${BLE_VERSION-} ]] || ble-attach
