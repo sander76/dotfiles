@@ -18,6 +18,7 @@ SCRIPTS=(
     "install_nano.sh"
     "install_batcat.sh"
     # "install_bleh.sh"
+    "install_zsh.sh"
 )
 
 # Loop through and execute each script

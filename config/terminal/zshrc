@@ -10,7 +10,7 @@ bindkey=-e
 
 zstyle :compinstall filename '/home/sander/.zshrc'
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit
 compinit
