@@ -81,6 +81,14 @@ alias r='cd $(git rev-parse --show-toplevel)'
 alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
 
 
+pts() {
+    local selected_test
+    selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf)
+    if [[ -n "$selected_test" ]]; then
+          print -z "uv run pytest $selected_test"
+    fi
+}
+
 # . "$HOME/.local/bin/env"
 
 # export PATH="$HOME/repos/dotfiles/scripts:$PATH:$HOME/bin:$HOME/.local/bin:"

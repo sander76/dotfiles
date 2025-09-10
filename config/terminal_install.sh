@@ -16,6 +16,7 @@ SCRIPTS=(
     "install_nerdfont.sh"
     # "install_flatpak.sh"
     "install_nano.sh"
+    "install_batcat.sh"
     # "install_bleh.sh"
 )
 
