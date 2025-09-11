@@ -165,7 +165,7 @@ source ~/repos/fzf-git.sh/fzf-git.sh
 
 eval "$(direnv hook zsh)"
 
-export PATH="$PATH:/home/sander/bin"
+export PATH="$PATH:/home/sander/bin:/$HOME/.local/bin"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -196,3 +196,5 @@ cddl() {
 }
 zle -N cddl
 bindkey '^n' cddl
+
+. "$HOME/.local/bin/env"
