@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e
 
-#AI! check if uv is already installed (by using which command) if exists, do nothing. If not exists, perform the below actions.
+if which uv > /dev/null 2>&1; then
+    echo "uv is already installed"
+    exit 0
+fi
 
 "$(dirname "${BASH_SOURCE[0]}")/prepare.sh"
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
