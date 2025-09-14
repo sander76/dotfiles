@@ -18,6 +18,8 @@ SCRIPTS=(
     "install_nano.sh"
     "install_batcat.sh"
     # "install_bleh.sh"
+    "install_aider.sh"
+    "install_keyring.sh"
     "install_zsh.sh"
 )
 
