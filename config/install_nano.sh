@@ -1,17 +1,12 @@
 #!/bin/bash
+set -e
 
-if command -v nano &> /dev/null; then
-    echo "nano already installed"
-else
-    sudo apt update -y
-    sudo apt -y install git
-fi
+PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+"$PARENT_FOLDER/prepare.sh"
 
-if [ -e "$HOME/.nanorc" ]; then
-    echo ".nano rc already exists"
-else
-    NANO_RC="$(realpath "$(dirname "${BASH_SOURCE[0]}")")/nano/nanorc"
-    echo "Creating nano symlink from $NANO_RC"
-    
-    ln -s "$NANO_RC" ~/.nanorc
-fi
+echo "$PARENT_FOLDER"
+
+apt install nano -y
+
+
+"$PARENT_FOLDER/create_symlink.sh" "$PARENT_FOLDER/nano/nanorc" ~/.nanorc

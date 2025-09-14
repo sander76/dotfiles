@@ -39,7 +39,8 @@ sudo apt -y install git
 
 # Link Git config if it doesn't exist
 # Get the original user's home directory
-[ ! -e ~/.config/git ] && ln -s "$PARENT_FOLDER/git" ~/.config/git
+"$PARENT_FOLDER/create_symlink.sh" "$PARENT_FOLDER/git" ~/.config/git
+
 
 # use `git config --list` to see if config has worked.
 # goto `https://github.com/settings/tokens` to set a pat.
