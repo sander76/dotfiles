@@ -120,3 +120,5 @@ bindkey '^n' cddl
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
 FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
 source ~/repos/fzf-git.sh/fzf-git.sh
+
+. "$HOME/.local/bin/env"
