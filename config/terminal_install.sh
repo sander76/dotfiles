@@ -7,6 +7,7 @@ SCRIPT_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 # this looks for scripts inside the above "SCRIPT_DIR" folder.
 SCRIPTS=(
     "install_git.sh"
+    "install_rg.sh"
     "install_fd.sh"
     "install_fzf.sh"
     "install_starship.sh"
