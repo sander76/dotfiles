@@ -23,6 +23,7 @@ SCRIPTS=(
     "install_aider.sh"
     "install_keyring.sh"
     "install_zsh.sh"
+    "install_zsh-autosuggestions.sh"
 )
 
 # Loop through and execute each script
