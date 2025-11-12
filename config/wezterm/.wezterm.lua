@@ -11,12 +11,13 @@ config.colors= {
   cursor_bg="#7aa2f7",cursor_border="#7aa2f7"}
 config.use_fancy_tab_bar=true
 
+
 -- Hyperlink rules
 config.hyperlink_rules = {
   -- Make files with .p extension clickable
   {
     regex = [[\b\w+\.py\b]],
-    format = 'vscode://$0',
+    format = '$0',
   },
 }
 
