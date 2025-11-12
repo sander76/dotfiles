@@ -12,7 +12,9 @@ config.colors= {
 config.use_fancy_tab_bar=true
 
 -- Selection patterns
-config.selection_word_boundary = ' \t\n{}[]()"\':;,│'
+config.quick_select_patterns = {
+  "[^\\s]+\\.py(?!\\w)"
+}
 
 -- Hyperlink rules
 config.hyperlink_rules = {
