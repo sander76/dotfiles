@@ -11,7 +11,14 @@ config.colors= {
   cursor_bg="#7aa2f7",cursor_border="#7aa2f7"}
 config.use_fancy_tab_bar=true
 
-#AI! create a hyperlink from a file which has an extension of ".p"
+-- Hyperlink rules
+config.hyperlink_rules = {
+  -- Make files with .p extension clickable
+  {
+    regex = [[\b\w+\.py\b]],
+    format = 'vscode://$0',
+  },
+}
 
 wezterm.GLOBAL.os = wezterm.GLOBAL.os or
   string.find(wezterm.target_triple, '-windows-') and 'windows' or
