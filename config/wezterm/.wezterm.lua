@@ -11,10 +11,12 @@ config.colors= {
   cursor_bg="#7aa2f7",cursor_border="#7aa2f7"}
 config.use_fancy_tab_bar=true
 
+-- Selection patterns
+config.selection_word_boundary = ' \t\n{}[]()"\':;,│'
 
 -- Hyperlink rules
 config.hyperlink_rules = {
-  -- Make files with .p extension clickable
+  -- Make files with .py extension clickable
   {
     regex = [[\b\w+\.py\b]],
     format = '$0',
