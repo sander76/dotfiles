@@ -32,3 +32,4 @@ unzip -q "$TEMP_DIR/FiraCode.zip" -d "$FONT_DIR"
 rm -rf "$TEMP_DIR"
 
 echo "FiraCode Nerd Font Mono installation complete!"
+

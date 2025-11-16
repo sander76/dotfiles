@@ -72,8 +72,12 @@ create an app account!
 
 ## how to backup
 
+simple zipping of all files, db dump and copy over to another drive ?
+
 https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html
 https://github.com/nextcloud/backup?tab=readme-ov-file#handle-external-storages
+
+https://www.youtube.com/watch?v=gh6ii9sq2Xs&t=606s
 
 https://rclone.org/
 

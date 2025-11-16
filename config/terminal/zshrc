@@ -132,3 +132,5 @@ source ~/repos/fzf-git.sh/fzf-git.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 . "$HOME/.local/bin/env"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
