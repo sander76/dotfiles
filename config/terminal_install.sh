@@ -24,6 +24,7 @@ SCRIPTS=(
     "install_keyring.sh"
     "install_zsh.sh"
     "install_zsh-autosuggestions.sh"
+    "install_scooter.sh"
 )
 
 # Loop through and execute each script

@@ -134,3 +134,5 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 . "$HOME/.local/bin/env"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+source /home/sander/.config/broot/launcher/bash/br

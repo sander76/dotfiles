@@ -94,3 +94,5 @@ pts() {
 
 # export PATH="$HOME/repos/dotfiles/scripts:$PATH:$HOME/bin:$HOME/.local/bin:"
 # PATH="$HOME/repos/dotfiles/scripts:$PATH"
+
+source /home/sander/.config/broot/launcher/bash/br
