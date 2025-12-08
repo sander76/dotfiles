@@ -9,7 +9,7 @@ config.color_scheme="tokyonight_night"
 
 config.colors= {
   cursor_bg="#7aa2f7",cursor_border="#7aa2f7"}
-config.use_fancy_tab_bar=true
+-- config.use_fancy_tab_bar=true
 config.window_decorations="RESIZE"
 -- Selection patterns
 config.quick_select_patterns = {
@@ -80,7 +80,7 @@ tabline.setup({
   extensions = {},
 })
 
-tabline.apply_to_config(config)
+-- tabline.apply_to_config(config)
 
 
 return config
