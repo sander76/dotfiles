@@ -25,6 +25,7 @@ SCRIPTS=(
     "install_zsh.sh"
     "install_zsh-autosuggestions.sh"
     "install_scooter.sh"
+    "install_serie.sh"
 )
 
 # Loop through and execute each script
