@@ -4,4 +4,4 @@ set -e
 "$(dirname "${BASH_SOURCE[0]}")/prepare.sh"
 
 # Use eget to download fzf from GitHub releases
-eget https://github.com/thomasschafer/scooter --to ~/bin/
+~/bin/eget https://github.com/thomasschafer/scooter --to ~/bin/
