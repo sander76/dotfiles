@@ -4,4 +4,4 @@ api_key=$(keyring get claude_api token)
 
 #echo "$api_key"
 
-aider --anthropic-api-key "$api_key" --model claude-4-sonnet-20250514 --watch-files
+aider --anthropic-api-key "$api_key" --model anthropic/claude-opus-4-5 --watch-files
