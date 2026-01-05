@@ -20,3 +20,5 @@ pyrightconfig.json
 .aider*
 
 CONVENTIONS.md
+
+**/.claude/settings.local.json
