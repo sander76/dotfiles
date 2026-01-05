@@ -62,9 +62,12 @@ alias gp="git push"
 alias gpf="git push --force-with-lease --force-if-includes"
 alias grbc="git rebase --continue"
 alias gcm="git commit -m"
+alias gs="git status"
+alias lg="lazygit"
 
 alias l='ls -lah'
 alias ll='ls -lh'
+
 
 alias o='code -g'
 # batcat alias
