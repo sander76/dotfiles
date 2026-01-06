@@ -16,6 +16,25 @@ config.quick_select_patterns = {
   "[^\\s]+\\.py(?!\\w)"
 }
 
+-- Key bindings
+config.keys = {
+  {
+    key = 'p',
+    mods = 'CTRL',
+    action = wezterm.action.QuickSelectArgs {
+      label = 'open file',
+      patterns = config.quick_select_patterns,
+      
+      action = wezterm.action_callback(function(window, pane)
+        local text = window:get_selection_text_for_pane(pane)
+        if text then
+          pane:send_text('code ' .. text)
+        end
+      end),
+    },
+  },
+}
+
 -- Hyperlink rules
 config.hyperlink_rules = {
   -- Make files with .py extension clickable
