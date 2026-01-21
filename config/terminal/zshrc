@@ -76,6 +76,8 @@ alias bat='batcat'
 # cd into the root of the git folder.
 alias r='cd $(git rev-parse --show-toplevel)'
 
+alias be='birdeye'
+
 pts() {
     local selected_test
     selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf)
@@ -144,5 +146,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 . "$HOME/.local/bin/env"
 
+source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
