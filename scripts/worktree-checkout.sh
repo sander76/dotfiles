@@ -50,3 +50,13 @@ else
 fi
 
 echo "Worktree created successfully at: ../$folder_name"
+
+# Check for common_files folder in parent directory and offer to copy
+common_files_dir="../common_files"
+if [[ -d "$common_files_dir" ]]; then
+    read -rp "Copy contents from common_files to the new worktree? [y/N] " response
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+        cp -r "$common_files_dir"/. "../$folder_name/"
+        echo "Copied common_files to ../$folder_name"
+    fi
+fi
