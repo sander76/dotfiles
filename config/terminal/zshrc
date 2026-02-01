@@ -16,7 +16,6 @@ bindkey=-e
 
 zstyle :compinstall filename '/home/sander/.zshrc'
 
-# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit
 compinit
@@ -143,8 +142,10 @@ source ~/repos/fzf-git.sh/fzf-git.sh
 
 # enable zsh autosuggestions.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-. "$HOME/.local/bin/env"
+source ~/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+# bindkey '^I' fzf_completion
+# . "$HOME/.local/bin/env"
+source ./.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/repos/dotfiles/config/wezterm/wezterm.sh
 

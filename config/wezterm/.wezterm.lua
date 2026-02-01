@@ -2,58 +2,61 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- General
+config.font_size = 11
+config.line_height = 1
+config.color_scheme = "tokyonight_night"
 
-config.font_size=11
-config.line_height=1
-config.color_scheme="tokyonight_night"
+config.colors = {
+    cursor_bg = "#7aa2f7",
+    cursor_border = "#7aa2f7",
+    tab_bar = {
+        background = "#ffffff",
+        active_tab = { bg_color = "#1A1B26", fg_color = "#c0c0c0" }
+    }
+}
 
-config.colors= {
-  cursor_bg="#7aa2f7",cursor_border="#7aa2f7"}
--- config.use_fancy_tab_bar=true
--- config.window_decorations="RESIZE"
--- Selection patterns
 config.quick_select_patterns = {
-  "[^\\s]+\\.py(?!\\w)"
+    "[^\\s]+\\.py(?!\\w)"
 }
 
 -- Key bindings
 config.keys = {
-  {
-    key = 'p',
-    mods = 'CTRL',
-    action = wezterm.action.QuickSelectArgs {
-      label = 'open file',
-      patterns = config.quick_select_patterns,
-      
-      action = wezterm.action_callback(function(window, pane)
-        local text = window:get_selection_text_for_pane(pane)
-        if text then
-          pane:send_text('code ' .. text)
-        end
-      end),
+    {
+        key = 'p',
+        mods = 'CTRL',
+        action = wezterm.action.QuickSelectArgs {
+            label = 'open file',
+            patterns = config.quick_select_patterns,
+
+            action = wezterm.action_callback(function(window, pane)
+                local text = window:get_selection_text_for_pane(pane)
+                if text then
+                    pane:send_text('code ' .. text)
+                end
+            end),
+        },
     },
-  },
 }
 
 -- Hyperlink rules
 config.hyperlink_rules = {
-  -- Make files with .py extension clickable
-  {
-    regex = [[\b\w+\.py\b]],
-    format = '$0',
-  },
+    -- Make files with .py extension clickable
+    {
+        regex = [[\b\w+\.py\b]],
+        format = '$0',
+    },
 }
 
 wezterm.GLOBAL.os = wezterm.GLOBAL.os or
-  string.find(wezterm.target_triple, '-windows-') and 'windows' or
-  string.find(wezterm.target_triple, '-apple-') and 'macos' or
-  string.find(wezterm.target_triple, '-linux-') and 'linux' or
-  error('Unsupported Operating System')
+    string.find(wezterm.target_triple, '-windows-') and 'windows' or
+    string.find(wezterm.target_triple, '-apple-') and 'macos' or
+    string.find(wezterm.target_triple, '-linux-') and 'linux' or
+    error('Unsupported Operating System')
 
 
 
 if wezterm.GLOBAL.os == 'windows' then
-  config.default_domain = 'WSL:Ubuntu-24.04'
+    config.default_domain = 'WSL:Ubuntu-24.04'
 end
 
 config.audible_bell = "Disabled"
@@ -103,7 +106,7 @@ config.audible_bell = "Disabled"
 
 
 config.keys = {
-  {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
+    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
 }
 
 return config
