@@ -37,7 +37,19 @@ elif [[ "$branch_name" == */* ]]; then
     echo "Creating worktree for local branch: $branch_name"
     echo "Folder name: $folder_name"
 
-    git worktree add "../$folder_name" "$branch_name"
+    # Check if branch exists
+    if git show-ref --verify --quiet "refs/heads/$branch_name"; then
+        git worktree add "../$folder_name" "$branch_name"
+    else
+        echo "Branch '$branch_name' does not exist."
+        read -rp "Create new branch '$branch_name'? [y/N] " response
+        if [[ "$response" =~ ^[Yy]$ ]]; then
+            git worktree add -b "$branch_name" "../$folder_name"
+        else
+            echo "Aborted."
+            exit 1
+        fi
+    fi
 
 else
     # Simple local branch: my_branch
@@ -46,7 +58,19 @@ else
     echo "Creating worktree for local branch: $branch_name"
     echo "Folder name: $folder_name"
 
-    git worktree add "../$folder_name" "$branch_name"
+    # Check if branch exists
+    if git show-ref --verify --quiet "refs/heads/$branch_name"; then
+        git worktree add "../$folder_name" "$branch_name"
+    else
+        echo "Branch '$branch_name' does not exist."
+        read -rp "Create new branch '$branch_name'? [y/N] " response
+        if [[ "$response" =~ ^[Yy]$ ]]; then
+            git worktree add -b "$branch_name" "../$folder_name"
+        else
+            echo "Aborted."
+            exit 1
+        fi
+    fi
 fi
 
 echo "Worktree created successfully at: ../$folder_name"
