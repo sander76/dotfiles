@@ -13,24 +13,69 @@
     },
   },
   {
-    "context": "Editor",
-    "bindings": {
-      "ctrl-t ctrl-c": [
-        "workspace::SendKeystrokes",
-        "cmd-f def test_ shift-enter escape"
-      ],
-    },
-  },
-  // {
-  //   "context": "Editor && mode == full",
-  //   "bindings": {
-  //     "crtl-shift-d":"debugger::"
-  //   }
-  // },
-  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       // "j k": "vim::NormalBefore"
     },
   },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-1": "pane::SplitAndMoveRight",
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "bindings": {
+      "ctrl-2": null,
+    },
+  },
+  {
+    "context": "Welcome",
+    "bindings": {
+      "ctrl-2": null,
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "bindings": {
+      "ctrl-1": null,
+    },
+  },
+  {
+    "context": "Welcome",
+    "bindings": {
+      "ctrl-1": null,
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-1": ["workspace::MoveItemToPane", [0]],
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-2": ["workspace::MoveItemToPane", [1]],
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-1": [
+        "workspace::ActivatePane",
+        0
+      ]
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-2": [
+        "workspace::ActivatePane",
+        1
+      ]
+    }
+  }
 ]

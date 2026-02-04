@@ -147,8 +147,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 # bindkey '^I' fzf_completion
 # . "$HOME/.local/bin/env"
-source ./.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
+eval "$(~/.local/bin/mise activate zsh)"

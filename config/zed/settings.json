@@ -7,14 +7,60 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "disable_ai": true,
+  "debugger": {
+    "timeout": 4000,
+    "dock": "right",
+  },
+  "wsl_connections": [
+    {
+      "distro_name": "Ubuntu-24.04",
+      "user": null,
+      "projects": [
+        {
+          "paths": ["/home/sander"],
+        },
+        {
+          "paths": [
+            "/home/sander/baringa/reef/56861__multiple_region_vol_switching",
+          ],
+        },
+      ],
+    },
+  ],
+  "terminal": {
+    "dock": "right",
+    "font_family": "FiraCode Nerd Font",
+    "font_fallbacks": ["monspace"],
+  },
+  "project_panel": {
+    "auto_reveal_entries": false,
+    "auto_fold_dirs": false,
+  },
+  "base_keymap": "VSCode",
+  "agent": {
+    "enabled": false,
+    "button": false,
+    "model_parameters": [],
+  },
+  "minimap": {
+    "show": "never",
+  },
+  "active_pane_modifiers": {
+    "inactive_opacity": 0.8,
+  },
+  "buffer_font_fallbacks": ["Consolas", "Courier New", "monospace"],
   "buffer_font_family": "FiraCode Nerd Font",
-  "ui_font_family": "FiraCode Nerd Font",
-  "buffer_line_height": "comfortable",
-  "ui_font_size": 14.0,
+  "ensure_final_newline_on_save": true,
+  "wrap_guides": [120],
+  "ui_font_size": 16,
   "buffer_font_size": 13.0,
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "Tokyo Night Storm",
+    "light": "Tokyo Night",
+    "dark": "One Dark",
+  },
+  "languages": {
+    "Python": { "language_servers": ["ty", "!basedpyright", "ruff"] },
   },
 }
