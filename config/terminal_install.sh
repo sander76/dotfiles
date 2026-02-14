@@ -23,8 +23,6 @@ SCRIPTS=(
     "install_aider.sh"
     "install_keyring.sh"
     "install_zsh.sh"
-    "install_zsh-autosuggestions.sh"
-    "install_zsh-tab-completion.sh"
     "install_scooter.sh"
     "install_serie.sh"
 )
