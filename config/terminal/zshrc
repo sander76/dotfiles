@@ -151,5 +151,3 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
-
-eval "$(~/.local/bin/mise activate zsh)"
