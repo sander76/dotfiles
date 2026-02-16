@@ -63,8 +63,8 @@ else
         git worktree add "../$folder_name" "$branch_name"
     else
         echo "Branch '$branch_name' does not exist."
-        read -rp "Create new branch '$branch_name'? [y/N] " response
-        if [[ "$response" =~ ^[Yy]$ ]]; then
+        read -rp "Create new branch '$branch_name'? [Y/n] " response
+        if [[ ! "$response" =~ ^[Nn]$ ]]; then
             git worktree add -b "$branch_name" "../$folder_name"
         else
             echo "Aborted."
@@ -78,9 +78,15 @@ echo "Worktree created successfully at: ../$folder_name"
 # Check for common_files folder in parent directory and offer to copy
 common_files_dir="../common_files"
 if [[ -d "$common_files_dir" ]]; then
-    read -rp "Copy contents from common_files to the new worktree? [y/N] " response
-    if [[ "$response" =~ ^[Yy]$ ]]; then
+    read -rp "Copy contents from common_files to the new worktree? [Y/n] " response
+    if [[ ! "$response" =~ ^[Nn]$ ]]; then
         cp -r "$common_files_dir"/. "../$folder_name/"
         echo "Copied common_files to ../$folder_name"
     fi
+fi
+
+read -rp "Navigate to the new worktree folder? [Y/n] " response
+if [[ ! "$response" =~ ^[Nn]$ ]]; then
+    cd "../$folder_name"
+    echo "Changed directory to: $(pwd)"
 fi

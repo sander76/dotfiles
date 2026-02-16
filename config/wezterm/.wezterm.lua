@@ -31,11 +31,12 @@ config.keys = {
             action = wezterm.action_callback(function(window, pane)
                 local text = window:get_selection_text_for_pane(pane)
                 if text then
-                    pane:send_text('code ' .. text)
+                    pane:send_text(' code ' .. text)
                 end
             end),
         },
     },
+--    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
 }
 
 -- Hyperlink rules
@@ -104,9 +105,5 @@ config.audible_bell = "Disabled"
 
 -- tabline.apply_to_config(config)
 
-
-config.keys = {
-    { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
-}
 
 return config
