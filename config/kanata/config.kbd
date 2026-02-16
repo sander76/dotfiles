@@ -3,6 +3,7 @@
 )
 
 (defsrc
+  caps
   r t i
   a s d f h  j k l ;
   c
@@ -25,18 +26,21 @@
 )
 
 (deflayer bases
+  XX
   r   t   i
   @a  @s  @d  @f  h   @j  @k  @l  @;
   c
 )
 
 (deflayer navigation
+  XX
   r  t  up
   @a @s @d @f h left down right ;
   c
 )
 
 (deflayer startup
+  XX
   1  4  i
   a  s  d  2  h  j  k  l  ;
   3
