@@ -79,6 +79,8 @@ alias r='cd $(git rev-parse --show-toplevel)'
 
 alias be='birdeye'
 
+alias gitopen='xdg-open $(git remote get-url origin)'
+
 pts() {
     local selected_test
     selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf)

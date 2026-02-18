@@ -183,3 +183,27 @@ https://github.com/casey/just
 uv tool install rust-just
 
 https://github.com/essembeh/gnome-extensions-cli
+
+
+## WSL
+
+On this piece of shit:
+
+```
+# First install wslu
+sudo apt install wslu
+
+# Register wslview as a browser alternative
+sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/wslview 100
+sudo update-alternatives --install /usr/bin/www-browser www-browser /usr/bin/wslview 100
+```
+
+If you get an "interoperability error" :
+
+```
+sudo nano /etc/wsl.conf
+
+[interop]
+enabled = true
+appendWindowsPath = true
+```
