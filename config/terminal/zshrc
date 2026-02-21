@@ -157,3 +157,4 @@ source ~/repos/dotfiles/config/wezterm/wezterm.sh
 # opencode
 export PATH=/home/sander/.opencode/bin:$PATH
 export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
+eval "$(/home/sander/.local/bin/mise activate zsh)"
