@@ -87,6 +87,5 @@ fi
 
 read -rp "Navigate to the new worktree folder? [Y/n] " response
 if [[ ! "$response" =~ ^[Nn]$ ]]; then
-    cd "../$folder_name"
-    echo "Changed directory to: $(pwd)"
+    cd "../$folder_name" && exec $SHELL
 fi

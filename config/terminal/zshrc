@@ -1,3 +1,6 @@
+# for profiling zsh startup
+# zmodload zsh/zprof
+
 export PATH="$PATH:/home/sander/bin:/$HOME/.local/bin"
 
 HISTFILE=~/.zsh_history
@@ -18,7 +21,9 @@ zstyle :compinstall filename '/home/sander/.zshrc'
 
 
 autoload -Uz compinit
-compinit
+# Using -C to skip compaudit security check (~130ms faster)
+# Run `rm ~/.zcompdump && compinit` manually after installing new completions
+compinit -C
 
 eval "$(starship init zsh)"
 
@@ -83,7 +88,10 @@ alias gitopen='xdg-open $(git remote get-url origin)'
 
 pts() {
     local selected_test
-    selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf)
+
+    selected_test=$(~/repos/dotfiles/scripts/list_tests.sh tests | fzf \
+        --header 'CTRL-D: collect tests from selected file' \
+        --bind 'ctrl-d:reload(uv run pytest {1} --collect-only -q 2>/dev/null | grep "::" | sed "s/\[.*//" | sort -u || echo "No tests found")')
     if [[ -n "$selected_test" ]]; then
           print -z "uv run pytest $selected_test"
     fi
@@ -156,5 +164,10 @@ source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 # opencode
 export PATH=/home/sander/.opencode/bin:$PATH
-export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
+
 eval "$(/home/sander/.local/bin/mise activate zsh)"
+
+# for profiling output
+# zprof
+
+eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
