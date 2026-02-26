@@ -78,7 +78,7 @@ alias ll='ls -lh'
 
 alias o='code -g'
 # batcat alias
-alias bat='batcat'
+# alias bat='batcat'
 
 # cd into the root of the git folder.
 alias r='cd $(git rev-parse --show-toplevel)'

@@ -10,4 +10,3 @@ sudo apt update
 
 sudo apt install wezterm-nightly
 
-"$PARENT_FOLDER/create_symlink.sh" "$PARENT_FOLDER/config/wezterm/.wezterm.lua"  ~/.config/.wezterm.lua
