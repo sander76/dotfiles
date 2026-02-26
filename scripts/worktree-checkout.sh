@@ -84,8 +84,3 @@ if [[ -d "$common_files_dir" ]]; then
         echo "Copied common_files to ../$folder_name"
     fi
 fi
-
-read -rp "Navigate to the new worktree folder? [Y/n] " response
-if [[ ! "$response" =~ ^[Nn]$ ]]; then
-    cd "../$folder_name" && exec $SHELL
-fi

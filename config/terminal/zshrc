@@ -38,7 +38,8 @@ precmd_functions+=(set_terminal_title)
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
 else
-  export EDITOR='code --wait'
+  export EDITOR='micro'
+  # export EDITOR='code --wait'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
 
