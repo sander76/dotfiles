@@ -1,8 +1,0 @@
-[tools]
-eza = "latest"
-fd = "latest"
-"github:sinelaw/fresh" = "latest"
-jq = "latest"
-lazygit = "latest"
-opencode = "latest"
-taplo = "latest"
