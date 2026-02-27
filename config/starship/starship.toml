@@ -38,6 +38,7 @@ color_orange = '#d65d0e'
 color_purple = '#b16286'
 color_red = '#cc241d'
 color_yellow = '#d79921'
+color_grey = "#CFC6A4"
 
 [os]
 disabled = false
@@ -73,8 +74,10 @@ style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:color_fg0 bg:color_yellow"
-format = "[ $path ]($style)"
+truncate_to_repo = false
+repo_root_style = "fg:color_fg0 bg:color_yellow"
+style = "fg:color_grey bg:color_yellow"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root ]($repo_root_style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
