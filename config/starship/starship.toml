@@ -76,7 +76,9 @@ format = '[ $user ]($style)'
 [directory]
 truncate_to_repo = false
 repo_root_style = "fg:color_fg0 bg:color_yellow"
-style = "fg:color_grey bg:color_yellow"
+style = "fg:color_fg0 bg:color_yellow"
+before_repo_root_style = "fg:color_grey bg:color_yellow"
+format = "[$path]($style)"
 repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root ]($repo_root_style)"
 truncation_length = 3
 truncation_symbol = "…/"
