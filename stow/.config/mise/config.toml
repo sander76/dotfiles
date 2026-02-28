@@ -1,4 +1,5 @@
 [tools]
+"aqua:micro-editor/micro" = "latest"
 bat = "latest"
 eza = "latest"
 fd = "latest"
