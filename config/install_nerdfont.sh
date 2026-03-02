@@ -19,16 +19,12 @@ fi
 
 echo "Installing FiraCode Nerd Font Mono..."
 
-
-# Download the font
 echo "Downloading FiraCode Nerd Font..."
 curl -L "$FONT_URL" -o "$TEMP_DIR/FiraCode.zip"
 
-# Extract the font
 echo "Extracting font files..."
 unzip -q "$TEMP_DIR/FiraCode.zip" -d "$FONT_DIR"
 
-# Clean up
 rm -rf "$TEMP_DIR"
 
 echo "FiraCode Nerd Font Mono installation complete!"
