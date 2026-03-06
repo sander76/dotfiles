@@ -3,6 +3,7 @@
 bat = "latest"
 eza = "latest"
 fd = "latest"
+"github:mkasberg/ghostty-ubuntu" = "latest"
 "github:sinelaw/fresh" = "latest"
 hyperfine = "latest"
 jq = "latest"

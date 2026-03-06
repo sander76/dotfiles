@@ -96,3 +96,4 @@ pts() {
 # PATH="$HOME/repos/dotfiles/scripts:$PATH"
 
 source /home/sander/.config/broot/launcher/bash/br
+. "$HOME/.cargo/env"

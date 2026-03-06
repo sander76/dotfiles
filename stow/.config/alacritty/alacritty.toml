@@ -1,0 +1,25 @@
+# [general]
+# working_directory = "//wls$/Ubuntu-24.04/home/sander"
+
+[window]
+decorations = "None"
+
+[font]
+normal = { family = "FiraCode Nerd Font Mono", style = "Regular"}
+size=11
+
+[terminal]
+shell = { program = "wsl", args = ["-d", "Ubuntu-24.04", "--cd" ,"~", "tmux"]}
+
+[[hints.enabled]]
+regex= "[0-9a-f]{40}"
+mouse = {enabled= true}
+post_processing = false
+action = "Copy"
+binding = {key = "Y", mods = "Control|Shift"}
+
+[[hints.enabled]]
+regex = "[^\\s]+\\.py(?::\\d+(?::\\d+)?)?"
+action = "Paste"
+post_processing = true
+binding = { key = "P", mods = "Control" }

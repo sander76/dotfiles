@@ -17,7 +17,8 @@ setopt HIST_FIND_NO_DUPS
 
 bindkey=-e
 
-zstyle :compinstall filename '/home/sander/.zshrc'
+zstyle :compinstall filename '/
+/sander/.zshrc'
 
 
 autoload -Uz compinit
@@ -38,8 +39,8 @@ precmd_functions+=(set_terminal_title)
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
 else
-  export EDITOR='micro'
-  # export EDITOR='code --wait'
+  # export EDITOR='micro'
+  export EDITOR='code --wait'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -106,7 +107,6 @@ alias fls='source ~/bin/scripts/opener.sh'
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
 
-eval "$(direnv hook zsh)"
 
 
 
@@ -160,15 +160,10 @@ source ~/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 # . "$HOME/.local/bin/env"
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ~/repos/dotfiles/config/wezterm/wezterm.sh
+# source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
-# opencode
-export PATH=/home/sander/.opencode/bin:$PATH
-
-eval "$(/home/sander/.local/bin/mise activate zsh)"
+eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 # for profiling output
 # zprof
-
-eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
