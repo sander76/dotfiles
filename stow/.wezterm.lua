@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- General
-config.font_size = 11
+config.font_size = 12
 config.line_height = 1
 -- Disable font ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
@@ -12,10 +12,6 @@ config.color_scheme = "tokyonight_night"
 config.colors = {
     cursor_bg = "#7aa2f7",
     cursor_border = "#7aa2f7",
-    tab_bar = {
-        background = "#ffffff",
-        active_tab = { bg_color = "#1A1B26", fg_color = "#c0c0c0" }
-    }
 }
 
 -- Quick select patterns for Python files and ripgrep output
@@ -101,6 +97,8 @@ if wezterm.GLOBAL.os == 'windows' then
     config.default_domain = 'WSL:Ubuntu-24.04'
 end
 
+
+config.enable_tab_bar = false
 config.audible_bell = "Disabled"
 
 return config
