@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 config.font_size = 11
 config.line_height = 1
 config.color_scheme = "tokyonight_night"
+config.enable_kitty_keyboard=true
 
 config.colors = {
     cursor_bg = "#7aa2f7",
@@ -99,5 +100,32 @@ if wezterm.GLOBAL.os == 'windows' then
 end
 
 config.audible_bell = "Disabled"
+
+-- Disable tabs (using tmux instead)
+config.enable_tab_bar = false
+
+-- Disable default tab-related shortcuts to avoid conflicts with tmux
+config.keys = config.keys or {}
+local disabled_keys = {
+    { key = 't', mods = 'CTRL|SHIFT', action = wezterm.action.DisableDefaultAssignment },
+    { key = 't', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'w', mods = 'CTRL|SHIFT', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'w', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'Tab', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'PageUp', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment },
+    { key = 'PageDown', mods = 'CTRL', action = wezterm.action.DisableDefaultAssignment },
+}
+
+-- Add number keys 1-9 for tab switching
+for i = 1, 9 do
+    table.insert(disabled_keys, { key = tostring(i), mods = 'CTRL|SHIFT', action = wezterm.action.DisableDefaultAssignment })
+    table.insert(disabled_keys, { key = tostring(i), mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment })
+    table.insert(disabled_keys, { key = tostring(i), mods = 'ALT', action = wezterm.action.DisableDefaultAssignment })
+end
+
+for _, key in ipairs(disabled_keys) do
+    table.insert(config.keys, key)
+end
 
 return config
