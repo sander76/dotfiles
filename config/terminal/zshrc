@@ -40,7 +40,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
 else
   # export EDITOR='micro'
-  export EDITOR='code --wait'
+  export EDITOR='flow'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -160,7 +160,7 @@ source ~/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 # . "$HOME/.local/bin/env"
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# source ~/repos/dotfiles/config/wezterm/wezterm.sh
+source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
 eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh

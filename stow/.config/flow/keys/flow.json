@@ -1,7 +1,6 @@
 {
     "project": {
         "press": [
-            ["ctrl+alt+w","close_file_without_saving"],
             ["f1", "open_help"],
             ["alt+f1", "toggle_keybind_hints"],
             ["ctrl+?", "toggle_keybind_hints"],
@@ -34,7 +33,8 @@
             ["ctrl+shift+f5", "reload_file"],
             ["ctrl+k ctrl+t", "change_theme"],
             ["ctrl+shift+p", "open_command_palette"],
-            ["ctrl+shift+q", "quit_without_saving"],
+            ["ctrl+alt+q", "quit_without_saving"],
+            ["ctrl+alt+w", "close_file_without_saving"],
             ["ctrl+shift+f", "find_in_files"],
             ["ctrl+shift+l", "toggle_panel"],
             ["alt+shift+p", "open_command_palette"],

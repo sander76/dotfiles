@@ -2,3 +2,10 @@ git:
   pagers:
     - colorArg: always
       pager: delta --dark --paging=never
+
+os:
+  edit: 'flow {{filename}}'
+  editAtLine: 'flow {{filename}}:{{line}}'
+  editAtLineAndWait: 'flow {{filename}}:{{line}}'
+  editInTerminal: true
+  openDirInEditor: 'flow {{dir}}'
