@@ -7,6 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "tab_bar": {
+        "show": true
+    },
+    "toolbar": { "quick_actions": false, "breadcrumbs": true },
     "git": {
         "inline_blame": {
             "enabled": false
@@ -58,9 +62,9 @@
     "ui_font_size": 14,
     "buffer_font_size": 13.0,
     "theme": {
-        "mode": "dark",
-        "light": "VSCode Light+",
-        "dark": "Tokyo Night"
+        "mode": "light",
+        "light": "GitHub Light",
+        "dark": "Snazzy Theme - blurred"
     },
     "theme_overrides": {
         "VSCode Light+": {
@@ -72,25 +76,16 @@
     },
     "languages": {
         "Python": {
+            "use_auto_surround": false,
+            "use_autoclose": false,
+            "jupyter": { "enabled": false },
             "language_servers": [
-                "pyrefly",
+                "ty",
                 "ruff",
-                "!zuban",
                 "!basedpyright",
                 "!pyright",
                 "!pylsp"
             ]
-        }
-    },
-    "lsp": {
-        "pyrefly": {
-            "settings": {
-                "pyrefly": {
-                    "project_includes": ["src/**/*.py", "tests/**/*.py"],
-                    "project_excludes": ["**/*venv/**"],
-                    "search_path": ["src"]
-                }
-            }
         }
     }
 }
