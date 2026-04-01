@@ -12,6 +12,7 @@ mprocs = "latest"
 opencode = "latest"
 taplo = "latest"
 watchexec = "latest"
+zellij = "latest"
 
 [settings]
 experimental = true
