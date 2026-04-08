@@ -8,8 +8,8 @@ decorations = "None"
 normal = { family = "FiraCode Nerd Font Mono", style = "Regular"}
 size=11
 
-[terminal]
-shell = { program = "wsl", args = ["-d", "Ubuntu-24.04", "--cd" ,"~", "tmux"]}
+# [terminal]
+# shell = { program = "wsl", args = ["-d", "Ubuntu-24.04", "--cd" ,"~", "tmux"]}
 
 [[hints.enabled]]
 regex= "[0-9a-f]{40}"

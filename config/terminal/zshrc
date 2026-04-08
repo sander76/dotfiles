@@ -165,3 +165,4 @@ eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/
 
 # for profiling output
 # zprof
+eval "$(zellij setup --generate-auto-start zsh)"
