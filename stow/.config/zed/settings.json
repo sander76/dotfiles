@@ -7,6 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "inlay_hints": {
+        "show_parameter_hints": false,
+        "show_type_hints": false,
+        "show_value_hints": false,
+        "enabled": true
+    },
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Zed (Default)"
+    },
     "tab_bar": {
         "show": true
     },
@@ -62,16 +73,18 @@
     "ui_font_size": 14,
     "buffer_font_size": 13.0,
     "theme": {
-        "mode": "light",
+        "mode": "dark",
         "light": "GitHub Light",
-        "dark": "Snazzy Theme - blurred"
+        "dark": "Tokyo Night"
     },
     "theme_overrides": {
         "VSCode Light+": {
-            "border.selected": "#293b5bff"
+            "border.selected": "#293b5bff",
+            "search.active_match_background": "#FFD700AA"
         },
         "Tokyo Night": {
-            "border.selected": "#293b5bff"
+            "border.selected": "#293b5bff",
+            "search.active_match_background": "#FFD700AA"
         }
     },
     "languages": {

@@ -90,8 +90,7 @@
 # hover_time_ms 500
 # value type: positive integer
 
-hover_info_mode "panel"
-# default value: "box"
+# hover_info_mode "box"
 # value type: one of "box", "panel"
 
 # input_idle_time_ms 100
