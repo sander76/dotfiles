@@ -1,0 +1,10 @@
+layout {
+    pane size=1 {
+        plugin location="compact-bar"
+    }
+    pane split_direction="vertical" {
+        pane focus=true name="editor1"
+        pane name="editor2"
+        pane name="control"
+    }
+}
