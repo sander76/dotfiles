@@ -1,19 +1,25 @@
 # Testing with Pytest
 
-## Basic Pytest Structure
+
+## Creating tests
+
+Roughly follow an "arrange - act - assert" structure by grouping
+blocks of code which are one of three parts of the structure.
+Separate them by a newline.
 
 ```python
 # test_user.py
 import pytest
 from myapp.user import User, UserService
 
-# Simple test function
+# Simple test function (arrange and act are one here.)
 def test_user_creation() -> None:
     user = User(id=1, name="Alice", email="alice@example.com")
+
     assert user.name == "Alice"
     assert user.is_active is True
 
-# Test with multiple assertions
+# testing errors.
 def test_user_validation() -> None:
     with pytest.raises(ValueError, match="Invalid email"):
         User(id=1, name="Alice", email="invalid")
@@ -22,16 +28,20 @@ def test_user_validation() -> None:
 class TestUserService:
     def test_find_user(self) -> None:
         service = UserService()
+
         user = service.find(1)
+
         assert user is not None
 
     def test_create_user(self) -> None:
         service = UserService()
+
         user = service.create(name="Bob", email="bob@example.com")
+
         assert user.id > 0
 ```
 
-## Fixtures for Setup/Teardown
+### Fixtures for Setup/Teardown
 
 ```python
 # conftest.py - shared fixtures
@@ -44,7 +54,9 @@ def db() -> Iterator[Database]:
     """Provide database instance with cleanup."""
     database = Database("test.db")
     database.create_tables()
+
     yield database
+
     database.drop_tables()
     database.close()
 
@@ -52,7 +64,9 @@ def db() -> Iterator[Database]:
 def db_session(db: Database) -> Iterator[Session]:
     """Provide database session with rollback."""
     session = db.create_session()
+
     yield session
+
     session.rollback()
     session.close()
 
@@ -62,11 +76,12 @@ def sample_user() -> User:
     return User(id=1, name="Test User", email="test@example.com")
 
 # Using fixtures in tests
-def test_user_creation(db_session: Session, sample_user: User) -> None:
+def test_user_creation(db_ssession: Session, sample_user: User) -> None:
     db_session.add(sample_user)
     db_session.commit()
 
     retrieved = db_session.query(User).filter_by(id=1).first()
+
     assert retrieved.name == "Test User"
 
 # Fixture with parameters
@@ -83,7 +98,9 @@ def test_connection(db_engine: str) -> None:
 def reset_state() -> Iterator[None]:
     """Reset global state before each test."""
     clear_caches()
+
     yield
+
     cleanup_temp_files()
 ```
 
@@ -215,190 +232,3 @@ async def test_async_function() -> None:
     assert user.name == "Alice"
 ```
 
-## Async Testing
-
-```python
-import pytest
-import asyncio
-
-# Mark async test
-@pytest.mark.asyncio
-async def test_async_fetch() -> None:
-    result = await fetch_data("https://api.example.com")
-    assert result["status"] == "ok"
-
-# Async fixture
-@pytest.fixture
-async def async_db() -> AsyncIterator[AsyncDatabase]:
-    db = AsyncDatabase()
-    await db.connect()
-    yield db
-    await db.disconnect()
-
-@pytest.mark.asyncio
-async def test_async_query(async_db: AsyncDatabase) -> None:
-    result = await async_db.query("SELECT * FROM users")
-    assert len(result) > 0
-
-# Test concurrent operations
-@pytest.mark.asyncio
-async def test_concurrent_requests() -> None:
-    urls = ["http://example.com/1", "http://example.com/2"]
-    results = await asyncio.gather(*[fetch(url) for url in urls])
-    assert len(results) == 2
-```
-
-## Pytest Markers
-
-```python
-import pytest
-
-# Skip test
-@pytest.mark.skip(reason="Not implemented yet")
-def test_future_feature() -> None:
-    pass
-
-# Conditional skip
-@pytest.mark.skipif(sys.version_info < (3, 11), reason="Requires Python 3.11+")
-def test_new_feature() -> None:
-    pass
-
-# Expected failure
-@pytest.mark.xfail(reason="Known bug #123")
-def test_known_bug() -> None:
-    assert buggy_function() == expected_value
-
-# Custom markers
-@pytest.mark.slow
-def test_slow_operation() -> None:
-    time.sleep(5)
-    assert True
-
-@pytest.mark.integration
-def test_integration() -> None:
-    assert external_service.ping()
-
-# Run with: pytest -m "not slow"
-```
-
-## Test Coverage
-
-```python
-# Run with coverage
-# pytest --cov=myapp --cov-report=html --cov-report=term
-
-# conftest.py - coverage configuration
-def pytest_configure(config):
-    config.addinivalue_line(
-        "markers", "unit: mark test as unit test"
-    )
-
-# pytest.ini or pyproject.toml
-"""
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = [
-    "--cov=myapp",
-    "--cov-report=term-missing",
-    "--cov-fail-under=90",
-    "-ra",
-    "--strict-markers",
-]
-testpaths = ["tests"]
-"""
-```
-
-## Property-Based Testing
-
-```python
-from hypothesis import given, strategies as st
-
-# Property-based test
-@given(st.integers(), st.integers())
-def test_addition_commutative(a: int, b: int) -> None:
-    assert a + b == b + a
-
-@given(st.lists(st.integers()))
-def test_sorted_is_ordered(lst: list[int]) -> None:
-    sorted_lst = sorted(lst)
-    for i in range(len(sorted_lst) - 1):
-        assert sorted_lst[i] <= sorted_lst[i + 1]
-
-# Custom strategies
-@given(st.emails())
-def test_email_validation(email: str) -> None:
-    assert "@" in email
-    assert validate_email(email)
-
-# Composite strategies
-from hypothesis import strategies as st
-from hypothesis.strategies import composite
-
-@composite
-def users(draw) -> User:
-    return User(
-        id=draw(st.integers(min_value=1)),
-        name=draw(st.text(min_size=1, max_size=50)),
-        email=draw(st.emails()),
-        age=draw(st.integers(min_value=18, max_value=120))
-    )
-
-@given(users())
-def test_user_creation(user: User) -> None:
-    assert user.age >= 18
-    assert len(user.name) > 0
-```
-
-## Test Organization
-
-```python
-# tests/
-#   conftest.py          - Shared fixtures
-#   test_user.py         - User tests
-#   test_api.py          - API tests
-#   integration/
-#     test_workflow.py   - Integration tests
-#   unit/
-#     test_models.py     - Unit tests
-
-# Fixture factory pattern
-@pytest.fixture
-def user_factory(db_session: Session):
-    created_users: list[User] = []
-
-    def _create_user(
-        name: str = "Test User",
-        email: str | None = None,
-        **kwargs
-    ) -> User:
-        if email is None:
-            email = f"{name.lower().replace(' ', '.')}@example.com"
-
-        user = User(name=name, email=email, **kwargs)
-        db_session.add(user)
-        db_session.commit()
-        created_users.append(user)
-        return user
-
-    yield _create_user
-
-    # Cleanup
-    for user in created_users:
-        db_session.delete(user)
-    db_session.commit()
-```
-
-## Snapshot Testing
-
-```python
-import pytest
-from syrupy.assertion import SnapshotAssertion
-
-def test_api_response(snapshot: SnapshotAssertion) -> None:
-    response = api.get_user(1)
-    assert response == snapshot
-
-def test_rendered_template(snapshot: SnapshotAssertion) -> None:
-    html = render_template("user.html", user=get_user(1))
-    assert html == snapshot
-```

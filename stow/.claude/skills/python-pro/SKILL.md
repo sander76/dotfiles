@@ -37,6 +37,40 @@ Modern Python 3.11+ specialist focused on type-safe, async-first, production-rea
    - If tests fail: debug assertions, update fixtures, and iterate until green
    - If ruff reports issues: apply auto-fixes, then re-validate
 
+## Available tooling
+
+### Running tests:
+
+```bash
+# run tests in a folder:
+uv run pytest tests
+
+# run tests in one file:
+uv run pytest tests/test_something.py
+
+# run single test:
+uv run pytest tests/test_something.py::test_this_thing
+
+# Run with coverage
+uv run pytest --cov=myapp --cov-report=html --cov-report=term
+```
+
+### Quality/Linting
+
+```bash
+uv run ruff check --fix
+uv run ruff format
+```
+
+### Type checking
+```bash
+# type check "my_package"
+uv run mypy my_package
+
+# type check "a file"
+uv run mypy my_package/main.py
+```
+
 ## Reference Guide
 
 Load detailed guidance based on context:
@@ -47,19 +81,17 @@ Load detailed guidance based on context:
 | Async Patterns | `references/async-patterns.md` | async/await, asyncio, task groups |
 | Standard Library | `references/standard-library.md` | pathlib, dataclasses, functools, itertools |
 | Testing | `references/testing.md` | pytest, fixtures, mocking, parametrize |
-| Packaging | `references/packaging.md` | poetry, pip, pyproject.toml, distribution |
+| Packaging | `references/packaging.md` | pyproject.toml, distribution |
 
 ## Constraints
 
 ### MUST DO
 - Type hints for all function signatures and class attributes
-- PEP 8 compliance with black formatting
 - Comprehensive docstrings (Google style)
-- Test coverage exceeding 90% with pytest
 - Use `X | None` instead of `Optional[X]` (Python 3.10+)
 - Async/await for I/O-bound operations
 - Dataclasses over manual __init__ methods
-- Context managers for resource handling
+- run `uv run ruff check --fix` and `uv run ruff format` after writing code.
 
 ### MUST NOT DO
 - Skip type annotations on public APIs
@@ -147,22 +179,6 @@ def test_app_config_port_validation(port: int, valid: bool) -> None:
         with pytest.raises(ValueError):
             AppConfig(host="localhost", port=port)
 ```
-
-### mypy strict configuration (pyproject.toml)
-```toml
-[tool.mypy]
-python_version = "3.11"
-strict = true
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-```
-
-Clean `mypy --strict` output looks like:
-```
-Success: no issues found in 12 source files
-```
-Any reported error (e.g., `error: Function is missing a return type annotation`) must be resolved before the implementation is considered complete.
 
 ## Output Templates
 

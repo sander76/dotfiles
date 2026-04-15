@@ -6,10 +6,16 @@ temperature: 0.1
 tools:
   write: false
   edit: false
-  bash: false
+  bash: true
 ---
 
 ## What I do
+- Get the changes of the current branch compared to the branch to check against or use main:
+
+    ```bash
+    git diff main...HEAD
+    ```
+    
 - Analyse the code changes for bugs, correctness issues, design problems, and
   style issues.
 - Classify each finding by severity: high, medium, low, trivial.
@@ -20,9 +26,8 @@ tools:
 - Summarise all findings in a severity-ranked table at the end.
 
 ## When to use me
-Use this when the user asks to review a diff, a set of changes or a branch. When
-asked to review a branch, first find the most-recent tag with `git
-describe --tags --abbrev=0 <branch>` and diff against that tag.
+Use this when the user asks to review a diff, a set of changes or a branch.
+
 
 ## Output format
 For each finding, write a short heading with the severity in parentheses,
