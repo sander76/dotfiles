@@ -229,6 +229,7 @@ decorations = "Disabled"
 # You can also set family on root to overwrite all fonts.
 [fonts]
 family = "FiraCode Nerd Font Mono"
+size = 15
 #
 # You can also specify extra fonts to load
 # [fonts]
