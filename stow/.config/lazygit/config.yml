@@ -4,8 +4,8 @@ git:
       pager: delta --dark --paging=never
 
 os:
-  edit: 'flow {{filename}}'
-  editAtLine: 'flow {{filename}}:{{line}}'
-  editAtLineAndWait: 'flow {{filename}}:{{line}}'
+  edit: 'hx {{filename}}'
+  editAtLine: 'hx {{filename}}:{{line}}'
+  editAtLineAndWait: 'hx {{filename}}:{{line}}'
   editInTerminal: true
-  openDirInEditor: 'flow {{dir}}'
+  openDirInEditor: 'hx {{dir}}'

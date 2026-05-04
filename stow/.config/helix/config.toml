@@ -3,6 +3,16 @@ auto-format=true
 true-color=true
 cursorline=true
 
+[editor.statusline]
+right = [
+  "diagnostics",
+  "selections",
+  "register",
+  "position",
+  "file-encoding",
+  "version-control",
+]
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
