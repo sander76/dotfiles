@@ -7,7 +7,7 @@ config.line_height = 1
 -- Disable font ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 config.color_scheme = "tokyonight_night"
--- config.enable_kitty_keyboard=true
+config.enable_kitty_keyboard=true
 
 config.colors = {
     cursor_bg = "#7aa2f7",
@@ -98,7 +98,6 @@ if wezterm.GLOBAL.os == 'windows' then
 end
 
 
-config.enable_tab_bar = false
 config.audible_bell = "Disabled"
 
 return config
