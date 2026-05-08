@@ -15,7 +15,8 @@
 # light_theme "ayu-light"
 # value type: quoted string
 
-# input_mode "flow"
+input_mode "vim"
+# default value: "flow"
 # value type: quoted string
 
 # gutter_line_numbers_mode null

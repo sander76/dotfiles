@@ -40,7 +40,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
 else
   # export EDITOR='micro'
-  export EDITOR='flow'
+  export EDITOR='hx'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -145,7 +145,6 @@ FZF_ALT_C_COMMAND= source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="
-  -e
   --bind 'ctrl-d:reload(fd --type d --strip-cwd-prefix)'
   --bind 'ctrl-f:reload(fd --type f --strip-cwd-prefix)' \
   "
@@ -165,4 +164,11 @@ eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/
 
 # for profiling output
 # zprof
-eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
+
+[ -z "$ALACRITTY_LOG" ] ||  eval "$(zellij setup --generate-auto-start zsh)"
+
+# if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#   tmux attach-session -t default || tmux new-session -s default
+# fi
+

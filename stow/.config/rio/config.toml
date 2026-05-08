@@ -1,4 +1,6 @@
 
+[platform]
+windows.shell = {program="wsl", args = ["-d","Ubuntu-24.04", "--cd" ,"~"]}
 # Hide the cursor while typing
 #
 # Default is `false`
@@ -20,7 +22,7 @@
 # (windows: C:\Users\USER\AppData\Local\rio\themes\dracula.toml)
 #
 # Example:
-# theme = "dracula"
+theme = "dracula"
 
 # Margin
 #

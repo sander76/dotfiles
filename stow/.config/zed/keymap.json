@@ -10,8 +10,15 @@
         "context": "Workspace",
         "bindings": {
             "ctrl-tab": "pane::ActivateNextItem",
-            "ctrl-shift-tab": "pane::ActivatePreviousItem"
+            "ctrl-shift-tab": "pane::ActivatePreviousItem",
             // "shift shift": "file_finder::Toggle"
+            "ctrl-p": [
+                "task::Spawn",
+                {
+                    "task_name": "Television File Finder",
+                    "reveal_target": "center"
+                }
+            ]
         }
     },
     {
@@ -42,6 +49,11 @@
             "ctrl-1": ["workspace::ActivatePane", 0],
             "ctrl-2": ["workspace::ActivatePane", 1],
             "ctrl-r": "vim::ResetPaneSizes"
+        }
+    },
+    {
+        "unbind": {
+            "ctrl-q": "zed::Quit"
         }
     }
 ]
