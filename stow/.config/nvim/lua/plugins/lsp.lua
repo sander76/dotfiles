@@ -1,6 +1,6 @@
 -- LSP configuration
--- ty (https://github.com/astral-sh/ty) is not yet in nvim-lspconfig, so it is
--- registered here with Neovim's native vim.lsp.config API (requires nvim 0.11+).
+-- Both ty and ruff are configured via nvim-lspconfig's built-in definitions;
+-- we enable them and only override settings that differ from the defaults (requires nvim 0.11+).
 
 return {
   {
@@ -8,41 +8,17 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       -- ── ty – Python type checker (LSP server) ──────────────────────────
-      -- `ty server` speaks LSP; root detection follows PEP 517/518 conventions.
-      vim.lsp.config("ty", {
-        cmd          = { "ty", "server" },
-        filetypes    = { "python" },
-        root_markers = { "pyproject.toml", "setup.cfg", "setup.py", ".git" },
-      })
-
+      -- nvim-lspconfig provides cmd/filetypes/root_markers (ty.toml,
+      -- pyproject.toml, setup.py, setup.cfg, requirements.txt, .git).
       vim.lsp.enable("ty")
 
       -- ── ruff – Python linter & formatter ───────────────────────────────
+      -- nvim-lspconfig provides cmd/filetypes/root_markers; only override
+      -- logLevel to suppress noisy info messages.
       vim.lsp.config("ruff", {
-        cmd          = { "ruff", "server" },
-        filetypes    = { "python" },
-        root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
-        init_options = {
-          settings = {
-            logLevel = "warn",
-          },
-        },
+        init_options = { settings = { logLevel = "warn" } },
       })
-
       vim.lsp.enable("ruff")
-
-      -- ── Auto-trigger signature help when cursor is inside brackets ────
-      vim.api.nvim_create_autocmd("CursorHoldI", {
-        pattern  = "*.py",
-        callback = function()
-          local line   = vim.api.nvim_get_current_line()
-          local col    = vim.api.nvim_win_get_cursor(0)[2]
-          local before = line:sub(1, col)
-          if before:match("[%w_]+%s*%(.*") then
-            require("blink.cmp.signature.trigger").show({ force = true })
-          end
-        end,
-      })
 
       -- ── Format Python files with ruff on save ──────────────────────────
       vim.api.nvim_create_autocmd("BufWritePre", {

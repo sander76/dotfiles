@@ -2,7 +2,7 @@
 return {
   {
     "saghen/blink.cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     version = "1.*",
     opts = {
       keymap = {
@@ -14,9 +14,16 @@ return {
       sources = {
         default = { "lsp", "path", "buffer" },
       },
+      cmdline = {
+        enabled = true,
+        sources = { "cmdline" },
+        completion = {
+          menu = { auto_show = true },  -- show immediately without Tab
+        },
+      },
       signature = {
         enabled = true,
-        window  = { border = "rounded" },
+        window = { border = "rounded" },
       },
       completion = {
         menu = {
