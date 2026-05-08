@@ -5,13 +5,17 @@ return {
     event = "VeryLazy",
     opts = {
       preset = "helix",
-      delay = 500, -- ms before popup appears
+      delay = 100, -- ms before popup appears
       spec = {
         -- Group labels for your existing prefixes
-        { "<leader>f", group = "find (telescope)" },
+        { "<leader>f", desc = "Find files" },
+        { "<leader>g", desc = "Live grep" },
+        { "<leader>b", desc = "Buffers" },
+        { "<leader>d", desc = "Diagnostics" },
         { "g",         group = "goto" },
         { "[",         group = "prev" },
         { "]",         group = "next" },
+        { "<leader>t", group = "toggle-theme" },
       },
     },
   },

@@ -17,6 +17,41 @@ return {
 
       vim.lsp.enable("ty")
 
+      -- ── ruff – Python linter & formatter ───────────────────────────────
+      vim.lsp.config("ruff", {
+        cmd          = { "ruff", "server" },
+        filetypes    = { "python" },
+        root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+        init_options = {
+          settings = {
+            logLevel = "warn",
+          },
+        },
+      })
+
+      vim.lsp.enable("ruff")
+
+      -- ── Auto-trigger signature help when cursor is inside brackets ────
+      vim.api.nvim_create_autocmd("CursorHoldI", {
+        pattern  = "*.py",
+        callback = function()
+          local line   = vim.api.nvim_get_current_line()
+          local col    = vim.api.nvim_win_get_cursor(0)[2]
+          local before = line:sub(1, col)
+          if before:match("[%w_]+%s*%(.*") then
+            require("blink.cmp.signature.trigger").show({ force = true })
+          end
+        end,
+      })
+
+      -- ── Format Python files with ruff on save ──────────────────────────
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.py",
+        callback = function(event)
+          vim.lsp.buf.format({ name = "ruff", bufnr = event.buf })
+        end,
+      })
+
       -- ── Diagnostic display ──────────────────────────────────────────────
       vim.diagnostic.config({
         virtual_text  = { prefix = "●" },

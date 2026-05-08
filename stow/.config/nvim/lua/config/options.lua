@@ -14,6 +14,8 @@ vim.opt.smartindent    = true
 
 vim.opt.wrap           = false
 vim.opt.scrolloff      = 8
+vim.opt.cursorline     = true
+
 
 vim.opt.splitright     = true
 vim.opt.splitbelow     = true
