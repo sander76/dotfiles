@@ -54,8 +54,6 @@ return {
           map("<leader>rn", vim.lsp.buf.rename,         "Rename symbol")
           map("<leader>ca", vim.lsp.buf.code_action,    "Code action")
           map("<leader>e",  vim.diagnostic.open_float,  "Show diagnostics")
-          map("[d",         vim.diagnostic.goto_prev,   "Previous diagnostic")
-          map("]d",         vim.diagnostic.goto_next,   "Next diagnostic")
         end,
       })
     end,
