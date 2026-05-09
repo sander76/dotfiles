@@ -35,7 +35,7 @@ return {
         underline     = true,
         update_in_insert = false,
         severity_sort = true,
-        float         = { border = "rounded", source = true },
+        float         = { source = true },
       })
 
       -- ── Keymaps (set when an LSP attaches to a buffer) ──────────────────

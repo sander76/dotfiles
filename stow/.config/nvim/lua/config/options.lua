@@ -28,6 +28,8 @@ vim.opt.swapfile       = false
 
 vim.opt.termguicolors  = true
 vim.opt.updatetime     = 250
+vim.opt.winborder      = "rounded"
+vim.opt.pumborder      = "rounded"
 
 -- Disable unused remote-plugin providers to silence checkhealth warnings
 vim.g.loaded_node_provider   = 0

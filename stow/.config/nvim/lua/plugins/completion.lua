@@ -23,15 +23,10 @@ return {
       },
       signature = {
         enabled = true,
-        window = { border = "rounded" },
       },
       completion = {
-        menu = {
-          border = "rounded",
-        },
         documentation = {
           auto_show = true,
-          window    = { border = "rounded" },
         },
       },
     },
