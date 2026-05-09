@@ -2,6 +2,9 @@
 vim.g.mapleader      = " "
 vim.g.maplocalleader = " "
 
+-- Quick escape from insert mode
+vim.keymap.set('i', 'jj', '<Esc>')
+
 -- General options
 vim.opt.number         = true
 vim.opt.relativenumber = true
