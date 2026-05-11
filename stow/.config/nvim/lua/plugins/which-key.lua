@@ -15,6 +15,7 @@ return {
         { "g",         group = "goto" },
         { "[",         group = "prev" },
         { "]",         group = "next" },
+        { "<leader>c", group = "code" },
         { "<leader>q", group = "session" },
         { "<leader>t", group = "toggle-theme" },
       },

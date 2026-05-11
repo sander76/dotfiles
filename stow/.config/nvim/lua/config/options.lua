@@ -28,6 +28,7 @@ vim.opt.smartcase      = true
 
 vim.opt.undofile       = true
 vim.opt.swapfile       = false
+vim.opt.confirm        = true   -- ask to save instead of erroring on :q
 
 vim.opt.termguicolors  = true
 vim.opt.updatetime     = 250
