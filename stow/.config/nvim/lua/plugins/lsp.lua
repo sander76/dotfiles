@@ -6,7 +6,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
     config = function()
+      -- ── Advertise nvim-cmp's extra capabilities to every LSP ─────────────
+      -- This unlocks snippet completions, labelDetails, etc.
+      vim.lsp.config("*", {
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      })
+
       -- ── ty – Python type checker (LSP server) ──────────────────────────
       -- nvim-lspconfig provides cmd/filetypes/root_markers (ty.toml,
       -- pyproject.toml, setup.py, setup.cfg, requirements.txt, .git).
