@@ -12,7 +12,6 @@ size=11
 shell = { program = "wsl", args = ["-d", "Ubuntu-24.04", "--cd" ,"~"]}
 
 
-# eval "$(zellij setup --generate-auto-start zsh)"
 [[hints.enabled]]
 regex= "[0-9a-f]{40}"
 mouse = {enabled= true}
