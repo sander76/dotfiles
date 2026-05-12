@@ -4,8 +4,8 @@ git:
       pager: delta --dark --paging=never
 
 os:
-  edit: 'hx {{filename}}'
-  editAtLine: 'hx {{filename}}:{{line}}'
-  editAtLineAndWait: 'hx {{filename}}:{{line}}'
+  edit: 'nvim {{filename}}'
+  editAtLine: 'nvim +{{line}} {{filename}}'
+  editAtLineAndWait: 'nvim +{{line}} {{filename}}'
   editInTerminal: true
-  openDirInEditor: 'hx {{dir}}'
+  openDirInEditor: 'nvim {{dir}}'

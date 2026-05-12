@@ -3,22 +3,26 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    keys = {
+      {
+        "<leader>?",
+        function() require("which-key").show({ global = false }) end,
+        desc = "Buffer keymaps (which-key)",
+      },
+    },
     opts = {
       preset = "helix",
-      delay = 100, -- ms before popup appears
+      delay = 0, -- ms before popup appears
+      triggers = {
+        { "<auto>", mode = "nxso" },
+        { "s", mode = "n" },  -- manual trigger: s is <Nop> (surround prefix)
+        { "s", mode = "v" },  -- show sa in visual mode
+      },
       spec = {
-        -- Group labels for your existing prefixes
-        { "<leader>f", desc = "Find files" },
-        { "<leader>g", desc = "Live grep" },
-        { "<leader>b", desc = "Buffers" },
-        { "<leader>d", desc = "Diagnostics" },
-        { "g",         group = "goto/comment" },
-        { "gc",        group = "comment" },
-        { "[",         group = "prev" },
-        { "]",         group = "next" },
         { "<leader>c", group = "code" },
         { "<leader>q", group = "session" },
-        { "<leader>t", group = "toggle-theme" },
+        { "s",         group = "surround" },
+        { "s",         group = "surround", mode = "v" },
       },
     },
   },

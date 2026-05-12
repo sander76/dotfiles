@@ -30,10 +30,10 @@ vim.opt.undofile       = true
 vim.opt.swapfile       = false
 vim.opt.confirm        = true   -- ask to save instead of erroring on :q
 
+vim.opt.clipboard      = "unnamedplus"  -- sync with system clipboard
 vim.opt.termguicolors  = true
 vim.opt.updatetime     = 250
-vim.opt.winborder      = "rounded"
-vim.opt.pumborder      = "rounded"
+vim.opt.winborder      = "rounded"  -- rounded borders for all floating windows
 
 -- Disable unused remote-plugin providers to silence checkhealth warnings
 vim.g.loaded_node_provider   = 0

@@ -40,7 +40,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nano'
 else
   # export EDITOR='micro'
-  export EDITOR='hx'
+  export EDITOR='nvim'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -166,7 +166,7 @@ eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/
 # zprof
 # eval "$(zellij setup --generate-auto-start zsh)"
 
-eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
 
 # if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 #   tmux attach-session -t default || tmux new-session -s default
