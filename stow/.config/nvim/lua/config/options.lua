@@ -9,6 +9,9 @@ vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set({ 'n', 'v' }, '<C-s>', '<cmd>w<cr>',      { desc = 'Save file' })
 vim.keymap.set('i',          '<C-s>', '<cmd>w<cr><Esc>', { desc = 'Save file' })
 
+-- Disable F1 help key (avoid accidental help window)
+vim.keymap.set({ 'n', 'i', 'v' }, '<F1>', '<Nop>')
+
 -- General options
 vim.opt.number         = true
 vim.opt.relativenumber = true
