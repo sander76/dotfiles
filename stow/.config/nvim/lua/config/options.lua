@@ -5,6 +5,10 @@ vim.g.maplocalleader = " "
 -- Quick escape from insert mode
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- Save with Ctrl+S (normal, insert, and visual mode)
+vim.keymap.set({ 'n', 'v' }, '<C-s>', '<cmd>w<cr>',      { desc = 'Save file' })
+vim.keymap.set('i',          '<C-s>', '<cmd>w<cr><Esc>', { desc = 'Save file' })
+
 -- General options
 vim.opt.number         = true
 vim.opt.relativenumber = true
