@@ -14,6 +14,11 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<F1>', '<Nop>')
 
 -- Exit terminal insert mode with Esc
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })
+-- Disable arrow keys (enforce hjkl)
+vim.keymap.set({ 'n', 'i', 'v' }, '<Up>',    '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Down>',  '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Left>',  '<Nop>')
+vim.keymap.set({ 'n', 'i', 'v' }, '<Right>', '<Nop>')
 
 -- General options
 vim.opt.number         = true
