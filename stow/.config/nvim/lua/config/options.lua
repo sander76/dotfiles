@@ -12,6 +12,9 @@ vim.keymap.set('i',          '<C-s>', '<cmd>w<cr><Esc>', { desc = 'Save file' })
 -- Disable F1 help key (avoid accidental help window)
 vim.keymap.set({ 'n', 'i', 'v' }, '<F1>', '<Nop>')
 
+-- Exit terminal insert mode with Esc
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })
+
 -- General options
 vim.opt.number         = true
 vim.opt.relativenumber = true
