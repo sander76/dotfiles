@@ -10,6 +10,12 @@ return {
         section_separators   = "",
         component_separators = "",
       },
+      winbar = {
+        lualine_c = { { "filename", path = 1 } },
+      },
+      inactive_winbar = {
+        lualine_c = { { "filename", path = 1 } },
+      },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },

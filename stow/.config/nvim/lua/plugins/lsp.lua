@@ -20,10 +20,16 @@ return {
       })
       vim.lsp.enable("ruff")
 
-      -- ── Format Python files with ruff on save ──────────────────────────
+      -- ── Lint-fix + format Python files with ruff on save ────────────────
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.py",
         callback = function(event)
+          -- 1. ruff check --fix  (auto-fixable lint violations)
+          vim.lsp.buf.code_action({
+            context = { only = { "source.fixAll.ruff" }, diagnostics = {} },
+            apply = true,
+          })
+          -- 2. ruff format
           vim.lsp.buf.format({ name = "ruff", bufnr = event.buf })
         end,
       })
