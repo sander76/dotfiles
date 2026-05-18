@@ -13,7 +13,7 @@ __pycache__
 
 pyrightconfig.json
 
-.mise.toml
+mise.toml
 .envrc
 .pyc
 .coverage

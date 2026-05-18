@@ -1,0 +1,50 @@
+return {
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      scroll = {
+        animate = {
+          duration = { step = 10, total = 200 },
+          easing = "outQuad",
+        },
+        animate_repeat = {
+          delay = 100,
+          duration = { step = 5, total = 50 },
+          easing = "linear",
+        },
+      },
+      -- disable other modules for now
+      animate = { enabled = true }, -- scroll depends on animate core
+      bigfile = { enabled = false },
+      dashboard = { enabled = false },
+      debug = { enabled = false },
+      dim = { enabled = false },
+      explorer = { enabled = false },
+      git = { enabled = false },
+      gitbrowse = { enabled = false },
+      health = { enabled = false },
+      image = { enabled = false },
+      indent = { enabled = false },
+      input = { enabled = false },
+      lazygit = { enabled = false },
+      notifier = { enabled = false },
+      notify = { enabled = false },
+      picker = { enabled = false },
+      profiler = { enabled = false },
+      quickfile = { enabled = false },
+      rename = { enabled = false },
+      scope = { enabled = false },
+      scratch = { enabled = false },
+      statuscolumn = { enabled = false },
+      styles = { enabled = false },
+      terminal = { enabled = false },
+      toggle = { enabled = false },
+      util = { enabled = false },
+      win = { enabled = false },
+      words = { enabled = false },
+      zen = { enabled = false },
+    },
+  },
+}
