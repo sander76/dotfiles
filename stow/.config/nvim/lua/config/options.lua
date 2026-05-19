@@ -5,6 +5,9 @@ vim.g.maplocalleader = " "
 -- Quick escape from insert mode
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- Close buffer without closing the split window
+vim.keymap.set('n', '<leader>x', function() Snacks.bufdelete() end, { desc = 'Delete buffer (keep window)' })
+
 -- Save with Ctrl+S (normal, insert, and visual mode)
 vim.keymap.set({ 'n', 'v' }, '<C-s>', '<cmd>w<cr>',      { desc = 'Save file' })
 vim.keymap.set('i',          '<C-s>', '<cmd>w<cr><Esc>', { desc = 'Save file' })

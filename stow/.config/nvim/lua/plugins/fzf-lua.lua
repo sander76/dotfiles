@@ -8,6 +8,7 @@ return {
       { "<leader>g", "<cmd>FzfLua live_grep<cr>",            desc = "Live grep" },
       { "<leader>b", "<cmd>FzfLua buffers<cr>",              desc = "Buffers" },
       { "<leader>d", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Diagnostics" },
+      { "<leader>r", "<cmd>FzfLua resume<cr>",                   desc = "Resume last picker" },
     },
     opts = {
       winopts = {

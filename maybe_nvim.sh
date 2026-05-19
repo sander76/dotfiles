@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Derive a safe pipe name from the current working directory
+# Replace '/' with '_' and strip leading underscore
+CWD="$(pwd)"
+SAFE_CWD="${CWD//\//_}"
+SAFE_CWD="${SAFE_CWD#_}"
+PIPE="/tmp/nvim_${SAFE_CWD}.pipe"
+
+if [[ ! -S "$PIPE" ]]; then
+    # No existing server for this directory — start a new nvim session
+    exec nvim --listen "$PIPE" "$@"
+else
+    if [[ $# -gt 0 ]]; then
+        # Pipe exists and a file was provided — open it in the running instance
+        nvim --server "$PIPE" --remote "$@"
+    else
+        # Pipe exists but no file — just attach to the running instance
+        exec nvim --server "$PIPE" --remote-ui
+    fi
+fi
