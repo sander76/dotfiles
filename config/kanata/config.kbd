@@ -34,8 +34,8 @@
 
 (deflayer navigation
   esc
-  r  t  up
-  @a @s @d @f h left down right ;
+  r  t  i
+  @a @s @d @f left down up right ;
   c
 )
 
