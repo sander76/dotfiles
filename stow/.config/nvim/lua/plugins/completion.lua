@@ -3,7 +3,7 @@ return {
   {
     "saghen/blink.cmp",
     version = "1.*",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
 
     opts = {
       keymap = {
@@ -19,13 +19,8 @@ return {
         default = { "lsp", "path", "buffer" },
       },
 
-      -- Cmdline completion (`:` commands, `/` search, …)
-      cmdline = {
-        sources = { "cmdline" },
-        completion = {
-          menu = { auto_show = true },
-        },
-      },
+      -- Cmdline completion disabled
+      cmdline = { enabled = false },
 
       -- Signature help (replaces the manual CursorHoldI autocmd in lsp.lua)
       signature = { enabled = true },

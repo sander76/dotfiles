@@ -44,6 +44,20 @@ vim.opt.splitbelow     = true
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 
+-- Built-in cmdline autocompletion (popup as you type)
+vim.opt.wildmode    = "noselect:lastused,full"  -- don't auto-select; prefer last-used on first Tab
+vim.opt.wildoptions = "pum,fuzzy"               -- popup menu + fuzzy matching
+
+vim.api.nvim_create_autocmd("CmdlineChanged", {
+  pattern = { ":", "/", "?" },
+  desc    = "Trigger wildmenu popup as you type",
+  callback = function() vim.fn.wildtrigger() end,
+})
+
+-- Keep <Up>/<Down> for history when the popup is not open
+vim.keymap.set("c", "<Up>",   function() return vim.fn.wildmenumode() == 1 and "<C-E><Up>"   or "<Up>"   end, { expr = true })
+vim.keymap.set("c", "<Down>", function() return vim.fn.wildmenumode() == 1 and "<C-E><Down>" or "<Down>" end, { expr = true })
+
 vim.opt.undofile       = true
 vim.opt.swapfile       = false
 vim.opt.confirm        = true   -- ask to save instead of erroring on :q
