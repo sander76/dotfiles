@@ -74,6 +74,7 @@ vim.opt.clipboard      = "unnamedplus"  -- sync with system clipboard
 vim.opt.termguicolors  = true
 vim.opt.updatetime     = 250
 vim.opt.winborder      = "rounded"  -- rounded borders for all floating windows
+vim.opt.pumborder      = "rounded"  -- rounded borders for the completion popup menu (pum)
 
 -- Disable unused remote-plugin providers to silence checkhealth warnings
 vim.g.loaded_node_provider   = 0
