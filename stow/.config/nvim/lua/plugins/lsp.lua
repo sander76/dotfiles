@@ -50,18 +50,27 @@ return {
         callback = function(event)
           -- Enable native LSP completion for this buffer
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client then
+          if client and client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
+              -- Prefer ty (type-checker) items over ruff (linter) items
+              cmp = function(a, b)
+                local function priority(item)
+                  local id = vim.tbl_get(item, "user_data", "nvim", "lsp", "client_id")
+                  local c = id and vim.lsp.get_client_by_id(id)
+                  return (c and c.name == "ty") and 0 or 1
+                end
+                return priority(a) < priority(b)
+              end,
               convert = function(item)
                 -- Strip trailing () from function labels so the abbreviation is cleaner
                 return { abbr = item.label:gsub("%b()", "") }
               end,
             })
+            -- Manually trigger completion
+            vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
+              { buffer = event.buf, desc = "LSP: Trigger completion" })
           end
-          -- Manually trigger completion
-          vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
-            { buffer = event.buf, desc = "LSP: Trigger completion" })
 
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
