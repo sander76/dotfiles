@@ -3,6 +3,13 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      { "<leader>f", function() Snacks.picker.files() end,                desc = "Find files" },
+      { "<leader>g", function() Snacks.picker.grep() end,                 desc = "Live grep" },
+      { "<leader>b", function() Snacks.picker.buffers() end,              desc = "Buffers" },
+      { "<leader>d", function() Snacks.picker.diagnostics() end,          desc = "Diagnostics" },
+      { "<leader>r", function() Snacks.picker.resume() end,               desc = "Resume last picker" },
+    },
     opts = {
       scroll = {
         animate = {
@@ -31,7 +38,7 @@ return {
       lazygit = { enabled = false },
       notifier = { enabled = false },
       notify = { enabled = false },
-      picker = { enabled = false },
+      picker = { enabled = true },
       profiler = { enabled = false },
       quickfile = { enabled = false },
       rename = { enabled = false },
