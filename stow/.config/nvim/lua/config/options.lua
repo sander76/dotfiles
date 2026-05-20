@@ -52,7 +52,7 @@ vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<
 vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { expr = true, desc = "Prev completion / S-Tab" })
 vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"    end, { expr = true, desc = "Accept completion / CR" })
 
--- Built-in cmdline autocompletion (popup as you type)
+-- Built-in cmdline autocompletion (popup as you type) — blink.cmp disabled for cmdline
 vim.opt.wildmode    = "noselect:lastused,full"  -- don't auto-select; prefer last-used on first Tab
 vim.opt.wildoptions = "pum,fuzzy"               -- popup menu + fuzzy matching
 
