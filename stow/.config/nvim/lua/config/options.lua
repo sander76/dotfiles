@@ -44,6 +44,13 @@ vim.opt.splitbelow     = true
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
 
+-- LSP / insert-mode completion (native, no plugin needed)
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+-- Tab / S-Tab navigate the popup; CR confirms; <C-Space> triggers (set in lsp.lua)
+vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"   end, { expr = true, desc = "Next completion / Tab" })
+vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { expr = true, desc = "Prev completion / S-Tab" })
+vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"    end, { expr = true, desc = "Accept completion / CR" })
+
 -- Built-in cmdline autocompletion (popup as you type)
 vim.opt.wildmode    = "noselect:lastused,full"  -- don't auto-select; prefer last-used on first Tab
 vim.opt.wildoptions = "pum,fuzzy"               -- popup menu + fuzzy matching

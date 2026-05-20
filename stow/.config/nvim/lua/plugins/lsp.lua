@@ -48,6 +48,21 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
         callback = function(event)
+          -- Enable native LSP completion for this buffer
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client then
+            vim.lsp.completion.enable(true, client.id, event.buf, {
+              autotrigger = true,
+              convert = function(item)
+                -- Strip trailing () from function labels so the abbreviation is cleaner
+                return { abbr = item.label:gsub("%b()", "") }
+              end,
+            })
+          end
+          -- Manually trigger completion
+          vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
+            { buffer = event.buf, desc = "LSP: Trigger completion" })
+
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
