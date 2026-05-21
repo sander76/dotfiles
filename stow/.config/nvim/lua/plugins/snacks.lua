@@ -41,6 +41,14 @@ return {
       notify = { enabled = false },
       picker = {
         enabled = true,
+        win = {
+          input = {
+            keys = {
+              ["<C-k>"] = { "history_back",    mode = { "i", "n" } },
+              ["<C-j>"] = { "history_forward", mode = { "i", "n" } },
+            },
+          },
+        },
         sources = {
           grep = {
             format = "filename",
