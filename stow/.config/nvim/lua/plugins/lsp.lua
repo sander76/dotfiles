@@ -1,5 +1,5 @@
 -- LSP configuration
--- pyrefly and ruff are configured via nvim-lspconfig's built-in definitions;
+-- ty and ruff are configured via nvim-lspconfig's built-in definitions;
 -- we enable them and only override settings that differ from the defaults (requires nvim 0.11+).
 
 return {
@@ -7,20 +7,25 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      -- ── pyrefly – Python type checker + completions ─────────────────────
-      -- ruff owns linting/formatting; pyrefly owns types + completions.
-      vim.lsp.enable("pyrefly")
+      -- ── ty – Python type checker + completions ──────────────────────────
+      -- ruff owns linting/formatting; ty owns types + completions.
+      vim.lsp.enable("ty")
 
       -- ── ruff – Python linter & formatter ───────────────────────────────
       vim.lsp.config("ruff", {
-        init_options = { settings = { logLevel = "warn", lint = { unfixable = { "F401" } } } },
+        init_options = { settings = { logLevel = "warn", } } ,
       })
       vim.lsp.enable("ruff")
 
-      -- ── Format Python files with ruff on save ────────────────────────
+      -- ── Fix all + format Python files with ruff on save ──────────────
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.py",
         callback = function(event)
+          -- Apply all auto-fixable lint fixes first, then format.
+          vim.lsp.buf.code_action({
+            context = { only = { "source.fixAll.ruff" }, diagnostics = {} },
+            apply = true,
+          })
           vim.lsp.buf.format({ name = "ruff", bufnr = event.buf })
         end,
       })
@@ -44,12 +49,12 @@ return {
           if client and client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
-              -- Prefer pyrefly items over ruff items
+              -- Prefer ty items over ruff items
               cmp = function(a, b)
                 local function priority(item)
                   local id = vim.tbl_get(item, "user_data", "nvim", "lsp", "client_id")
                   local c = id and vim.lsp.get_client_by_id(id)
-                  return (c and c.name == "pyrefly") and 0 or 1
+                  return (c and c.name == "ty") and 0 or 1
                 end
                 return priority(a) < priority(b)
               end,
