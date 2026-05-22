@@ -14,8 +14,7 @@ config.colors = {
 
 -- Quick select patterns for Python files and ripgrep output
 config.quick_select_patterns = {
-    "[^\\s]+\\.py(?::\\d+(?::\\d+)?)?",
-    "^\\d+:.*$"
+    '[\\w./-]+\\.\\w+(?::\\d+(?::\\d+)?)?',
 }
 
 -- Hyperlink rules
@@ -40,6 +39,45 @@ end
 
 
 config.audible_bell = "Disabled"
+
+-- Open file in nvim via quick select (CTRL+SHIFT+O)
+-- Matches: path/to/file.py  |  path/to/file.py:4  |  path/to/file.py:4:10
+config.keys = {
+    {
+        key = 'o',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action.QuickSelectArgs {
+            label = 'open in nvim',
+            patterns = {
+                '[\\w./-]+\\.\\w+(?::\\d+(?::\\d+)?)?',
+            },
+            action = wezterm.action_callback(function(window, pane)
+                local sel = window:get_selection_text_for_pane(pane)
+                if not sel or sel == '' then return end
+                -- Strip surrounding whitespace
+                sel = sel:match('^%s*(.-)%s*$')
+                -- Try file:line:col, then file:line, then bare file
+                local file, line = sel:match('^(.+):(%d+):%d+$')
+                if not file then
+                    file, line = sel:match('^(.+):(%d+)$')
+                end
+                if not file then
+                    file = sel
+                end
+                local cmd
+                if line then
+                    cmd = string.format('nvim +%s "%s"', line, file)
+                else
+                    cmd = string.format('nvim "%s"', file)
+                end
+                window:perform_action(
+                    wezterm.action.SendString(cmd .. '\r'),
+                    pane
+                )
+            end),
+        },
+    },
+}
 
 -- Remove window padding
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
