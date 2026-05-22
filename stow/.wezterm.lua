@@ -71,7 +71,7 @@ config.keys = {
                     cmd = string.format('nvim "%s"', file)
                 end
                 window:perform_action(
-                    wezterm.action.SendString(cmd .. '\r'),
+                    wezterm.action.SendString(' ' .. cmd .. '\r'),
                     pane
                 )
             end),
