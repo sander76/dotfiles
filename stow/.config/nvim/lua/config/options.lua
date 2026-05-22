@@ -1,6 +1,14 @@
+-- Disable netrw (nvim-tree replaces it)
+vim.g.loaded_netrw       = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Leader key (set before lazy loads plugins)
 vim.g.mapleader      = " "
 vim.g.maplocalleader = " "
+
+-- Scroll up/down 5 lines
+vim.keymap.set({ 'n', 'v' }, '<C-d>', '5j', { desc = 'Move down 5 lines' })
+vim.keymap.set({ 'n', 'v' }, '<C-u>', '5k', { desc = 'Move up 5 lines' })
 
 -- Quick escape from insert mode
 vim.keymap.set('i', 'jj', '<Esc>')
