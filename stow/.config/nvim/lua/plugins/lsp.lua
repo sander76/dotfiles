@@ -1,69 +1,86 @@
--- LSP configuration
--- pyrefly and ruff are configured via nvim-lspconfig's built-in definitions;
--- we enable them and only override settings that differ from the defaults (requires nvim 0.11+).
-
 return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      -- ── pyrefly – Python type checker + completions ───────────────────────
-      -- ruff owns linting/formatting; pyrefly owns types + completions.
+
+      -- ── pyrefly ───────────────────────────────────────────────────────────
+      vim.lsp.config("pyrefly", {
+        on_exit = nil,                -- suppress noisy "exited with code" notification
+        init_options = {
+          pyrefly = {               -- typeCheckingMode must be nested under "pyrefly"
+            typeCheckingMode = "default",
+          },
+        },
+      })
       vim.lsp.enable("pyrefly")
 
-      -- ── ruff – Python linter & formatter ───────────────────────────────
+      -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
-        init_options = { settings = { logLevel = "warn", } } ,
+        init_options = { settings = { logLevel = "warn" } },
       })
       vim.lsp.enable("ruff")
 
-      -- ── Fix all + format Python files with ruff on save ──────────────
+      -- ── Fix + format on save ──────────────────────────────────────────────
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.py",
         callback = function(event)
-          -- Apply all auto-fixable lint fixes first, then format.
-          vim.lsp.buf.code_action({
-            context = { only = { "source.fixAll.ruff" }, diagnostics = {} },
-            apply = true,
-          })
-          vim.lsp.buf.format({ name = "ruff", bufnr = event.buf })
+          local bufnr = event.buf
+          -- code_action has no callback param; use request_sync so format runs after fixes
+          local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })
+          if clients[1] then
+            local win    = vim.api.nvim_get_current_win()
+            local params = vim.lsp.util.make_range_params(win, clients[1].offset_encoding)
+            params.context = { only = { "source.fixAll.ruff" }, diagnostics = {} }
+            local resp = clients[1]:request_sync("textDocument/codeAction", params, 1000, bufnr)
+            if resp and resp.result then
+              for _, action in ipairs(resp.result) do
+                if action.edit then
+                  vim.lsp.util.apply_workspace_edit(action.edit, clients[1].offset_encoding)
+                end
+                if action.command then
+                  clients[1]:exec_cmd(action.command, { bufnr = bufnr })
+                end
+              end
+            end
+          end
+          vim.lsp.buf.format({ name = "ruff", bufnr = bufnr, async = false })
         end,
       })
 
-      -- ── Diagnostic display ──────────────────────────────────────────────
+      -- ── Diagnostics ───────────────────────────────────────────────────────
       vim.diagnostic.config({
-        virtual_text  = { prefix = "●" },
-        signs         = true,
-        underline     = true,
-        update_in_insert = true,
-        severity_sort = true,
-        float         = { source = true },
+        virtual_text     = { prefix = "●" },
+        signs            = true,
+        underline        = true,
+        update_in_insert = false,   -- ← was: true (noisy)
+        severity_sort    = true,
+        float            = { source = true },
       })
 
-      -- ── Keymaps (set when an LSP attaches to a buffer) ──────────────────
+      -- ── Keymaps ───────────────────────────────────────────────────────────
+      local lsp_group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }) -- ← moved out
+
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
+        group = lsp_group,
         callback = function(event)
-          -- Enable native LSP completion for this buffer
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
-              -- Prefer pyrefly items over ruff items
               cmp = function(a, b)
-                local function priority(item)
+                local function is_pyrefly(item)
                   local id = vim.tbl_get(item, "user_data", "nvim", "lsp", "client_id")
                   local c = id and vim.lsp.get_client_by_id(id)
-                  return (c and c.name == "pyrefly") and 0 or 1
+                  return c ~= nil and c.name == "pyrefly"
                 end
-                return priority(a) < priority(b)
+                if is_pyrefly(a) and not is_pyrefly(b) then return true end
+                if is_pyrefly(b) and not is_pyrefly(a) then return false end
               end,
               convert = function(item)
-                -- Strip trailing () from function labels so the abbreviation is cleaner
                 return { abbr = item.label:gsub("%b()", "") }
               end,
             })
-            -- Manually trigger completion
             vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
               { buffer = event.buf, desc = "LSP: Trigger completion" })
           end
@@ -71,7 +88,6 @@ return {
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
-
           map("gd",         vim.lsp.buf.definition,     "Go to definition")
           map("gD",         vim.lsp.buf.declaration,    "Go to declaration")
           map("gr",         vim.lsp.buf.references,     "References")
@@ -82,6 +98,7 @@ return {
           map("<leader>e",  vim.diagnostic.open_float,  "Show diagnostics")
         end,
       })
+
     end,
   },
 }
