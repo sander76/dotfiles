@@ -4,15 +4,16 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
 
-      -- ── basedpyright ──────────────────────────────────────────────────────
-      vim.lsp.config("basedpyright", {
-        settings = {
-          basedpyright = {
-            typeCheckingMode = "standard",
+      -- ── pyrefly ───────────────────────────────────────────────────────────
+      vim.lsp.config("pyrefly", {
+        on_exit = nil,                -- suppress noisy "exited with code" notification
+        init_options = {
+          pyrefly = {               -- typeCheckingMode must be nested under "pyrefly"
+            typeCheckingMode = "default",
           },
         },
       })
-      vim.lsp.enable("basedpyright")
+      vim.lsp.enable("pyrefly")
 
       -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
@@ -68,13 +69,13 @@ return {
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
               cmp = function(a, b)
-                local function is_basedpyright(item)
+                local function is_pyrefly(item)
                   local id = vim.tbl_get(item, "user_data", "nvim", "lsp", "client_id")
                   local c = id and vim.lsp.get_client_by_id(id)
-                  return c ~= nil and c.name == "basedpyright"
+                  return c ~= nil and c.name == "pyrefly"
                 end
-                if is_basedpyright(a) and not is_basedpyright(b) then return true end
-                if is_basedpyright(b) and not is_basedpyright(a) then return false end
+                if is_pyrefly(a) and not is_pyrefly(b) then return true end
+                if is_pyrefly(b) and not is_pyrefly(a) then return false end
               end,
               convert = function(item)
                 return { abbr = item.label:gsub("%b()", "") }
