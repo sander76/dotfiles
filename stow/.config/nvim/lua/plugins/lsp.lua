@@ -3,12 +3,9 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-
       -- ── pyrefly (completions only) ────────────────────────────────────────
-      -- ty handles all other LSP features. Strip every capability from pyrefly
-      -- except completionProvider so there are no duplicate results.
       vim.lsp.config("pyrefly", {
-        on_exit = nil,                -- suppress noisy "exited with code" notification
+        on_exit = nil,
         on_init = function(client)
           client.server_capabilities.diagnosticProvider        = nil
           client.server_capabilities.hoverProvider             = false
@@ -30,9 +27,6 @@ return {
       vim.lsp.enable("pyrefly")
 
       -- ── ty (everything except completions) ───────────────────────────────
-      -- Astral's Rust-based type checker. Owns diagnostics, hover, navigation,
-      -- rename, inlay hints, etc. Completions stay with pyrefly.
-      -- Note: ty is beta — callHierarchy and implementation not yet supported.
       vim.lsp.config("ty", {
         on_init = function(client)
           client.server_capabilities.completionProvider = nil
@@ -42,6 +36,9 @@ return {
 
       -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
+        on_init = function(client)
+          client.server_capabilities.hoverProvider = false
+        end,
         init_options = { settings = { logLevel = "warn" } },
       })
       vim.lsp.enable("ruff")
@@ -50,24 +47,26 @@ return {
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.py",
         callback = function(event)
-          local bufnr  = event.buf
+          local bufnr = event.buf
           local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
-          if client then
-            local win    = vim.api.nvim_get_current_win()
-            local params = vim.lsp.util.make_range_params(win, client.offset_encoding)
-            params.context = { only = { "source.fixAll.ruff" }, diagnostics = {} }
-            local resp = client:request_sync("textDocument/codeAction", params, 1000, bufnr)
-            if resp and resp.result then
-              for _, action in ipairs(resp.result) do
-                if action.edit then
-                  vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
-                end
-                if action.command then
-                  client:exec_cmd(action.command, { bufnr = bufnr })
-                end
+          if not client then return end
+
+          local win = vim.api.nvim_get_current_win()
+
+          -- 1. ruff check --fix (resolve lazy code action to get actual edits)
+          local params = vim.lsp.util.make_range_params(win, client.offset_encoding)
+          params.context = { only = { "source.fixAll.ruff" }, diagnostics = {} }
+          local resp = client:request_sync("textDocument/codeAction", params, 1000, bufnr)
+          if resp and resp.result then
+            for _, action in ipairs(resp.result) do
+              local resolved = client:request_sync("codeAction/resolve", action, 1000, bufnr)
+              if resolved and resolved.result and resolved.result.edit then
+                vim.lsp.util.apply_workspace_edit(resolved.result.edit, client.offset_encoding)
               end
             end
           end
+
+          -- 2. ruff format (always last)
           vim.lsp.buf.format({ name = "ruff", bufnr = bufnr, async = false })
         end,
       })
@@ -77,19 +76,17 @@ return {
         virtual_text     = { prefix = "●" },
         signs            = true,
         underline        = true,
-        update_in_insert = false,   -- ← was: true (noisy)
+        update_in_insert = false,
         severity_sort    = true,
         float            = { source = true },
       })
 
       -- ── Keymaps ───────────────────────────────────────────────────────────
       local lsp_group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true })
-
       vim.api.nvim_create_autocmd("LspAttach", {
         group = lsp_group,
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          -- Only pyrefly reaches here (ty's completionProvider is stripped).
           if client and client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
@@ -100,7 +97,6 @@ return {
             vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
               { buffer = event.buf, desc = "LSP: Trigger completion" })
           end
-
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
@@ -114,7 +110,6 @@ return {
           map("<leader>e",  vim.diagnostic.open_float,  "Show diagnostics")
         end,
       })
-
     end,
   },
 }

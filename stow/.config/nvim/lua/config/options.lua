@@ -1,4 +1,4 @@
--- Disable netrw (nvim-tree replaces it)
+-- Disable netrw (oil.nvim replaces it)
 vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -12,9 +12,6 @@ vim.keymap.set({ 'n', 'v' }, '<C-u>', '5k', { desc = 'Move up 5 lines' })
 
 -- Quick escape from insert mode
 vim.keymap.set('i', 'jj', '<Esc>')
-
--- Close buffer without closing the split window
-vim.keymap.set('n', '<leader>x', function() Snacks.bufdelete() end, { desc = 'Delete buffer (keep window)' })
 
 -- Save with Ctrl+S (normal, insert, and visual mode)
 vim.keymap.set({ 'n', 'v' }, '<C-s>', '<cmd>w<cr>',      { desc = 'Save file' })

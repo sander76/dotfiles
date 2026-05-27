@@ -13,7 +13,22 @@ if [[ ! -S "$PIPE" ]]; then
 else
     if [[ $# -gt 0 ]]; then
         # Pipe exists and a file was provided — open it in the running instance
-        nvim --server "$PIPE" --remote "$@"
+        # --remote only accepts filenames; extract any +N line-jump arg separately
+        line_num=''
+        files=()
+        for arg in "$@"; do
+            if [[ "$arg" =~ ^\+([0-9]+)$ ]]; then
+                line_num="${BASH_REMATCH[1]}"
+            else
+                files+=("$arg")
+            fi
+        done
+        if [[ -n "$line_num" && ${#files[@]} -gt 0 ]]; then
+            nvim --server "$PIPE" --remote "${files[@]}"
+            nvim --server "$PIPE" --remote-send ":${line_num}<CR>"
+        else
+            nvim --server "$PIPE" --remote "$@"
+        fi
     else
         # Pipe exists but no file — just attach to the running instance
         exec nvim --server "$PIPE" --remote-ui
