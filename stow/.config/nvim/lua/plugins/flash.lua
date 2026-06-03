@@ -8,18 +8,19 @@ return {
     keys = {
       -- Jump to any visible word with overlay labels
       {
-        "<leader>j",
+        "s",
         mode = { "n", "x", "o" },
         function() require("flash").jump() end,
         desc = "Flash jump",
       },
       -- Jump to Treesitter node (e.g. function, class) with labels
       {
-        "<leader>J",
+        "S",
         mode = { "n", "x", "o" },
         function() require("flash").treesitter() end,
         desc = "Flash Treesitter",
       },
+      
     },
   },
 }

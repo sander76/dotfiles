@@ -43,6 +43,19 @@ return {
       })
       vim.lsp.enable("ruff")
 
+      -- ── lua_ls ────────────────────────────────────────────────────────
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            runtime     = { version = "LuaJIT" },
+            workspace   = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
+            diagnostics = { globals = { "vim" } },
+            telemetry   = { enable = false },
+          },
+        },
+      })
+      vim.lsp.enable("lua_ls")
+
       -- ── Fix + format on save ──────────────────────────────────────────────
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = "*.py",
@@ -53,9 +66,9 @@ return {
 
           local win = vim.api.nvim_get_current_win()
 
-          -- 1. ruff check --fix (resolve lazy code action to get actual edits)
+          -- 1. ruff organize imports (resolve lazy code action to get actual edits)
           local params = vim.lsp.util.make_range_params(win, client.offset_encoding)
-          params.context = { only = { "source.fixAll.ruff" }, diagnostics = {} }
+          params.context = { only = { "source.organizeImports.ruff" }, diagnostics = {} }
           local resp = client:request_sync("textDocument/codeAction", params, 1000, bufnr)
           if resp and resp.result then
             for _, action in ipairs(resp.result) do

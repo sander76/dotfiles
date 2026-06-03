@@ -1,16 +1,10 @@
--- mini.surround: add, delete, replace, find, highlight surroundings
--- Default mappings: sa, sd, sr, sf, sF, sh
--- "s" is remapped to <Nop> so it acts as a pure prefix (which-key shows popup)
+-- nvim-surround: add, delete, change surrounding pairs
+-- Default mappings: ys{motion}{char}, ds{char}, cs{target}{replacement}
 return {
   {
-    "nvim-mini/mini.surround",
-    version = "*", -- stable branch
+    "kylechui/nvim-surround",
+    version = "^4.0.0", -- stable
+    event = "VeryLazy",
     opts = {},
-    config = function(_, opts)
-      require("mini.surround").setup(opts)
-      -- Disable built-in "s" (substitute char, equivalent to "cl")
-      -- so "s" becomes a pure prefix key for surround actions
-      vim.keymap.set({ "n", "v" }, "s", "<Nop>")
-    end,
   },
 }
