@@ -13,7 +13,7 @@ if [[ ! -S "$PIPE" ]]; then
 else
     if [[ $# -gt 0 ]]; then
         # Pipe exists and a file was provided — open it in the running instance
-        nvim --server "$PIPE" --remote "$@"
+        nvim --headless --server "$PIPE" --remote "$@"
     else
         # Pipe exists but no file — just attach to the running instance
         exec nvim --server "$PIPE" --remote-ui

@@ -16,7 +16,7 @@ return {
       -- Jump to Treesitter node (e.g. function, class) with labels
       {
         "S",
-        mode = { "n", "x", "o" },
+        mode = { "n", "o" },
         function() require("flash").treesitter() end,
         desc = "Flash Treesitter",
       },

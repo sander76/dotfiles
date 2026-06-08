@@ -24,10 +24,10 @@ else
             fi
         done
         if [[ -n "$line_num" && ${#files[@]} -gt 0 ]]; then
-            nvim --server "$PIPE" --remote "${files[@]}"
-            nvim --server "$PIPE" --remote-send ":${line_num}<CR>"
+            nvim --headless --server "$PIPE" --remote "${files[@]}"
+            nvim --headless --server "$PIPE" --remote-send ":${line_num}<CR>"
         else
-            nvim --server "$PIPE" --remote "$@"
+            nvim --headless --server "$PIPE" --remote "$@"
         fi
     else
         # Pipe exists but no file — just attach to the running instance
