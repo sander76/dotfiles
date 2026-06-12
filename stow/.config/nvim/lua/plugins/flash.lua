@@ -9,7 +9,7 @@ return {
       -- Jump to any visible word with overlay labels
       {
         "s",
-        mode = { "n", "x", "o" },
+        mode = { "n" },
         function() require("flash").jump() end,
         desc = "Flash jump",
       },

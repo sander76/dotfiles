@@ -1,0 +1,58 @@
+# Bootstrap kakoune-lsp
+eval %sh{kak-lsp}
+
+# Enable LSP window-by-window for Python (and extend as needed)
+hook global WinSetOption filetype=python %{
+    lsp-enable-window
+}
+
+# Window/split management (tmux pane splits via kakoune clients)
+# declare-user-mode window
+#
+# define-command kak-debug-tmux -docstring 'debug: show tmux env vars' %{
+#     echo %sh{ printf 'server: TMUX=%s PANE=%s | client: TMUX=%s PANE=%s' "$TMUX" "$TMUX_PANE" "$kak_client_env_TMUX" "$kak_client_env_TMUX_PANE" }
+# }
+#
+# define-command kak-split-vertical -docstring 'split pane below' %{
+#     nop %sh{ TMUX=$kak_client_env_TMUX tmux split-window -v -t "$kak_client_env_TMUX_PANE" kak -c "$kak_session" }
+# }
+# define-command kak-split-horizontal -docstring 'split pane right' %{
+#     nop %sh{ TMUX=$kak_client_env_TMUX tmux split-window -h -t "$kak_client_env_TMUX_PANE" kak -c "$kak_session" }
+# }
+# define-command kak-new-window -docstring 'new tmux window' %{
+#     nop %sh{ TMUX=$kak_client_env_TMUX tmux new-window kak -c "$kak_session" }
+# }
+
+# map global normal <c-w>  ':enter-user-mode window<ret>'     -docstring 'window mode'
+# map global window s      ':kak-split-vertical<ret>'          -docstring 'split below'
+# map global window v      ':kak-split-horizontal<ret>'        -docstring 'split right'
+# map global window n      ':kak-new-window<ret>'              -docstring 'new tmux window'
+# map global window q      ':quit<ret>'                        -docstring 'close client'
+# map global window <c-w>  ':buffer-next<ret>'                 -docstring 'next buffer'
+
+# Surround user mode (kakoune-surround)
+declare-user-mode surround
+map global normal '<a-s>' ':enter-user-mode surround<ret>' -docstring 'surround mode'
+map global surround s ':surround<ret>'             -docstring 'surround selection'
+map global surround c ':change-surround<ret>'      -docstring 'change surrounder'
+map global surround d ':delete-surround<ret>'      -docstring 'delete surrounder'
+map global surround v ':select-surround<ret>'      -docstring 'select surrounder'
+map global surround t ':select-surrounding-tag<ret>' -docstring 'select surrounding tag'
+
+# LSP keybindings (inside the built-in lsp user mode)
+map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP"
+
+# Navigate completion menu with tab / shift-tab
+map global insert <tab>   <c-n> -docstring "next completion"
+map global insert <s-tab> <c-p> -docstring "previous completion"
+
+# Configure ty as the Python language server.
+# This hook runs before kak-lsp's built-in LSPDefaultConfig hook, so it takes
+# precedence over the default pylsp entry.
+hook global BufSetOption filetype=python %{
+    set-option buffer lsp_servers %{
+        [ty]
+        args = ["server"]
+        root_globs = ["pyproject.toml", "setup.py", "setup.cfg", "poetry.lock", ".git", ".hg"]
+    }
+}

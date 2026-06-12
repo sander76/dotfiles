@@ -15,14 +15,14 @@ return {
       delay = 0, -- ms before popup appears
       triggers = {
         { "<auto>", mode = "nxso" },
-        { "s", mode = "n" },  -- manual trigger: s is <Nop> (surround prefix)
-        { "s", mode = "v" },  -- show sa in visual mode
+        { "m", mode = "n" },  -- manual trigger: m is <Nop> (surround prefix)
+        { "m", mode = "x" },  -- show ma in visual mode
       },
       spec = {
         { "<leader>c", group = "code" },
         { "<leader>q", group = "session" },
-        { "s",         group = "surround" },
-        { "s",         group = "surround", mode = "v" },
+        { "m",         group = "surround" },
+        { "m",         group = "surround", mode = "x" },
       },
     },
   },
