@@ -26,7 +26,6 @@ autoload -Uz compinit
 # Run `rm ~/.zcompdump && compinit` manually after installing new completions
 compinit -C
 
-eval "$(starship init zsh)"
 
 DISABLE_AUTO_TITLE="true"
 
@@ -152,6 +151,8 @@ source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
+
+eval "$(starship init zsh)"
 # for profiling output
 # zprof
 # eval "$(zellij setup --generate-auto-start zsh)"
