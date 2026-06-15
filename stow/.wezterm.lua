@@ -42,7 +42,12 @@ config.audible_bell = "Disabled"
 
 -- Open file in nvim via quick select (CTRL+SHIFT+O)
 -- Matches: path/to/file.py  |  path/to/file.py:4  |  path/to/file.py:4:10
+-- Override only CTRL+Tab / CTRL+SHIFT+Tab so they are not eaten by
+-- ActivateTabRelative and are instead forwarded to tmux as escape sequences.
 config.keys = {
+    -- Pass Ctrl-Tab / Ctrl-Shift-Tab through to tmux as escape sequences
+    { key = 'Tab', mods = 'CTRL',       action = wezterm.action.SendString '\x1b[27;5;9~' },
+    { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.SendString '\x1b[27;6;9~' },
     {
         key = 'o',
         mods = 'CTRL|SHIFT',
@@ -82,24 +87,12 @@ config.keys = {
 -- Remove window padding
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 
--- Tab title: show current folder name
-wezterm.on('format-tab-title', function(tab)
-    local cwd = tab.active_pane.current_working_dir
-    if cwd then
-        local path = cwd.file_path or tostring(cwd)
-        local name = path:match('[^/\\]+[/\\]?$') or path
-        -- strip trailing slash
-        name = name:gsub('[/\\]$', '')
-        return ' ' .. name .. ' '
-    end
-    return tab.active_pane.title
-end)
---
--- Tabs
-config.enable_tab_bar = true
-config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = false
-config.tab_bar_at_bottom = false
-config.tab_max_width = 32
+-- Tabs: disabled
+config.enable_tab_bar = false
+
+-- Autostart tmux on launch (Linux/macOS)
+if wezterm.GLOBAL.os ~= 'windows' then
+    config.default_prog = { 'tmux', 'new-session', '-A', '-s', 'main' }
+end
 
 return config
