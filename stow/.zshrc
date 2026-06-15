@@ -128,6 +128,8 @@ zle -N cddl
 bindkey '^n' cddl
 
 
+eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+
 # fzf and keybindings.
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
 FZF_ALT_C_COMMAND= source <(fzf --zsh)
@@ -149,7 +151,6 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
-eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 
 eval "$(starship init zsh)"
