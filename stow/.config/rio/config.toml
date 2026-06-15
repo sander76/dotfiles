@@ -1,6 +1,7 @@
 
 [platform]
-windows.shell = {program="wsl", args = ["-d","Ubuntu-24.04", "--cd" ,"~"]}
+windows.shell = {program="wsl", args = ["-d","Ubuntu-24.04"]}
+working-dir="/home/sander"
 # Hide the cursor while typing
 #
 # Default is `false`
@@ -216,8 +217,8 @@ decorations = "Disabled"
 #   - Default is true
 #
 # Example:
-# [keyboard]
-# use-kitty-keyboard-protocol = false
+[keyboard]
+use-kitty-keyboard-protocol = true
 # disable-ctlseqs-alt = false
 # ime-cursor-positioning = true
 
@@ -293,6 +294,9 @@ size = 15
 # [scroll]
 # multiplier = 3.0
 # divider = 1.0
+[navigation]
+mode = "Plain"
+use-split = false
 
 # Navigation
 #
@@ -369,6 +373,18 @@ size = 15
 #
 # Create custom Key bindings for Rio terminal
 # Example:
+
+[bindings]
+keys = [
+  { key = "tab", with = "control", action="None" },
+  { key = "tab", with = "control", action="ReceiveChar"},
+  { key = "tab", with = "ctrl|shift", esc = "\u001b[27;6;9~" },
+]
+# keys = [
+#   { key = "q", with = "super", action = "Quit" },
+#   # Send escape sequence to clear screen
+#   { key = "l", with = "control", esc = "\u001b[2J\u001b[H" }
+# ]
 # [bindings]
 # keys = [
 #   { key = "q", with = "super", action = "Quit" },
