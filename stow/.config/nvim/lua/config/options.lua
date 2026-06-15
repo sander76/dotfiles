@@ -90,3 +90,7 @@ vim.g.loaded_node_provider   = 0
 vim.g.loaded_perl_provider   = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider   = 0
+
+vim.keymap.set('n', '<leader>yf', function()
+  vim.fn.setreg('+', vim.fn.expand('%:.'))
+end, { desc = 'Yank relative filepath to clipboard' })
