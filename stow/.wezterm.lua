@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- General
-config.font_size = 12
+config.font_size = 11
 config.line_height = 1
 -- Disable font ligatures
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
@@ -59,24 +59,8 @@ config.keys = {
             action = wezterm.action_callback(function(window, pane)
                 local sel = window:get_selection_text_for_pane(pane)
                 if not sel or sel == '' then return end
-                -- Strip surrounding whitespace
-                sel = sel:match('^%s*(.-)%s*$')
-                -- Try file:line:col, then file:line, then bare file
-                local file, line = sel:match('^(.+):(%d+):%d+$')
-                if not file then
-                    file, line = sel:match('^(.+):(%d+)$')
-                end
-                if not file then
-                    file = sel
-                end
-                local cmd
-                if line then
-                    cmd = string.format('nvim +%s "%s"', line, file)
-                else
-                    cmd = string.format('nvim "%s"', file)
-                end
                 window:perform_action(
-                    wezterm.action.SendString(' ' .. cmd .. '\r'),
+                    wezterm.action.SendString(string.format(' wezterm-open-nvim.zsh "%s"\r', sel)),
                     pane
                 )
             end),

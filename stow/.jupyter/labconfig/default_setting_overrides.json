@@ -1,0 +1,17 @@
+{
+  "@jupyter-lsp/jupyterlab-lsp:plugin": {
+    "language_servers": {
+      "pyrefly": {
+        "serverSettings": {
+          "pyrefly.notebookSupport": true
+        }
+      }
+    }
+  },
+  "jupyterlab_code_formatter:settings": {
+    "formatOnSave": true,
+    "defaultFormatter": {
+      "python": ["ruff"]
+    }
+  }
+}

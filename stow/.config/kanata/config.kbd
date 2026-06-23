@@ -9,6 +9,10 @@
   c
 )
 
+(defhands
+  (left  r t a s d f c)
+  (right i h j k l ;))
+
 (defvar
   tap-time 150
   hold-time 250
@@ -17,10 +21,10 @@
 (defalias
   a (tap-hold $tap-time $hold-time a (layer-while-held navigation))
   s (tap-hold $tap-time $hold-time s lalt)
-  d (tap-hold $tap-time $hold-time d lsft)
+  d (tap-hold-opposite-hand 5000 d lsft)
   f (tap-hold $tap-time $hold-time f lctl)
   j (tap-hold $tap-time $hold-time j rctl)
-  k (tap-hold $tap-time $hold-time k rsft)
+  k (tap-hold-opposite-hand 5000 k rsft)
   l (tap-hold $tap-time $hold-time l ralt)
   ; (tap-hold $tap-time $hold-time ; (multi rmet (layer-while-held startup)))
 )
