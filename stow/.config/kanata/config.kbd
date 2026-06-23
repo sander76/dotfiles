@@ -10,8 +10,16 @@
 )
 
 (defhands
-  (left  r t a s d f c)
-  (right i h j k l ;))
+  (left  grv 1   2   3   4   5
+         tab q   w   e   r   t
+         caps a   s   d   f   g
+         lsft z   x   c   v   b
+         lctl lmet lalt)
+  (right 6   7   8   9   0   -   =   bspc
+         y   u   i   o   p   [   ]   bksl
+         h   j   k   l   ;   '   ret
+         n   m   ,   .   /   rsft
+         spc ralt rmet rctl))
 
 (defvar
   tap-time 150
