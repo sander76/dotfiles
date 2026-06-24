@@ -61,7 +61,6 @@ return {
       scope = { enabled = false },
       scratch = { enabled = false },
       statuscolumn = { enabled = false },
-      styles = { enabled = false },
       terminal = { enabled = false },
       toggle = { enabled = false },
       util = { enabled = false },

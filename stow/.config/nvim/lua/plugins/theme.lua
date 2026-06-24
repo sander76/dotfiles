@@ -16,15 +16,13 @@ return {
       require("tokyonight").setup(opts)
       vim.cmd.colorscheme("tokyonight")
 
-      local dark = true
       vim.keymap.set("n", "<leader>t", function()
-        dark = not dark
-        if dark then
-          vim.o.background = "dark"
-          vim.cmd.colorscheme("tokyonight")
-        else
+        if vim.o.background == "dark" then
           vim.o.background = "light"
           vim.cmd.colorscheme("tokyonight-day")
+        else
+          vim.o.background = "dark"
+          vim.cmd.colorscheme("tokyonight")
         end
       end, { desc = "Toggle dark/light theme" })
     end,

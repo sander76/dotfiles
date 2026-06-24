@@ -5,7 +5,6 @@ return {
     config = function()
       -- ── pyrefly (completions only) ────────────────────────────────────────
       vim.lsp.config("pyrefly", {
-        on_exit = nil,
         on_init = function(client)
           client.server_capabilities.diagnosticProvider        = nil
           client.server_capabilities.hoverProvider             = false

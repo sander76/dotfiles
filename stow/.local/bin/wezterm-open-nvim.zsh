@@ -12,6 +12,14 @@ sel="${sel%"${sel##*[! ]}"}"
 
 [[ -z "$sel" ]] && exit 0
 
+# Try file::test or file::test[params] (e.g. Rust test paths)
+# Captures: file=part before ::, test_name=word after :: (strips [params])
+if [[ "$sel" =~ ^([^: ]+)::([_[:alnum:]]+)$ ]]; then
+    file="${match[1]}"
+    test_name="${match[2]}"
+    exec maybe_nvim.sh "+/$test_name" "$file"
+fi
+
 # Try file:line:col, then file:line, then bare file
 if [[ "$sel" =~ ^(.+):([0-9]+):[0-9]+$ ]]; then
     file="${match[1]}"

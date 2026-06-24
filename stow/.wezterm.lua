@@ -40,14 +40,41 @@ end
 
 config.audible_bell = "Disabled"
 
--- Open file in nvim via quick select (CTRL+SHIFT+O)
--- Matches: path/to/file.py  |  path/to/file.py:4  |  path/to/file.py:4:10
+-- Keybindings
 -- Override only CTRL+Tab / CTRL+SHIFT+Tab so they are not eaten by
 -- ActivateTabRelative and are instead forwarded to tmux as escape sequences.
 config.keys = {
     -- Pass Ctrl-Tab / Ctrl-Shift-Tab through to tmux as escape sequences
     { key = 'Tab', mods = 'CTRL',       action = wezterm.action.SendString '\x1b[27;5;9~' },
     { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.SendString '\x1b[27;6;9~' },
+
+    -- CTRL+SHIFT+F: quick-select a file/test pattern and append it quoted to the
+    -- current command line.  Type a prefix first ('pt ' or 'nv '), hit this
+    -- binding, pick a label, and the selection is appended quoted + executed.
+    -- Quoting prevents shell-glob expansion of [params] suffixes.
+    -- Patterns: path/to/file.py[:line[:col]]  |  module::test[params]
+    {
+        key = 'f',
+        mods = 'CTRL|SHIFT',
+        action = wezterm.action.QuickSelectArgs {
+            label = 'pick file/test',
+            patterns = {
+                '[\\w./-]+\\.\\w+(?::\\d+(?::\\d+)?)?',
+                '[\\w./-]+::\\w+(?:\\[[^\\]]*\\])?',
+            },
+            action = wezterm.action_callback(function(window, pane)
+                local sel = window:get_selection_text_for_pane(pane)
+                if not sel or sel == '' then return end
+                window:perform_action(
+                    wezterm.action.SendString('"' .. sel .. '"\r'),
+                    pane
+                )
+            end),
+        },
+    },
+
+    -- CTRL+SHIFT+O: open file in nvim via quick select.
+    -- Matches: path/to/file.py[:line[:col]]  |  module::test
     {
         key = 'o',
         mods = 'CTRL|SHIFT',
@@ -55,6 +82,7 @@ config.keys = {
             label = 'open in nvim',
             patterns = {
                 '[\\w./-]+\\.\\w+(?::\\d+(?::\\d+)?)?',
+                '[\\w./-]+::\\w+',
             },
             action = wezterm.action_callback(function(window, pane)
                 local sel = window:get_selection_text_for_pane(pane)

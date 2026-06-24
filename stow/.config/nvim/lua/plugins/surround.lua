@@ -3,7 +3,7 @@
 -- The built-in "m" (set mark) is disabled to free up the prefix.
 return {
   {
-    "nvim-mini/mini.surround",
+    "echasnovski/mini.surround",
     version = "*", -- stable
     event = "VeryLazy",
     opts = {
