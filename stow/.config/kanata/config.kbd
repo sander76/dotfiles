@@ -29,10 +29,10 @@
 (defalias
   a (tap-hold $tap-time $hold-time a (layer-while-held navigation))
   s (tap-hold $tap-time $hold-time s lalt)
-  d (tap-hold-opposite-hand 5000 d lsft)
+  d (tap-hold-opposite-hand-release 5000 d lsft)
   f (tap-hold $tap-time $hold-time f lctl)
   j (tap-hold $tap-time $hold-time j rctl)
-  k (tap-hold-opposite-hand 5000 k rsft)
+  k (tap-hold-opposite-hand-release 5000 k rsft)
   l (tap-hold $tap-time $hold-time l ralt)
   ; (tap-hold $tap-time $hold-time ; (multi rmet (layer-while-held startup)))
 )
