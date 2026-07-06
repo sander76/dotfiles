@@ -15,7 +15,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
-bindkey=-e
+bindkey -e
 
 zstyle :compinstall filename '/
 /sander/.zshrc'
