@@ -15,7 +15,7 @@ for arg in "$@"; do
     if [[ "$arg" =~ ^([^:[:space:]]+)::([_[:alnum:]]+)(\[.*\])?$ ]]; then
         # file::test[params]  →  +/test file  (strips [params])
         new_args=("+/${BASH_REMATCH[2]}" "${BASH_REMATCH[1]}")
-    elif [[ "$arg" =~ ^(.+):([0-9]+)(:[0-9]+)?$ ]]; then
+    elif [[ "$arg" =~ ^([^:]+):([0-9]+)(:[0-9]+)?$ ]]; then
         # file:line[:col]  →  +line file  (col is ignored)
         new_args=("+${BASH_REMATCH[2]}" "${BASH_REMATCH[1]}")
     else

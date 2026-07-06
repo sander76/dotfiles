@@ -5,7 +5,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme                = "tokyonight",
+        theme                = "catppuccin-nvim",
         globalstatus         = true,   -- single statusline across all splits
         section_separators   = "",
         component_separators = "",
