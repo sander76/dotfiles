@@ -104,8 +104,8 @@ config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.enable_tab_bar = false
 
 -- Autostart tmux on launch (Linux/macOS)
-if wezterm.GLOBAL.os ~= 'windows' then
-    config.default_prog = { 'tmux', 'new-session', '-A', '-s', 'main' }
-end
+-- if wezterm.GLOBAL.os ~= 'windows' then
+--     config.default_prog = { 'tmux', 'new-session', '-A', '-s', 'main' }
+-- end
 
 return config
