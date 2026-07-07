@@ -49,6 +49,9 @@ config.keys = {
     { key = 'Tab', mods = 'CTRL',       action = wezterm.action.SendString '\x1b[27;5;9~' },
     { key = 'Tab', mods = 'CTRL|SHIFT', action = wezterm.action.SendString '\x1b[27;6;9~' },
 
+    -- Pass Shift+Enter through to tmux/apps as CSI-u sequence
+    { key = 'Return', mods = 'SHIFT', action = wezterm.action.SendString '\x1b[13;2u' },
+
     -- CTRL+SHIFT+F: quick-select a file/test pattern and append it quoted to the
     -- current command line.  Type a prefix first ('pt ' or 'nv '), hit this
     -- binding, pick a label, and the selection is appended quoted + executed.
