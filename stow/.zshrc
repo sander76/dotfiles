@@ -53,14 +53,9 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 alias py="python"
 
-# use fzf to filter out projects and open them in vscode.
-alias vc='source ~/repos/dotfiles/scripts/vc.sh'
-
 # cdd into a folder quickly starting
 alias cdd='source ~/repos/dotfiles/scripts/find_folders.sh'
 
-# use fzf to find a file starting at the current folder, ignoring any folder starting with "." (a dotted folder being a private folder.)
-alias ff="find . -type f -not -path '*/\.*/*' | fzf --preview 'batcat {}'"
 
 alias gco="git checkout"
 alias gp="git push"
@@ -76,7 +71,6 @@ alias l='ls -lah'
 alias ll='ls -lh'
 
 
-alias o='code -g'
 # batcat alias
 # alias bat='batcat'
 
@@ -87,14 +81,7 @@ alias be='birdeye'
 
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 
-alias ptlf='pytest --lf'
-
-alias fls='source ~/bin/scripts/opener.sh'
-
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
-
-
-
 
 
 # export NVM_DIR="$HOME/.nvm"
@@ -152,15 +139,12 @@ source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
 
 
-
 eval "$(starship init zsh)"
-# for profiling output
-# zprof
-# eval "$(zellij setup --generate-auto-start zsh)"
 
-# eval "$(zellij setup --generate-auto-start zsh)"
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach-session -t default || tmux new-session -s default
 fi
 
+# for profiling output
+# zprof
