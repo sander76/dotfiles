@@ -148,3 +148,6 @@ fi
 
 # for profiling output
 # zprof
+
+# enable vi mode on terminal.
+#set -o vi
