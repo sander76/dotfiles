@@ -92,6 +92,7 @@ return {
           map("K",          vim.lsp.buf.hover,          "Hover docs")
           map("<leader>cn", vim.lsp.buf.rename,         "Rename symbol")
           map("<leader>ca", vim.lsp.buf.code_action,    "Code action")
+          map("<leader>ck", vim.lsp.buf.hover,          "Hover docs")
           map("<leader>e",  vim.diagnostic.open_float,  "Show diagnostics")
         end,
       })
