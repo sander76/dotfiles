@@ -19,7 +19,14 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { { "filename", path = 1 } },  -- relative path
+        lualine_c = {
+          { "filename", path = 1 },
+          {
+            function() return vim.b.gitsigns_blame_line or "" end,
+            cond = function() return vim.b.gitsigns_blame_line ~= nil end,
+            color = { fg = "#888888" },
+          },
+        },
         lualine_x = { "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
