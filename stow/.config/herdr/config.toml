@@ -1,0 +1,12 @@
+onboarding = false
+
+[ui]
+sidebar_start_collapsed = true
+sidebar_collapsed_mode = "hidden"
+pane_borders = true
+pane_gaps = false
+
+[keys]
+prefix = "ctrl+a"
+focus_pane_left = "ctrl+h"
+focus_pane_right = "ctrl+l"
