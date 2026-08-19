@@ -27,20 +27,10 @@ sudo add-apt-repository ppa:git-core/ppa -y
 sudo apt update -y
 sudo apt -y install git
 
-# Install git delta
-~/bin/eget https://github.com/dandavison/delta --to ~/bin --asset ^musl
-
 
 # Install lib secret
 # sudo apt -y install gnome-keyring make gcc libsecret-1-0 libsecret-1-dev libglib2.0-dev
 # sudo make --directory=/usr/share/doc/git/contrib/credential/libsecret
 
 
-
-# Link Git config if it doesn't exist
-# Get the original user's home directory
-"$PARENT_FOLDER/create_symlink.sh" "$PARENT_FOLDER/git" ~/.config/git
-
-
 # use `git config --list` to see if config has worked.
-# goto `https://github.com/settings/tokens` to set a pat.
