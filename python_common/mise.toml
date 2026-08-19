@@ -1,11 +1,21 @@
+[shell_alias]
+qa="nox -s quality-3.12"
+nvim="~/.local/bin/maybe_nvim.sh"
+vi="~/.local/bin/maybe_nvim.sh"
+pt="uv run pytest -v"
+py="ptpython"
+
 [env]
-NODE_ENV = 'production'
-_.python.venv = ".venv"
+_.python.venv = { path = ".venv", create = true }
 
 [hooks]
-enter = [
-    "uv pip install pytest-pudb-resurrected",
-]
+enter = "uv pip install pytest-pudb-resurrected ptpython"
 
-[shell_alias]
-ptsd="source ~/repos/dotfiles/scripts/run_pytest.zsh"
+[tasks.bootstrap]
+description = "bootstrap this worktree"
+alias = "bs"
+run = [
+	'uv sync',
+	'pre-commit install',
+    'git commit --allow-empty --no-verify -m "$(basename "$PWD")"'
+]
