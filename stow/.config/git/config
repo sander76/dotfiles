@@ -1,0 +1,63 @@
+[core]
+	pager = delta
+	excludesFile = ~/.config/git/ignore
+
+[delta]
+	# https://dandavison.github.io/delta/configuration.html
+	hyperlinks = true
+	line-numbers = true
+	navigate = true
+	syntax-theme = Monokai Extended
+
+[diff]
+	colorMoved = default
+
+[interactive]
+	diffFilter = delta --color-only
+
+[user]
+	name = Sander Teunissen
+	email = s.teunissen@gmail.com
+[pager]
+	branch = false
+	log = true
+
+[includeIf "gitdir:~/baringa/"]
+        path = ~/baringa/.gitconfig
+
+[init]
+	defaultBranch = main
+[help]
+	autocorrect = prompt
+
+[push]
+	autoSetupRemote = true
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	frag = magenta bold
+	meta = yellow bold
+	new = green bold
+	old = red bold
+	whitespace = red reverse
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[fetch]
+	prune = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+
+[includeIf "gitdir:~/repos/"]
+	path = ~/repos/.gitconfig
