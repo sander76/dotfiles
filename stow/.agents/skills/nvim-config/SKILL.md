@@ -72,10 +72,10 @@ keys = {
 
 ## References
 
-- [Neovim user docs](https://neovim.io/doc/user/) — options, LSP, Lua, treesitter, autocmds
-  - [lua](https://neovim.io/doc/user/lua/)
-  - [lsp](https://neovim.io/doc/user/lsp/)
-  - [options](https://neovim.io/doc/user/options/)
+- Official docs: use `:help` inside your installed Neovim, or browse the `runtime/doc/` folder on the [stable branch](https://github.com/neovim/neovim/tree/stable/runtime/doc).
+  - `:help lua`
+  - `:help lsp`
+  - `:help options`
 
 ## lua_ls Setup
 
