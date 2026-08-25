@@ -1,3 +1,4 @@
+.workmux.yaml
 /profile*
 .pytest_discoveries/
 mise.toml

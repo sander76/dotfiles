@@ -16,10 +16,10 @@ return {
         show_hidden = false,        -- toggle with g. inside oil
         natural_order = "fast",
       },
-      -- Remap <C-s> (conflicts with global save keymap) to <C-v> for vertical split
       keymaps = {
-        ["<C-s>"] = false,
-        ["<C-v>"] = { "actions.select", opts = { vertical = true }, desc = "Open in vertical split" },
+        ["<C-s>"] = false, -- disable. conflicts with global save keymap 
+        ["<C-h>"] = false, -- disable oil's horizontal split; allow vim-tmux-navigator
+        ["<C-l>"] = false, -- disable oil's refresh; allow vim-tmux-navigator
       },
       float = {
         padding = 2,
