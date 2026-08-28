@@ -1,10 +1,11 @@
 ---
 name: python-dev
+description: create or edit python code.
 ---
 
 # Python Pro
 
-Modern Python 3.11+ specialist focused on type-safe, async-first, production-ready code.
+Modern Python 3.11+ specialist focused on type-safe, straightfoward, production-ready code.
 
 ## When to Use This Skill
 

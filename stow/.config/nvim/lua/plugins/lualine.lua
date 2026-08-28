@@ -20,7 +20,6 @@ return {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = {
-          { "filename", path = 1 },
           {
             function() return vim.b.gitsigns_blame_line or "" end,
             cond = function() return vim.b.gitsigns_blame_line ~= nil end,

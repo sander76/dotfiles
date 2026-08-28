@@ -3,6 +3,9 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
+    keys = {
+      { "<leader>cb", function() require("gitsigns").blame_line({ full = true }) end, desc = "Blame line" },
+    },
     opts = {
       current_line_blame = true,   -- must be true to populate vim.b.gitsigns_blame_line
       current_line_blame_opts = {
