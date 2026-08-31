@@ -3,8 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      -- ── ty ───────────────────────────────────────────────────────────────
-      vim.lsp.enable("ty")
+      -- ── pyrefly ──────────────────────────────────────────────────────────
+      vim.lsp.enable("pyrefly")
 
       -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
