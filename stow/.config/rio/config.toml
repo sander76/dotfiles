@@ -22,8 +22,7 @@ use-split = false
 [bindings]
 keys = [
 {key="tab", with = "control", esc="\u001b[27;5;9~"},
-{key="tab", with = "control | shift", esc="\u001b[27;6;9~"},
-{key="f", with = "control | shift", action="ReceiveChar"}
+{key="tab", with = "control | shift", esc="\u001b[27;6;9~"}
 ]
 
 [effects]
@@ -38,5 +37,5 @@ post-processing = true
 action = "Paste"
 
 [hints.rules.binding]
-key = "F"
+key = "G"
 mods = ["Control", "Shift"]
