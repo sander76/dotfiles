@@ -25,9 +25,6 @@ keys = [
 {key="tab", with = "control | shift", esc="\u001b[27;6;9~"}
 ]
 
-[effects]
-trail-cursor = true
-trail-cursor-opacity = 0.3
 [hints]
 alphabet = "jfkdls;ahgurieowpq"
 
@@ -37,5 +34,5 @@ post-processing = true
 action = "Paste"
 
 [hints.rules.binding]
-key = "G"
+key = ""
 mods = ["Control", "Shift"]
