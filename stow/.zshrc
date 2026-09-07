@@ -91,28 +91,6 @@ export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# A function to visually change directories with nval
-lcd() {
-    # Run lstr and capture the selected path into a variable.
-    
-    local selected_dir
-    selected_dir=$(navl)
-
-    # If the user selected a path (and didn't just quit), `cd` into it.
-    # Check if the selection is a directory.
-    if [[ -n "$selected_dir" && -d "$selected_dir" ]]; then
-        cd "$selected_dir"
-    fi
-}
-
-cddl() {
-  local selection
-  selection=$(navl <"$TTY") || return
-  LBUFFER+="$selection"
-
-}
-zle -N cddl
-bindkey '^n' cddl
 
 
 eval "$(/home/sander/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
@@ -126,6 +104,7 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-d:reload(fd --type d --strip-cwd-prefix)'
   --bind 'ctrl-f:reload(fd --type f --strip-cwd-prefix)' \
   "
+export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 source ~/repos/fzf-git.sh/fzf-git.sh
 
 # enable zsh autosuggestions.
