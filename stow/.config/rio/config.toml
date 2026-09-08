@@ -34,5 +34,5 @@ post-processing = true
 action = "Paste"
 
 [hints.rules.binding]
-key = "F"
+key = "G"
 mods = ["Control", "Shift"]
