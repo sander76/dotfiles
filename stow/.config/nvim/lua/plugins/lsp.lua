@@ -4,7 +4,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       -- ── pyrefly ──────────────────────────────────────────────────────────
-      vim.lsp.enable("pyrefly")
+      -- vim.lsp.enable("pyrefly")
+
+      vim.lsp.enable("ty")
 
       -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
@@ -76,7 +78,15 @@ return {
             vim.lsp.completion.enable(true, client.id, event.buf, {
               autotrigger = true,
               convert = function(item)
-                return { abbr = item.label:gsub("%b()", "") }
+                -- ty (and others) put the source module in labelDetails.detail,
+                -- e.g. " (import pkg_a.mod)" — keep it visible in the "menu"
+                -- column so identically-named completions stay distinguishable.
+                local module_info = vim.tbl_get(item, "labelDetails", "detail")
+                local result = { abbr = item.label:gsub("%b()", "") }
+                if module_info and module_info ~= "" then
+                  result.menu = vim.trim(module_info)
+                end
+                return result
               end,
             })
             vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
