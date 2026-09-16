@@ -15,7 +15,36 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 
-bindkey -e
+bindkey -v
+export KEYTIMEOUT=1
+
+# Change terminal cursor to reflect vi mode: always a solid block,
+# but colored red in normal mode and default color in insert mode.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne '\e[2 q'      # steady block cursor
+    echo -ne '\e]12;red\a' # red cursor color (normal mode)
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+    echo -ne '\e[2 q'    # steady block cursor
+    echo -ne '\e]112\a'  # reset cursor color to default (insert mode)
+  fi
+}
+zle -N zle-keymap-select
+
+function zle-line-init {
+  echo -ne '\e[2 q'    # steady block cursor by default (insert mode)
+  echo -ne '\e]112\a'  # default cursor color
+}
+zle -N zle-line-init
+
+# Ensure cursor resets to default block/color when the shell exits or a command runs.
+precmd_functions+=(_reset_cursor_default)
+function _reset_cursor_default() {
+  echo -ne '\e[2 q'
+  echo -ne '\e]112\a'
+}
+
+
 
 zstyle :compinstall filename '/
 /sander/.zshrc'
@@ -128,5 +157,3 @@ fi
 # for profiling output
 # zprof
 
-# enable vi mode on terminal.
-#set -o vi
