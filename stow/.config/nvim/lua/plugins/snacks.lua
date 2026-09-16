@@ -41,6 +41,9 @@ return {
       notify = { enabled = false },
       picker = {
         enabled = true,
+        matcher = {
+          frecency = true,
+                },
         win = {
           input = {
             keys = {
