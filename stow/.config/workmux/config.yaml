@@ -1,7 +1,6 @@
 nerdfont: true
 worktree_dir: ../
 panes:
-  - command: shell
+  - focus: true
   - split: horizontal
     command: nvim
-    focus: true

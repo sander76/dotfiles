@@ -18,6 +18,11 @@ setopt HIST_FIND_NO_DUPS
 bindkey -v
 export KEYTIMEOUT=1
 
+# Remove the default list-expand binding on bare Ctrl-G in vi keymaps so it
+# doesn't race with fzf-git.sh's ^g<letter> prefix sequences (e.g. ^g^b).
+bindkey -M viins -r '^G'
+bindkey -M vicmd -r '^G'
+#
 # Change terminal cursor to reflect vi mode: always a solid block,
 # but colored red in normal mode and default color in insert mode.
 function zle-keymap-select {
@@ -82,9 +87,6 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 alias py="python"
 
-# cdd into a folder quickly starting
-alias cdd='source ~/repos/dotfiles/scripts/find_folders.sh'
-
 
 alias gco="git checkout"
 alias gp="git push"
@@ -106,9 +108,9 @@ alias ll='ls -lh'
 # cd into the root of the git folder.
 alias r='cd $(git rev-parse --show-toplevel)'
 
-alias be='birdeye'
-
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
+
+alias vi="~/.local/bin/maybe_nvim.sh"
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
