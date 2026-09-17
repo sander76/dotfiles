@@ -21,6 +21,7 @@ return {
       spec = {
         { "<leader>c", group = "code" },
         { "<leader>q", group = "session" },
+        { "<leader>v", group = "review" },
         { "m",         group = "surround" },
         { "m",         group = "surround", mode = "x" },
       },

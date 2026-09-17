@@ -52,6 +52,9 @@ config.keys = {
     -- Pass Shift+Enter through to tmux/apps as CSI-u sequence
     { key = 'Return', mods = 'SHIFT', action = wezterm.action.SendString '\x1b[13;2u' },
 
+    -- Pass Ctrl+Enter through to tmux/apps as CSI-u sequence (so nvim sees <C-CR>)
+    { key = 'Return', mods = 'CTRL', action = wezterm.action.SendString '\x1b[13;5u' },
+
     -- CTRL+SHIFT+F: quick-select a file/test pattern and append it quoted to the
     -- current command line.  Type a prefix first ('pt ' or 'nv '), hit this
     -- binding, pick a label, and the selection is appended quoted + executed.
