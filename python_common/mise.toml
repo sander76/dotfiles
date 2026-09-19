@@ -1,8 +1,6 @@
 [shell_alias]
-qa="nox -s quality-3.12"
 nvim="~/.local/bin/maybe_nvim.sh"
 vi="~/.local/bin/maybe_nvim.sh"
-pt="uv run pytest -v"
 py="ptpython"
 
 [env]
