@@ -1,12 +1,6 @@
 #!/bin/bash
 set -e
 
-PARENT_FOLDER="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
-echo "$PARENT_FOLDER"
-
-"$PARENT_FOLDER/prepare.sh"
-
-~/bin/eget https://github.com/jtroo/kanata --to ~/bin --asset ^musl
 
 # Check if the folder ~/.config/systemd/user exists. If not, create it.
 if [ ! -d ~/.config/systemd/user ]; then
