@@ -1,8 +1,6 @@
 .workmux.yaml
 /profile*
 .pytest_discoveries/
-mise.toml
-ty.toml
 AGENTS.md
 venv/
 .venv/
