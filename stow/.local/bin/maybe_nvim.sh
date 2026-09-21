@@ -53,7 +53,8 @@ else
             nvim --headless --server "$PIPE" --remote "$@"
         fi
     else
-        # Pipe exists but no file — just attach to the running instance
-        exec nvim --server "$PIPE" --remote-ui
+        # Pipe exists but no file — do not open another session/attach
+        echo "there already is a nvim session running" >&2
+        exit 1
     fi
 fi

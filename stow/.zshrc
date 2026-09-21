@@ -98,7 +98,10 @@ alias gwt="/home/sander/repos/dotfiles/scripts/worktree-checkout.sh"
 
 alias lg="lazygit"
 
-alias l='ls -lah'
+# Only distinguish directories (blue) from files (default color); no other
+# type-based coloring (symlinks, executables, etc.).
+export LS_COLORS="di=34:fi=0:ln=0:ex=0:*=0"
+alias l='ls -lah --color=auto'
 alias ll='ls -lh'
 
 
