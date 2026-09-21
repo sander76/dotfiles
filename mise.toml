@@ -1,0 +1,7 @@
+[env]
+RIPGREP_CONFIG_PATH = "{{config_root}}/.ripgreprc"
+FZF_CTRL_T_COMMAND = "fd -H --strip-cwd-prefix"
+
+[shell_alias]
+fd = "fd -H"
+rg = "rg --no-ignore --hidden" 
