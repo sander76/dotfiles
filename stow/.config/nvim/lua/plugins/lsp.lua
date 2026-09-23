@@ -86,7 +86,7 @@ return {
                 local abbr = item.label:gsub("%b()", "")
                 local module_info = vim.tbl_get(item, "labelDetails", "detail")
                 if module_info and module_info ~= "" then
-                  abbr = abbr .. "  " .. vim.trim(module_info)
+                  abbr = abbr .. "   " .. vim.trim(module_info)
                 end
                 return { abbr = abbr }
               end,
