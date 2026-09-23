@@ -56,6 +56,7 @@ vim.opt.smartcase      = true
 -- LSP / insert-mode completion (native, no plugin needed)
 vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy", "nearest" }
 vim.opt.pummaxwidth  = 0  -- no cap: let the pum grow to fit content (e.g. ty's "(import pkg.mod)"), clamped to screen width
+vim.opt.pumwidth     = 80 -- min width nvim reserves when nudging the pum left near the right edge of the window
 -- Tab / S-Tab navigate the popup; CR confirms; <C-Space> triggers (set in lsp.lua)
 vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>"   end, { expr = true, desc = "Next completion / Tab" })
 vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { expr = true, desc = "Prev completion / S-Tab" })

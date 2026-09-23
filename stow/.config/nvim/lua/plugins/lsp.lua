@@ -79,14 +79,16 @@ return {
               autotrigger = true,
               convert = function(item)
                 -- ty (and others) put the source module in labelDetails.detail,
-                -- e.g. " (import pkg_a.mod)" — keep it visible in the "menu"
-                -- column so identically-named completions stay distinguishable.
+                -- e.g. " (import pkg_a.mod)" — append it to abbr with a fixed
+                -- separator so identically-named completions stay distinguishable
+                -- without the pum's auto-aligned "menu" column padding (which
+                -- varies with the longest label in the list).
+                local abbr = item.label:gsub("%b()", "")
                 local module_info = vim.tbl_get(item, "labelDetails", "detail")
-                local result = { abbr = item.label:gsub("%b()", "") }
                 if module_info and module_info ~= "" then
-                  result.menu = vim.trim(module_info)
+                  abbr = abbr .. "  " .. vim.trim(module_info)
                 end
-                return result
+                return { abbr = abbr }
               end,
             })
             vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get,
