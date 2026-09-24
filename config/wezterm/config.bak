@@ -1,5 +1,0 @@
-[tools]
-fd = "latest"
-jq = "latest"
-opencode = "latest"
-taplo = "latest"
