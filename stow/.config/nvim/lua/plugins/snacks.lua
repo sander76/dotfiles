@@ -10,6 +10,7 @@ return {
       { "<leader>d", function() Snacks.picker.diagnostics() end,               desc = "Diagnostics" },
       { "<leader>r", function() Snacks.picker.resume() end,                    desc = "Resume last picker" },
       { "<leader>h", function() Snacks.picker.search_history() end,            desc = "Search history" },
+      { "<leader>x", function() Snacks.bufdelete() end,                        desc = "Delete buffer (keep window)" },
     },
     opts = {
       scroll = {
