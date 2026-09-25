@@ -8,6 +8,7 @@ description: Review code changes and produce a structured findings report
 ## What I do
 
 - Analyse the code changes for bugs, correctness issues, design problems, and style issues.
+- Check whether argument end variable naming makes sense and check if used consistently.
 - Classify each finding by severity: high, medium, low, trivial.
 - Present findings as numbered items with file and line references where
   applicable.

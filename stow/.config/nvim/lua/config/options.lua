@@ -52,6 +52,8 @@ vim.opt.splitbelow     = true
 
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
+vim.opt.incsearch      = true                      -- jump/preview matches as you type
+vim.opt.hlsearch       = true                      -- highlight all matches; required by nvim-hlslens
 
 -- LSP / insert-mode completion (native, no plugin needed)
 vim.opt.completeopt = { "menuone", "noselect", "popup", "fuzzy", "nearest" }
