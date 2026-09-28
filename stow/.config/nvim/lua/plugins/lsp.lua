@@ -6,6 +6,13 @@ return {
       -- ── pyrefly ──────────────────────────────────────────────────────────
       -- vim.lsp.enable("pyrefly")
 
+      vim.lsp.config("ty", {
+        settings = {
+          ty = {
+            completions = { completeFunctionParentheses = true },
+          },
+        },
+      })
       vim.lsp.enable("ty")
 
       -- ── ruff ──────────────────────────────────────────────────────────────
