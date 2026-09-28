@@ -6,14 +6,8 @@ return {
       -- ── pyrefly ──────────────────────────────────────────────────────────
       -- vim.lsp.enable("pyrefly")
 
-      vim.lsp.config("ty", {
-        settings = {
-          ty = {
-            completions = { completeFunctionParentheses = true },
-          },
-        },
-      })
-      vim.lsp.enable("ty")
+      -- ── zuban ────────────────────────────────────────────────────────────
+      vim.lsp.enable("zuban")
 
       -- ── ruff ──────────────────────────────────────────────────────────────
       vim.lsp.config("ruff", {
