@@ -5,7 +5,33 @@ return {
   {
     "kevinhwang91/nvim-hlslens",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      -- By default hlslens only shows the full "[idx/total]" lens for the
+      -- nearest match; other on-screen matches just get "[idx]" plus a
+      -- direction arrow. Force every visible lens into "[idx/total]" form.
+      override_lens = function(render, posList, nearest, idx, _relIdx)
+        local text = ("[%d/%d]"):format(idx, #posList)
+        local hl = nearest and "HlSearchLensNear" or "HlSearchLens"
+        local lnum, col = unpack(posList[idx])
+        render.setVirt(0, lnum - 1, col - 1, { { " " }, { text, hl } }, nearest)
+      end,
+    },
+    config = function(_, opts)
+      require("hlslens").setup(opts)
+
+      -- Give the lens overlay a dark green color instead of the theme
+      -- default. Re-applied on every colorscheme change since colorschemes
+      -- clear custom highlight links/definitions.
+      local function set_hlslens_colors()
+        vim.api.nvim_set_hl(0, "HlSearchLens", { fg = "#1e5631", bold = true })
+        vim.api.nvim_set_hl(0, "HlSearchLensNear", { fg = "#1e5631", bold = true })
+      end
+      set_hlslens_colors()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        desc = "Re-apply hlslens dark green lens colors",
+        callback = set_hlslens_colors,
+      })
+    end,
     keys = {
       {
         "n",
