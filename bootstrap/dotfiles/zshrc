@@ -1,0 +1,36 @@
+# zshrc - managed by mise bootstrap
+# Source the main dotfiles zshrc if it exists, otherwise use minimal config
+
+# Load mise activation
+eval "$(mise activate zsh)"
+
+# Load starship prompt
+eval "$(starship init zsh)"
+
+# Basic history settings
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Completion
+autoload -Uz compinit
+compinit -C
+
+# Editor
+export EDITOR='nvim'
+
+# Aliases
+alias l='ls -lah --color=auto'
+alias ll='ls -lh'
+alias gco="git checkout"
+alias gp="git push"
+alias gs="git status"
+alias gcm="git commit -m"

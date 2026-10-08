@@ -1,0 +1,3 @@
+# zprofile - managed by mise bootstrap
+# mise shims path
+export PATH="$HOME/.local/share/mise/shims:$PATH"

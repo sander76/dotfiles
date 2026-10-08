@@ -1,0 +1,45 @@
+# Bootstrap configuration for Linux and macOS machines
+# Apply with: mise bootstrap --from <this-repo-url>
+
+[tools]
+starship = "latest"
+
+[bootstrap.packages]
+# System packages - mise picks the right package manager per OS
+git = "latest"
+zsh = "latest"
+curl = "latest"
+
+# Arimo Nerd Font (macOS via brew, Arch via pacman)
+"brew:font-arimo-nerd-font" = "latest"
+"pacman:ttf-arimo-nerd" = "latest"
+
+[bootstrap.mise_shell_activate]
+zprofile = "shims"
+zshrc = "activate"
+zshenv = "shims"
+
+[bootstrap.user]
+login_shell = "zsh"
+
+[dotfiles]
+"~/.config/starship.toml" = "dotfiles/starship.toml"
+"~/.zshrc" = "dotfiles/zshrc"
+"~/.zprofile" = "dotfiles/zprofile"
+
+[tasks.bootstrap]
+run = '''
+echo "Setting up shell environment..."
+
+# Install Arimo Nerd Font on Linux if not available via package manager
+if [[ "$OSTYPE" == "linux"* ]] && ! fc-list | grep -qi "arimo"; then
+  echo "Installing Arimo Nerd Font..."
+  FONT_DIR="$HOME/.local/share/fonts"
+  mkdir -p "$FONT_DIR"
+  curl -sL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Arimo.zip" -o /tmp/arimo.zip
+  unzip -o /tmp/arimo.zip -d "$FONT_DIR" > /dev/null 2>&1
+  fc-cache -fv > /dev/null 2>&1
+fi
+
+echo "Done! Open a new shell to activate."
+'''
