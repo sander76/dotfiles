@@ -1,7 +1,6 @@
 [env]
 PIP_REQUIRE_VIRTUALENV=true
 
-
 [shell_alias]
 fd = "fd -H"
 rg = "rg --no-ignore --hidden" 

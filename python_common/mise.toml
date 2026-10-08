@@ -1,7 +1,11 @@
 [shell_alias]
-nvim="~/.local/bin/maybe_nvim.sh"
-vi="~/.local/bin/maybe_nvim.sh"
 py="ptpython"
+
+# cd into the root of the git folder.
+r='cd $(git rev-parse --show-toplevel)'
+
+# find pytest tests using fzf
+pts='source ~/repos/dotfiles/scripts/pts.zsh'
 
 [env]
 _.python.venv = { path = ".venv", create = true }
