@@ -1,0 +1,14 @@
+[env]
+PIP_REQUIRE_VIRTUALENV=true
+
+
+[shell_alias]
+fd = "fd -H"
+rg = "rg --no-ignore --hidden" 
+l='ls -lah --color=auto'
+ll='ls -lh'
+vi="~/.local/bin/maybe_nvim.sh"
+py="python"
+
+[tools]
+aqua = "latest"

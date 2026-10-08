@@ -51,22 +51,12 @@ function _reset_cursor_default() {
 
 
 
-zstyle :compinstall filename '/
-/sander/.zshrc'
-
-
 autoload -Uz compinit
 # Using -C to skip compaudit security check (~130ms faster)
 # Run `rm ~/.zcompdump && compinit` manually after installing new completions
 compinit -C
 
 
-DISABLE_AUTO_TITLE="true"
-
-function set_terminal_title(){
-    echo -ne "\033]0; $PWD \007"
-}
-precmd_functions+=(set_terminal_title)
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -76,16 +66,6 @@ else
   export EDITOR='nvim'
 fi
 export PIP_REQUIRE_VIRTUALENV=true
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-alias py="python"
 
 
 alias gco="git checkout"
@@ -101,19 +81,7 @@ alias lg="lazygit"
 # Only distinguish directories (blue) from files (default color); no other
 # type-based coloring (symlinks, executables, etc.).
 export LS_COLORS="di=34:fi=0:ln=0:ex=0:*=0"
-alias l='ls -lah --color=auto'
-alias ll='ls -lh'
 
-
-# batcat alias
-# alias bat='batcat'
-
-# cd into the root of the git folder.
-alias r='cd $(git rev-parse --show-toplevel)'
-
-alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
-
-alias vi="~/.local/bin/maybe_nvim.sh"
 
 export LESS='--chop-long-lines --HILITE-UNREAD --ignore-case --incsearch --jump-target=4 --LONG-PROMPT --no-init --quit-if-one-screen --RAW-CONTROL-CHARS --use-color --window=-4'
 
