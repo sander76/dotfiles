@@ -1,18 +1,23 @@
-# Bootstrap configuration for Linux and macOS machines
+# Bootstrap configuration for Ubuntu and macOS machines
 # Apply with: mise bootstrap --from <this-repo-url>
 
 [tools]
 starship = "latest"
 
 [bootstrap.packages]
-# System packages - mise picks the right package manager per OS
-git = "latest"
-zsh = "latest"
-curl = "latest"
+# Ubuntu (apt) and macOS (brew) - mise picks the right package manager per OS
+"apt:git" = "latest"
+"apt:zsh" = "latest"
+"apt:curl" = "latest"
+"apt:unzip" = "latest"
+"apt:fontconfig" = "latest"
 
-# Arimo Nerd Font (macOS via brew, Arch via pacman)
+"brew:git" = "latest"
+"brew:zsh" = "latest"
+"brew:curl" = "latest"
+
+# Arimo Nerd Font - macOS via brew cask
 "brew:font-arimo-nerd-font" = "latest"
-"pacman:ttf-arimo-nerd" = "latest"
 
 [bootstrap.mise_shell_activate]
 zprofile = "shims"
@@ -31,8 +36,8 @@ login_shell = "zsh"
 run = '''
 echo "Setting up shell environment..."
 
-# Install Arimo Nerd Font on Linux if not available via package manager
-if [[ "$OSTYPE" == "linux"* ]] && ! fc-list | grep -qi "arimo"; then
+# Install Arimo Nerd Font on Ubuntu if not available via package manager
+if [[ "$OSTYPE" == "linux-gnu"* ]] && ! fc-list | grep -qi "arimo"; then
   echo "Installing Arimo Nerd Font..."
   FONT_DIR="$HOME/.local/share/fonts"
   mkdir -p "$FONT_DIR"

@@ -1,6 +1,6 @@
 # Bootstrap
 
-Cross-platform machine setup using [mise](https://mise.jdx.dev/bootstrap.html).
+Machine setup for **Ubuntu** and **macOS** using [mise](https://mise.jdx.dev/bootstrap.html).
 
 ## What it sets up
 
@@ -8,7 +8,8 @@ Cross-platform machine setup using [mise](https://mise.jdx.dev/bootstrap.html).
 - **starship** prompt (mise-managed tool)
 - **git** (system package)
 - **curl** (system package)
-- **Arimo Nerd Font** (brew on macOS, pacman on Arch, manual download on other Linux)
+- **unzip** + **fontconfig** (Ubuntu, for font installation)
+- **Arimo Nerd Font** (brew cask on macOS, manual download on Ubuntu)
 - **mise shell activation** in zsh startup files
 - **dotfiles**: `~/.zshrc`, `~/.zprofile`, `~/.config/starship.toml`
 
@@ -54,10 +55,12 @@ bootstrap/
 
 ## Platform notes
 
-| Package | Linux | macOS |
-|---------|-------|-------|
-| git | apt/dnf/pacman/apk | brew |
-| zsh | apt/dnf/pacman/apk | brew |
-| curl | apt/dnf/pacman/apk | brew |
-| Arimo Nerd Font | pacman or manual download | brew (`font-arimo-nerd-font`) |
+| Package | Ubuntu | macOS |
+|---------|--------|-------|
+| git | apt | brew |
+| zsh | apt | brew |
+| curl | apt | brew |
+| unzip | apt | built-in |
+| fontconfig | apt | built-in |
+| Arimo Nerd Font | manual download | brew cask (`font-arimo-nerd-font`) |
 | starship | mise (aqua) | mise (aqua) |
