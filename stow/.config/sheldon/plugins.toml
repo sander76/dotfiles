@@ -1,0 +1,18 @@
+shell = "zsh"
+
+# sheldon sources plugins in definition order.
+# zsh-syntax-highlighting must be last, keep it at the bottom of this file.
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.fzf-tab-completion]
+github = "lincheney/fzf-tab-completion"
+use = ["zsh/fzf-zsh-completion.sh"]
+
+[plugins.fzf-git-sh]
+github = "junegunn/fzf-git.sh"
+use = ["fzf-git.sh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"

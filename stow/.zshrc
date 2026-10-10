@@ -107,14 +107,10 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-f:reload(fd --type f --strip-cwd-prefix)' \
   "
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
-source ~/repos/fzf-git.sh/fzf-git.sh
 
-# enable zsh autosuggestions.
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-# bindkey '^I' fzf_completion
-# . "$HOME/.local/bin/env"
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh plugins, managed by sheldon (config: ~/.config/sheldon/plugins.toml).
+# Source order is defined there; zsh-syntax-highlighting is loaded last.
+eval "$(sheldon source)"
 
 source ~/repos/dotfiles/config/wezterm/wezterm.sh
 
