@@ -68,15 +68,10 @@ fi
 export PIP_REQUIRE_VIRTUALENV=true
 
 
-alias gco="git checkout"
-alias gp="git push"
-alias gpf="git push --force-with-lease --force-if-includes"
-alias grbc="git rebase --continue"
-alias gcm="git commit -m"
-alias gs="git status"
-alias gwt="/home/sander/repos/dotfiles/scripts/worktree-checkout.sh"
-
-alias lg="lazygit"
+# Aliases are defined in ~/.shell_aliases so they can be shared with bash
+if [ -f ~/.shell_aliases ]; then
+    source ~/.shell_aliases
+fi
 
 # Only distinguish directories (blue) from files (default color); no other
 # type-based coloring (symlinks, executables, etc.).

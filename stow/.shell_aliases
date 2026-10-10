@@ -1,0 +1,19 @@
+# Shell aliases - shared between zsh and bash
+# Sourced from ~/.zshrc (and optionally ~/.bashrc)
+
+alias gco="git checkout"
+alias gp="git push"
+alias gpf="git push --force-with-lease --force-if-includes"
+alias grbc="git rebase --continue"
+alias gcm="git commit -m"
+alias gs="git status"
+alias gwt="/home/sander/repos/dotfiles/scripts/worktree-checkout.sh"
+
+alias lg="lazygit"
+
+alias fd="fd -H"
+alias rg="rg --no-ignore --hidden" 
+alias l='ls -lah --color=auto'
+alias ll='ls -lh'
+alias vi="~/.local/bin/maybe_nvim.sh"
+alias py="python"
