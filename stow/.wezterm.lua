@@ -19,12 +19,14 @@ config.quick_select_patterns = {
 }
 
 -- Hyperlink rules
-config.hyperlink_rules = {
-    {
-        regex = [[\b\w+\.py\b]],
-        format = '$0',
-    },
-}
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+-- Custom rule on top of the defaults
+-- NOTE: format '$0' makes the URI the bare matched text, so Ctrl+clicking a
+-- bare .py word asks the OS to open it (usually a no-op outside a project cwd).
+table.insert(config.hyperlink_rules, {
+    regex = [[\b\w+\.py\b]],
+    format = '$0',
+})
 
 -- OS detection
 wezterm.GLOBAL.os = wezterm.GLOBAL.os or
