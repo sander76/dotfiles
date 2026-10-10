@@ -44,7 +44,7 @@ return {
         enabled = true,
         matcher = {
           frecency = true,
-                },
+        },
         win = {
           input = {
             keys = {
