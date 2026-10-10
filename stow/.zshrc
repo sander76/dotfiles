@@ -114,10 +114,6 @@ source ~/repos/dotfiles/config/wezterm/wezterm.sh
 eval "$(starship init zsh)"
 
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
-
 # for profiling output
 # zprof
 
