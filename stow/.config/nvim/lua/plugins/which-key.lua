@@ -20,6 +20,7 @@ return {
       },
       spec = {
         { "<leader>c", group = "code" },
+        { "<leader>s", group = "search/replace" },
         { "<leader>q", group = "session" },
         { "<leader>v", group = "review" },
         { "m",         group = "surround" },
