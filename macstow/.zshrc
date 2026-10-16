@@ -4,3 +4,4 @@ export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all
 
 . "$HOME/.local/bin/env"
 
+PROMPT='%F{208}%~%f %# '
