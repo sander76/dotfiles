@@ -1,0 +1,185 @@
+" ~/.vim/vimrc -- plugin-free Vim config
+" Theme: TokyoNight Night (colors defined inline, no plugin required)
+" Language focus: Python
+
+" ------------------------------------------------------------------ basics
+set nocompatible
+set encoding=utf-8
+set number
+set relativenumber
+set showcmd
+set showmode
+set laststatus=2
+set ruler
+set wildmenu
+set lazyredraw
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set autoindent
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set scrolloff=5
+set display+=lastline
+set mouse=a
+
+" True color support (guards for older Vims / non-GUI terminals)
+if has('termguicolors')
+    set termguicolors
+endif
+set background=dark
+
+" ------------------------------------------------------------ filetypes
+filetype on
+filetype plugin indent on
+
+" Python syntax highlighting: enable ALL extra groups
+" (builtins, exceptions, doctests, space errors, decorators)
+let python_highlight_all = 1
+let python_highlight_builtins = 1
+let python_highlight_exceptions = 1
+let python_highlight_doctests = 1
+let python_highlight_file_headers_as_comments = 1
+" Recognize Python 3 builtins that Vim's default list might miss
+let python_slow_sync = 1
+
+syntax enable
+
+" ---------------------------------------------------- TokyoNight Night
+" Palette adapted from folke/tokyonight.nvim (variant: night)
+" bg #1a1b26 | fg #c0caf5 | blue #7aa2f7 | cyan #7dcfff
+" magenta #bb9af7 | orange #ff9e64 | yellow #e0af68
+" green #9ece6a | red #f7768e | comment #565f89 | gutter #3b4261
+" sel #33467c | bg_dark #16161e | bg_highlight #292e42
+
+hi clear
+if exists('syntax_on')
+    syntax reset
+endif
+
+" --- UI ---
+hi Normal          guifg=#c0caf5 guibg=#1a1b26 ctermfg=153 ctermbg=234
+hi Cursor          guifg=#1a1b26 guibg=#c0caf5 ctermfg=234 ctermbg=153
+hi CursorLine                    guibg=#292e42 ctermbg=236 cterm=NONE
+hi CursorColumn                  guibg=#292e42 ctermbg=236
+hi ColorColumn                   guibg=#1f2335 ctermbg=235
+hi LineNr          guifg=#3b4261 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi CursorLineNr    guifg=#737aa2 guibg=#1a1b26 ctermfg=103 ctermbg=234
+hi SignColumn      guifg=#3b4261 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi VertSplit       guifg=#1a1b26 guibg=#3b4261 ctermfg=60 ctermbg=60
+hi StatusLine      guifg=#c0caf5 guibg=#292e42 ctermfg=153 ctermbg=236
+hi StatusLineNC    guifg=#565f89 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi StatusLineTerm  guifg=#c0caf5 guibg=#292e42 ctermfg=153 ctermbg=236
+hi StatusLineTermNC guifg=#565f89 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi WildMenu        guifg=#1a1b26 guibg=#7aa2f7 ctermfg=234 ctermbg=75
+hi ModeMsg         guifg=#7dcfff ctermfg=117
+hi MoreMsg         guifg=#7dcfff ctermfg=117
+hi Question        guifg=#9ece6a ctermfg=149
+hi Title           guifg=#7aa2f7 ctermfg=75 cterm=bold
+hi NonText         guifg=#3b4261 ctermfg=60
+hi SpecialKey      guifg=#3b4261 ctermfg=60
+hi Directory       guifg=#7aa2f7 ctermfg=75
+hi MatchParen                    guibg=#292e42 ctermfg=153 ctermbg=236 cterm=underline,bold
+hi Visual                        guibg=#33467c ctermbg=61
+hi VisualNOS                     guibg=#33467c ctermbg=61
+hi IncSearch       guifg=#1a1b26 guibg=#e0af68 ctermfg=234 ctermbg=179 cterm=NONE
+hi Search                        guibg=#2ac3de guifg=#1a1b26 ctermfg=234 ctermbg=44 cterm=NONE
+hi Pmenu           guifg=#c0caf5 guibg=#16161e ctermfg=153 ctermbg=233
+hi PmenuSel        guifg=#1a1b26 guibg=#7aa2f7 ctermfg=234 ctermbg=75
+hi PmenuSbar       guibg=#292e42 ctermbg=236
+hi PmenuThumb      guibg=#565f89 ctermbg=60
+hi TabLine         guifg=#565f89 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi TabLineFill     guifg=#3b4261 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi TabLineSel      guifg=#c0caf5 guibg=#292e42 ctermfg=153 ctermbg=236
+hi Folded          guifg=#565f89 guibg=#16161e ctermfg=60 ctermbg=233
+hi FoldColumn      guifg=#565f89 guibg=#1a1b26 ctermfg=60 ctermbg=234
+hi CursorLineFold  guifg=#737aa2 guibg=#1a1b26 ctermfg=103 ctermbg=234
+hi ErrorMsg        guifg=#f7768e guibg=#1a1b26 ctermfg=210 ctermbg=234
+hi WarningMsg      guifg=#e0af68 ctermfg=179
+hi Error           guifg=#f7768e ctermfg=210
+hi Todo            guifg=#e0af68 guibg=#1a1b26 ctermfg=179 ctermbg=234 cterm=bold
+hi Underlined      guifg=#7aa2f7 ctermfg=75 cterm=underline
+hi qfLineNr        guifg=#3b4261 guibg=#1a1b26 ctermfg=60 ctermbg=234
+
+" --- Diff ---
+hi DiffAdd         guifg=#9ece6a guibg=#20303b ctermfg=149 ctermbg=237
+hi DiffChange      guifg=#7aa2f7 guibg=#1b2a3b ctermfg=75 ctermbg=236
+hi DiffDelete      guifg=#f7768e guibg=#37222c ctermfg=210 ctermbg=235
+hi DiffText        guifg=#89ddff guibg=#2ac3de ctermfg=117 ctermbg=44 cterm=NONE
+
+" --- Generic syntax (applies to every language, including Python) ---
+hi Comment         guifg=#565f89 ctermfg=60 cterm=italic
+hi Constant        guifg=#ff9e64 ctermfg=215
+hi String          guifg=#9ece6a ctermfg=149
+hi Character       guifg=#9ece6a ctermfg=149
+hi Number          guifg=#ff9e64 ctermfg=215
+hi Boolean         guifg=#ff9e64 ctermfg=215
+hi Float           guifg=#ff9e64 ctermfg=215
+hi Identifier      guifg=#c0caf5 ctermfg=153
+hi Function        guifg=#7aa2f7 ctermfg=75
+hi Statement       guifg=#bb9af7 ctermfg=141
+hi Conditional     guifg=#bb9af7 ctermfg=141
+hi Repeat          guifg=#bb9af7 ctermfg=141
+hi Label           guifg=#bb9af7 ctermfg=141
+hi Operator        guifg=#89ddff ctermfg=117
+hi Keyword         guifg=#bb9af7 ctermfg=141
+hi Exception       guifg=#f7768e ctermfg=210
+hi PreProc         guifg=#e0af68 ctermfg=179
+hi Include         guifg=#7dcfff ctermfg=117
+hi Define          guifg=#bb9af7 ctermfg=141
+hi Macro           guifg=#e0af68 ctermfg=179
+hi PreCondit       guifg=#e0af68 ctermfg=179
+hi Type            guifg=#2ac3de ctermfg=44
+hi StorageClass    guifg=#e0af68 ctermfg=179
+hi Structure       guifg=#2ac3de ctermfg=44
+hi Typedef         guifg=#2ac3de ctermfg=44
+hi Special         guifg=#7dcfff ctermfg=117
+hi SpecialChar     guifg=#ff9e64 ctermfg=215
+hi Tag             guifg=#7dcfff ctermfg=117
+hi Delimiter       guifg=#89ddff ctermfg=117
+hi SpecialComment  guifg=#565f89 ctermfg=60 cterm=italic
+hi Debug           guifg=#f7768e ctermfg=210
+
+" --- Python-specific syntax groups (built-in python syntax file) ---
+hi pythonStatement     guifg=#bb9af7 ctermfg=141
+hi pythonConditional   guifg=#bb9af7 ctermfg=141
+hi pythonRepeat        guifg=#bb9af7 ctermfg=141
+hi pythonOperator      guifg=#89ddff ctermfg=117
+hi pythonException     guifg=#f7768e ctermfg=210
+hi pythonInclude       guifg=#7dcfff ctermfg=117
+hi pythonFunction      guifg=#7aa2f7 ctermfg=75
+hi pythonClass         guifg=#7aa2f7 ctermfg=75 cterm=bold
+hi pythonDecorator     guifg=#e0af68 ctermfg=179
+hi pythonDecoratorName guifg=#e0af68 ctermfg=179
+hi pythonBuiltinObj    guifg=#2ac3de ctermfg=44
+hi pythonBuiltinFunc  guifg=#2ac3de ctermfg=44
+hi pythonBoolean       guifg=#ff9e64 ctermfg=215
+hi pythonNone          guifg=#ff9e64 ctermfg=215
+hi pythonSelf          guifg=#e0af68 ctermfg=179 cterm=italic
+hi pythonNumber        guifg=#ff9e64 ctermfg=215
+hi pythonString        guifg=#9ece6a ctermfg=149
+hi pythonTripleQuotes guifg=#565f89 ctermfg=60
+hi pythonSpaceError    guibg=#37222c ctermbg=235
+hi pythonDoctest       guifg=#9ece6a ctermfg=149
+hi pythonRun           guifg=#89ddff ctermfg=117
+
+" ---------------------------------------------------------- python ft
+augroup vimrc_python
+    autocmd!
+    " Makegf (goto file) work nicely for Python imports
+    autocmd FileType python setlocal path+=**
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal foldlevelstart=99
+    " Highlight columns past 88 chars (Black's line length)
+    autocmd FileType python setlocal colorcolumn=89
+    autocmd FileType python match pythonSpaceError /\s\+$/
+augroup END
+
+" Clear search highlighting with <Esc> or leader-h
+nnoremap <Esc> :nohlsearch<CR><Esc>
