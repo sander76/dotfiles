@@ -54,8 +54,24 @@ return {
           },
         },
         sources = {
+          files = {
+            win = {
+              input = {
+                keys = {
+                  ["g."] = { "toggle_hidden", mode = "n" },
+                },
+              },
+            },
+          },
           grep = {
             format = "filename",
+            win = {
+              input = {
+                keys = {
+                  ["g."] = { "toggle_hidden", mode = "n" },
+                },
+              },
+            },
           },
         },
       },
