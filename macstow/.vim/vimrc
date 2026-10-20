@@ -3,6 +3,7 @@
 " Language focus: Python
 
 " ------------------------------------------------------------------ basics
+set tags=~/vimtags
 set nocompatible
 set encoding=utf-8
 set number

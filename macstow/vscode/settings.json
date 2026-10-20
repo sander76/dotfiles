@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.focusNextGroup"
+    ],
+    "terminal.integrated.defaultLocation": "editor",
+    "ruff.configurationPreference": "filesystemFirst",
+    "ruff.fixAll": false,
+    "editor.formatOnSave": true
+}
