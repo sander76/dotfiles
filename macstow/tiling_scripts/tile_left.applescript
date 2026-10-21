@@ -11,10 +11,11 @@ on run argv
 		error "Invalid tile width. Pass 1, 2, or 3." number 64
 	end if
 
-delay 0.1 -- let Spotlight close so the previous app is frontmost again
+-- delay 0.1 -- let Spotlight close so the previous app is frontmost again
 
 -- Prefer the primary display if it is external; otherwise use an active external display.
-set displayBoundsText to do shell script "/usr/bin/swift -e " & quoted form of "import CoreGraphics; var count: UInt32 = 0; CGGetActiveDisplayList(0, nil, &count); var ids = Array(repeating: CGDirectDisplayID(0), count: Int(count)); CGGetActiveDisplayList(count, &ids, &count); let external = ids.filter { CGDisplayIsBuiltin($0) == 0 }; guard let display = external.first(where: { $0 == CGMainDisplayID() }) ?? external.first else { fatalError(\"No active external display found\") }; let b = CGDisplayBounds(display); print(\"\\(Int(b.origin.x)),\\(Int(b.origin.y)),\\(Int(b.width)),\\(Int(b.height))\")"
+set displayBoundsExecutable to (POSIX path of (path to home folder)) & ".local/bin/external-display-bounds"
+set displayBoundsText to do shell script quoted form of displayBoundsExecutable
 set previousDelimiters to AppleScript's text item delimiters
 set AppleScript's text item delimiters to ","
 set screenBounds to text items of displayBoundsText
