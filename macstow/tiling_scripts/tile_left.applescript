@@ -1,10 +1,16 @@
 on run {input, parameters}
 	delay 0.3 -- let Spotlight close so the previous app is frontmost again
 	
-	-- Full bounds of the primary display
-	tell application "Finder" to set screenBounds to bounds of window of desktop
-	set screenW to item 3 of screenBounds
-	set screenH to item 4 of screenBounds
+	-- Prefer the primary display if it is external; otherwise use an active external display.
+	set displayBoundsText to do shell script "/usr/bin/swift -e " & quoted form of "import CoreGraphics; var count: UInt32 = 0; CGGetActiveDisplayList(0, nil, &count); var ids = Array(repeating: CGDirectDisplayID(0), count: Int(count)); CGGetActiveDisplayList(count, &ids, &count); let external = ids.filter { CGDisplayIsBuiltin($0) == 0 }; guard let display = external.first(where: { $0 == CGMainDisplayID() }) ?? external.first else { fatalError(\"No active external display found\") }; let b = CGDisplayBounds(display); print(\"\\(Int(b.origin.x)),\\(Int(b.origin.y)),\\(Int(b.width)),\\(Int(b.height))\")"
+	set previousDelimiters to AppleScript's text item delimiters
+	set AppleScript's text item delimiters to ","
+	set screenBounds to text items of displayBoundsText
+	set AppleScript's text item delimiters to previousDelimiters
+	set screenX to (item 1 of screenBounds) as integer
+	set screenY to (item 2 of screenBounds) as integer
+	set screenW to (item 3 of screenBounds) as integer
+	set screenH to (item 4 of screenBounds) as integer
 	
 	set menuBarH to 25 -- use ~38 on notched MacBooks
 	set dockLeft to 0
@@ -27,10 +33,10 @@ on run {input, parameters}
 		tell frontApp
 			set usableW to screenW - dockLeft - dockRight
 			set usableH to screenH - menuBarH - dockBottom
-			set position of window 1 to {dockLeft, menuBarH}
+			set position of window 1 to {screenX + dockLeft, screenY + menuBarH}
 			set size of window 1 to {usableW / 2, usableH}
 			-- some apps clamp the size on the first try, so set the position again
-			set position of window 1 to {dockLeft, menuBarH}
+			set position of window 1 to {screenX + dockLeft, screenY + menuBarH}
 		end tell
 	end tell
 	
