@@ -1,6 +1,11 @@
 let mapleader = " "
+
 map <leader>g <Action>(FindInPath)
 map <leader>f <Action>(GotoFile)
 map <c-t> <Action>(ActivateTerminalToolWindow)
+map <c-s> <Action>(ReformatCode)
 
 Plug 'vim-commentary'
+Plug 'surround'
+
+set incsearch

@@ -44,7 +44,11 @@ alias gs="git status"
 alias notes="vi ~/alliander/notes.md"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
-alias pts="~/repos/dotfiles/scripts/pts-native.sh"
+pts() {
+    local pytest_command
+    pytest_command=$(~/repos/dotfiles/scripts/pts.zsh "$@")
+    [[ -n "$pytest_command" ]] && print -z -- "$pytest_command"
+}
 
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh

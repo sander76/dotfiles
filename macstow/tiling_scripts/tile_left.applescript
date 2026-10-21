@@ -1,6 +1,7 @@
 on run argv
-	if (count of argv) is not 1 then error "Pass 1, 2, or 3 for one-third, two-thirds, or full-width tiling." number 64
+	if (count of argv) is not 2 then error "Pass a width (1, 2, or 3) and a side (l or r)." number 64
 	set tileArgument to item 1 of argv
+	set sideArgument to item 2 of argv
 	if tileArgument is "1" then
 		set tileNumerator to 1
 	else if tileArgument is "2" then
@@ -9,6 +10,9 @@ on run argv
 		set tileNumerator to 3
 	else
 		error "Invalid tile width. Pass 1, 2, or 3." number 64
+	end if
+	if sideArgument is not "l" and sideArgument is not "r" then
+		error "Invalid tile side. Pass l for left or r for right." number 64
 	end if
 
 -- delay 0.1 -- let Spotlight close so the previous app is frontmost again
@@ -46,10 +50,16 @@ tell application "System Events"
 	tell frontApp
 		set usableW to screenW - dockLeft - dockRight
 		set usableH to screenH - menuBarH - dockBottom
-		set position of window 1 to {screenX + dockLeft, screenY + menuBarH}
-		set size of window 1 to {usableW * tileNumerator / 3, usableH}
+		set tileW to usableW * tileNumerator / 3
+		if sideArgument is "l" then
+			set tileX to screenX + dockLeft
+		else
+			set tileX to screenX + screenW - dockRight - tileW
+		end if
+		set position of window 1 to {tileX, screenY + menuBarH}
+		set size of window 1 to {tileW, usableH}
 		-- some apps clamp the size on the first try, so set the position again
-		set position of window 1 to {screenX + dockLeft, screenY + menuBarH}
+		set position of window 1 to {tileX, screenY + menuBarH}
 	end tell
 end tell
 
