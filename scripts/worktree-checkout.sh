@@ -84,3 +84,5 @@ if [[ -d "$common_files_dir" ]]; then
         echo "Copied common_files to ../$folder_name"
     fi
 fi
+
+git -C "../$folder_name" commit --allow-empty --no-verify -m "$(basename "../$folder_name")"

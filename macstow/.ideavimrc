@@ -1,0 +1,6 @@
+let mapleader = " "
+map <leader>g <Action>(FindInPath)
+map <leader>f <Action>(GotoFile)
+map <c-t> <Action>(ActivateTerminalToolWindow)
+
+Plug 'vim-commentary'

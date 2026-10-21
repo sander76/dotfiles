@@ -37,6 +37,24 @@
     },
     {
         "key": "ctrl+h",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+l",
         "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+w v",
+        "command": "workbench.action.splitEditorRight"
+    },
+    {
+        "key": "ctrl+a [",
+        "command": "workbench.action.terminal.focusAccessibleBuffer",
+        "when": "accessibilityModeEnabled && terminalFocus && terminalHasBeenCreated || accessibilityModeEnabled && terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "cmd+up",
+        "command": "-workbench.action.terminal.focusAccessibleBuffer",
+        "when": "accessibilityModeEnabled && terminalFocus && terminalHasBeenCreated || accessibilityModeEnabled && terminalFocus && terminalProcessSupported"
     }
 ]

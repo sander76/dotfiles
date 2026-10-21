@@ -44,3 +44,7 @@ alias gs="git status"
 alias notes="vi ~/alliander/notes.md"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
+alias pts="~/repos/dotfiles/scripts/pts-native.sh"
+
+
+eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
