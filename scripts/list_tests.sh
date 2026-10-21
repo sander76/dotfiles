@@ -8,7 +8,7 @@ set -euo pipefail
 ROOT_DIR="${1:-.}"
 
 # Find folders containing Python files and show relative paths
-find "$ROOT_DIR" -name "*.py" -type f -exec dirname {} \; | sort -u
+find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -name "*.py" -exec dirname {} \; | sort -u
 
 # Find Python files and show relative paths
-find "$ROOT_DIR" -name "test_*.py" -type f | sort
+find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -name "test_*.py" -print | sort
