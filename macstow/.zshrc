@@ -19,7 +19,23 @@ export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all
 # uv setup.
 . "$HOME/.local/bin/env"
 
-PROMPT='%F{208}%~ >%f'
+venv_prompt() {
+  [[ -n "$VIRTUAL_ENV" ]] || return
+
+  local python_version
+  if (( $+commands[python] )); then
+    python_version=$(python --version 2>&1)
+  elif (( $+commands[python3] )); then
+    python_version=$(python3 --version 2>&1)
+  else
+    python_version='Python unavailable'
+  fi
+
+  print -n "%F{magenta}[venv: ${VIRTUAL_ENV:t} | ${python_version}]%f "
+}
+
+setopt PROMPT_SUBST
+PROMPT='$(venv_prompt)%F{208}%~ >%f'
 
 # fzf and keybindings.
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
@@ -44,11 +60,6 @@ alias gs="git status"
 alias notes="vi ~/alliander/notes.md"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
-pts() {
-    local pytest_command
-    pytest_command=$(~/repos/dotfiles/scripts/pts.zsh "$@")
-    [[ -n "$pytest_command" ]] && print -z -- "$pytest_command"
-}
-
+alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
