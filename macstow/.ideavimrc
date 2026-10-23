@@ -3,7 +3,10 @@ let mapleader = " "
 map <leader>g <Action>(FindInPath)
 map <leader>f <Action>(GotoFile)
 map <c-t> <Action>(ActivateTerminalToolWindow)
-map <c-s> <Action>(ReformatCode)
+map <c-s> :w<CR>
+imap <c-s> <C-o>:w<CR>
+
+autocmd BufWritePost *.py execute '!ruff format --line-length 120 %'
 
 Plug 'vim-commentary'
 Plug 'surround'
