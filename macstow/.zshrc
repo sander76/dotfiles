@@ -12,9 +12,29 @@ setopt HIST_FIND_NO_DUPS
 
 bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
-export KEYTIMEOUT=1
+bindkey -M viins 'jj' vi-cmd-mode
+export KEYTIMEOUT=20
 export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all/simple/
 
+set_vi_cursor() {
+  if [[ "$KEYMAP" == vicmd ]]; then
+    print -n $'\e[2 q'
+  else
+    print -n $'\e[6 q'
+  fi
+}
+
+zle-keymap-select() {
+  set_vi_cursor
+  zle reset-prompt
+}
+
+zle-line-init() {
+  set_vi_cursor
+}
+
+zle -N zle-keymap-select
+zle -N zle-line-init
 
 # uv setup.
 . "$HOME/.local/bin/env"
