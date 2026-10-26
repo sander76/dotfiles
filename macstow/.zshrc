@@ -15,6 +15,7 @@ bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M viins 'jj' vi-cmd-mode
 export KEYTIMEOUT=20
 export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all/simple/
+export TERM=xterm-256color
 
 set_vi_cursor() {
   if [[ "$KEYMAP" == vicmd ]]; then
