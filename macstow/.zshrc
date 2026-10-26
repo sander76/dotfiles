@@ -81,10 +81,13 @@ alias notes="vi ~/alliander/notes.md"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
+alias bufself='source ~/repos/dotfiles/scripts/bufself.zsh; _bufself'
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 source <(fzf --zsh)
+source "${${(%):-%x}:A:h}/iterm/vim-buff.zsh"
+
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/sander.teunissen/.docker/completions $fpath)
 autoload -Uz compinit
