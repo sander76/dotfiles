@@ -70,7 +70,7 @@ PROMPT='$(venv_prompt)%F{208}%~ >%f'
 
 
 alias l='ls -lah --color=auto'
-alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh'
+alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh' '~/alliander/common'
 alias gco="git checkout"
 alias gp="git push"
 alias gpf="git push --force-with-lease --force-if-includes"
@@ -83,3 +83,10 @@ alias notes="vi ~/alliander/notes.md"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+
+source <(fzf --zsh)
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/sander.teunissen/.docker/completions $fpath)
+autoload -Uz compinit
+(( ${+_comps[docker]} )) || compinit
+# End of Docker CLI completions

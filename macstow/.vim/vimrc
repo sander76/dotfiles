@@ -37,6 +37,7 @@ if has('termguicolors')
     set termguicolors
 endif
 set background=dark
+set directory=~/.vim/swap//
 
 " ------------------------------------------------------------ filetypes
 filetype on

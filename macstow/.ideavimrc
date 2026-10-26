@@ -2,13 +2,19 @@ let mapleader = " "
 
 map <leader>g <Action>(FindInPath)
 map <leader>f <Action>(GotoFile)
+map <leader>b <Action>(RecentFiles)
+map <leader>ck <Action>(ShowHoverInfo)
 map <c-t> <Action>(ActivateTerminalToolWindow)
 map <c-s> :w<CR>
+inoremap jj <Esc>
 imap <c-s> <C-o>:w<CR>
 
 autocmd BufWritePost *.py execute '!ruff format --line-length 120 %'
 
 Plug 'vim-commentary'
-Plug 'surround'
+Plug 'vim-surround'
 
 set incsearch
+
+set ignorecase
+set smartcase

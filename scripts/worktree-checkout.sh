@@ -6,9 +6,15 @@
 set -e
 
 branch_name="${1:-}"
+common_files_dir="${2:-}"
 
 if [[ -z "$branch_name" ]]; then
-    echo "Usage: worktree-checkout.sh <branch-name>"
+    echo "Usage: worktree-checkout.sh <branch-name> [common-folder]"
+    exit 1
+fi
+
+if [[ -n "$common_files_dir" && ! -d "$common_files_dir" ]]; then
+    echo "Common folder '$common_files_dir' does not exist."
     exit 1
 fi
 
@@ -75,14 +81,9 @@ fi
 
 echo "Worktree created successfully at: ../$folder_name"
 
-# Check for common_files folder in parent directory and offer to copy
-common_files_dir="../common_files"
-if [[ -d "$common_files_dir" ]]; then
-    read -rp "Copy contents from common_files to the new worktree? [Y/n] " response
-    if [[ ! "$response" =~ ^[Nn]$ ]]; then
-        cp -r "$common_files_dir"/. "../$folder_name/"
-        echo "Copied common_files to ../$folder_name"
-    fi
+if [[ -n "$common_files_dir" ]]; then
+    cp -r "$common_files_dir"/. "../$folder_name/"
+    echo "Copied contents from $common_files_dir to ../$folder_name"
 fi
 
 git -C "../$folder_name" commit --allow-empty --no-verify -m "$(basename "../$folder_name")"
