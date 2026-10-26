@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =0
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/sander.teunissen/repos/selektor/src/selektor'
 let g:netrw_dirhist_0='/Users/sander.teunissen/repos/dotfiles/scripts'
 let g:netrw_dirhist_9='/Users/sander.teunissen/repos/dotfiles'
 let g:netrw_dirhist_8='/Users/sander.teunissen/repos/dotfiles/macstow'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_5='/Users/sander.teunissen/repos/dotfiles'
 let g:netrw_dirhist_4='/Users/sander.teunissen/alliander/gaas-gtma-dev-tools/src/versify'
 let g:netrw_dirhist_3='/Users/sander.teunissen/alliander/gaas-gtma-dev-tools/src'
 let g:netrw_dirhist_2='/Users/sander.teunissen/alliander/gaas-gtma-dev-tools'
-let g:netrw_dirhist_1='/Users/sander.teunissen/repos/dotfiles/macstow'

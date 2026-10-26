@@ -15,7 +15,7 @@ _bufself() {
 
   local regex="$1"
   local selection
-  selection=$(zsh "$_BUFSELF_BUFFREAD" | selektor "$regex")
+  selection=$(zsh "$_BUFSELF_BUFFREAD" | tail -n 100 | selektor "$regex")
   (( $? == 0 )) || return 1
   [[ -n "$selection" ]] || return 0
 

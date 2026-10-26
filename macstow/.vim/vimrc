@@ -6,6 +6,7 @@
 set tags=~/vimtags
 set nocompatible
 set encoding=utf-8
+set clipboard=unnamedplus
 set number
 set relativenumber
 set showcmd
@@ -186,7 +187,7 @@ augroup vimrc_python
     autocmd FileType python setlocal path+=**
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python setlocal foldlevelstart=99
+    autocmd FileType python setlocal foldlevel=99
     " Highlight columns past 88 chars (Black's line length)
     autocmd FileType python setlocal colorcolumn=89
     autocmd FileType python match pythonSpaceError /\s\+$/
