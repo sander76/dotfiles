@@ -5,6 +5,7 @@
 " ------------------------------------------------------------------ basics
 set tags=~/vimtags
 set nocompatible
+set path=.,,**
 set encoding=utf-8
 set clipboard=unnamedplus
 set number
@@ -183,8 +184,6 @@ hi pythonRun           guifg=#89ddff ctermfg=117
 " ---------------------------------------------------------- python ft
 augroup vimrc_python
     autocmd!
-    " Makegf (goto file) work nicely for Python imports
-    autocmd FileType python setlocal path+=**
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldlevel=99
@@ -195,6 +194,7 @@ augroup END
 
 " Clear search highlighting with <Esc> or leader-h
 nnoremap <Esc> :nohlsearch<CR><Esc>
+nnoremap - :execute 'edit' fnameescape(expand('%:p:h'))<CR>
 
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"

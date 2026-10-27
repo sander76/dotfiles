@@ -8,6 +8,17 @@
 	<string>ABD4F3AD-F1A9-473B-A44F-874ACFCED568</string>
 	<key>GlobalKeyMap</key>
 	<dict>
+		<key>0x46-0x60000-0x3-0x1</key>
+		<dict>
+			<key>Action</key>
+			<integer>10</integer>
+			<key>Apply Mode</key>
+			<integer>0</integer>
+			<key>Text</key>
+			<string>[70;6u</string>
+			<key>Version</key>
+			<integer>2</integer>
+		</dict>
 		<key>0x19-0x60000</key>
 		<dict>
 			<key>Action</key>
@@ -1371,6 +1382,8 @@ Copy Mode</string>
 	<real>0.15981486507444165</real>
 	<key>StatusBarPosition</key>
 	<integer>0</integer>
+	<key>StretchTabsToFillBar</key>
+	<false/>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>6</integer>
 	<key>TabViewType</key>
@@ -1382,6 +1395,6 @@ Copy Mode</string>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

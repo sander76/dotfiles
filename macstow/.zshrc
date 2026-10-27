@@ -13,7 +13,8 @@ setopt HIST_FIND_NO_DUPS
 bindkey -v
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M viins 'jj' vi-cmd-mode
-export KEYTIMEOUT=20
+
+export KEYTIMEOUT=20  # for the jj binding to work.
 export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all/simple/
 export TERM=xterm-256color
 
@@ -52,7 +53,7 @@ venv_prompt() {
     python_version='Python unavailable'
   fi
 
-  print -n "%F{magenta}[venv: ${VIRTUAL_ENV:t} | ${python_version}]%f "
+  print -n "%F{magenta}[${VIRTUAL_ENV:t} | ${python_version}]%f "
 }
 
 setopt PROMPT_SUBST
@@ -83,11 +84,19 @@ alias notes="vi ~/alliander/notes.md"
 # alias r="cd $(git rev-parse --show-toplevel)"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 alias bufself='source ~/repos/dotfiles/scripts/bufself.zsh; _bufself'
+alias fd_py='bufself "\w+\.py"'
+
+_fd_py_widget() {
+  source ~/repos/dotfiles/scripts/bufself.zsh
+  _bufself '\w+\.py'
+}
+zle -N fd_py _fd_py_widget
+bindkey -M viins $'\e[70;6u' fd_py
+bindkey -M vicmd $'\e[70;6u' fd_py
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 source <(fzf --zsh)
-source "${${(%):-%x}:A:h}/iterm/vim-buff.zsh"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/sander.teunissen/.docker/completions $fpath)

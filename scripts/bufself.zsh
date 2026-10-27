@@ -10,7 +10,7 @@ _bufself() {
   fi
 
   local in_widget=0
-  [[ ${WIDGET-} == bufself ]] && in_widget=1
+  [[ ${WIDGET-} == bufself || ${WIDGET-} == fd_py ]] && in_widget=1
   (( in_widget )) && zle -I
 
   local regex="$1"
