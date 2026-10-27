@@ -86,13 +86,21 @@ alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 alias bufself='source ~/repos/dotfiles/scripts/bufself.zsh; _bufself'
 alias fd_py='bufself "\w+\.py"'
 
-_fd_py_widget() {
-  source ~/repos/dotfiles/scripts/bufself.zsh
-  _bufself '\w+\.py'
+from_buffer() {
+    osascript <<'APPLESCRIPT'
+    tell application "iTerm2"
+      get contents of current session of current window
+    end tell
+APPLESCRIPT
 }
-zle -N fd_py _fd_py_widget
-bindkey -M viins $'\e[70;6u' fd_py
-bindkey -M vicmd $'\e[70;6u' fd_py
+
+_fd_py_widget() {
+  selection=$(from_buffer | tail -n 100 | selektor "\w+\.py")
+  BUFFER+="$selection"
+  CURSOR=${#BUFFER}
+}
+zle -N _fd_py_widget
+bindkey '^X' _fd_py_widget
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
