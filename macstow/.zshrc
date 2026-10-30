@@ -83,8 +83,6 @@ alias notes="vi ~/alliander/notes.md"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
-alias bufself='source ~/repos/dotfiles/scripts/bufself.zsh; _bufself'
-alias fd_py='bufself "\w+\.py"'
 
 from_buffer() {
     osascript <<'APPLESCRIPT'
@@ -98,6 +96,7 @@ _fd_py_widget() {
   selection=$(from_buffer | tail -n 100 | selektor "\w+\.py")
   BUFFER+="$selection"
   CURSOR=${#BUFFER}
+  zle reset-prompt # to clean up messy prompt
 }
 zle -N _fd_py_widget
 bindkey '^X' _fd_py_widget

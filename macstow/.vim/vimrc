@@ -8,6 +8,10 @@ set nocompatible
 set path=.,,**
 set encoding=utf-8
 set clipboard=unnamedplus
+augroup vimrc_clipboard
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' && (v:event.regname ==# '' || v:event.regname ==# '"') | call setreg('*', getreg('"', 1, 1), getregtype('"')) | endif
+augroup END
 set number
 set relativenumber
 set showcmd
@@ -187,13 +191,9 @@ augroup vimrc_python
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldlevel=99
-    " Highlight columns past 88 chars (Black's line length)
-    autocmd FileType python setlocal colorcolumn=89
     autocmd FileType python match pythonSpaceError /\s\+$/
 augroup END
 
-" Clear search highlighting with <Esc> or leader-h
-nnoremap <Esc> :nohlsearch<CR><Esc>
 nnoremap - :execute 'edit' fnameescape(expand('%:p:h'))<CR>
 
 let &t_SI = "\e[6 q"
@@ -201,6 +201,8 @@ let &t_EI = "\e[2 q"
 
 " map jj to esc key
 inoremap jj <Esc>
+map <c-s> :w<CR>
+imap <c-s> <ESC>:w<CR>
 
 function! DotfilesModeStatusLine() abort
     let l:mode = mode()

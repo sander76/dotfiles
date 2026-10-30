@@ -6,6 +6,7 @@ map <leader>b <Action>(RecentFiles)
 map <leader>ck <Action>(ShowHoverInfo)
 map <c-t> <Action>(ActivateTerminalToolWindow)
 map <c-s> :w<CR>
+nnoremap - :NERDTreeFind<CR>
 inoremap jj <Esc>
 imap <c-s> <C-o>:w<CR>
 
@@ -13,6 +14,7 @@ autocmd BufWritePost *.py execute '!ruff format --line-length 120 %'
 
 Plug 'vim-commentary'
 Plug 'vim-surround'
+Plug 'nerdtree'
 
 set incsearch
 
