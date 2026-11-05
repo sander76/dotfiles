@@ -2,11 +2,6 @@ tell application "System Events"
 		set p to first application process whose frontmost is true
 end tell
 
-tell application "Finder"
-		set b to bounds of window of desktop
-end tell
-set sw to item 3 of b
-set sh to item 4 of b
 
 set validColumns to {"1", "2", "3"}
 repeat
@@ -19,6 +14,12 @@ repeat
 	end if
 	display dialog "Enter two digits from 1 to 3." & return & "Examples: 11, 12, 23, or 33." buttons {"OK"} default button "OK" with title "Invalid Columns"
 end repeat
+
+tell application "Finder"
+		set b to bounds of window of desktop
+end tell
+set sw to item 3 of b
+set sh to item 4 of b
 
 set firstColumn to firstColumn as integer
 set lastColumn to lastColumn as integer

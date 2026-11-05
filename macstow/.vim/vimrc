@@ -199,6 +199,11 @@ nnoremap - :execute 'edit' fnameescape(expand('%:p:h'))<CR>
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
+augroup vimrc_cursor
+    autocmd!
+    autocmd VimEnter * call feedkeys("a\<Esc>", "nx")
+augroup END
+
 " map jj to esc key
 inoremap jj <Esc>
 map <c-s> :w<CR>

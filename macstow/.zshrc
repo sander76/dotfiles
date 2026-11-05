@@ -18,6 +18,9 @@ export KEYTIMEOUT=20  # for the jj binding to work.
 export UV_DEFAULT_INDEX=https://alliander.jfrog.io/artifactory/api/pypi/pypi-all/simple/
 export TERM=xterm-256color
 
+# make vim the manpage viewer.
+export MANPAGER="vim +MANPAGER --not-a-term -"
+
 set_vi_cursor() {
   if [[ "$KEYMAP" == vicmd ]]; then
     print -n $'\e[2 q'
@@ -61,14 +64,13 @@ PROMPT='$(venv_prompt)%F{208}%~ >%f'
 
 # fzf and keybindings.
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
-# FZF_ALT_C_COMMAND= source <(fzf --zsh)
+FZF_ALT_C_COMMAND= source <(fzf --zsh)
 # export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# export FZF_CTRL_T_OPTS="
-#   --bind 'ctrl-d:reload(fd --type d --strip-cwd-prefix)'
-#   --bind 'ctrl-f:reload(fd --type f --strip-cwd-prefix)' \
-#   "
-# export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
+export FZF_CTRL_T_OPTS="
+  --bind 'ctrl-d:reload(find . \( -name .venv -o -name .git -o -name .versify_cache -o -name __pycache__ \) -prune -o -type d -print)'
+  "
+export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 
 
 alias l='ls -lah --color=auto'
@@ -80,9 +82,17 @@ alias grbc="git rebase --continue"
 alias gcm="git commit -m"
 alias gs="git status"
 alias notes="vi ~/alliander/notes.md"
+alias vimdiff="vim -d"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
+alias pc='pycharm'
+
+bindkey '^[[Z' reverse-menu-complete
+zstyle ':completion:*' menu select
+# fuzzy matching completion.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+setopt menu_complete
 
 from_buffer() {
     osascript <<'APPLESCRIPT'
@@ -93,7 +103,7 @@ APPLESCRIPT
 }
 
 _fd_py_widget() {
-  selection=$(from_buffer | tail -n 100 | selektor "\w+\.py")
+  selection=$(from_buffer | tail -n 100 | selektor "[\w\/\-\.]+\.py" "[\w\/\-\.]+\.toml")
   BUFFER+="$selection"
   CURSOR=${#BUFFER}
   zle reset-prompt # to clean up messy prompt
