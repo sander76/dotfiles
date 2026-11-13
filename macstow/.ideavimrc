@@ -25,7 +25,10 @@ let g:NERDTreeQuitOnOpen = 1
 
 autocmd FileType nerdtree nnoremap <buffer> y <Action>(Copy)
 autocmd FileType nerdtree nnoremap <buffer> p <Action>(Paste)
-autocmd BufWritePost *.py execute '!ruff format --line-length 120 %'
+augroup my_group
+  autocmd!
+  autocmd BufWritePost *.py   !bash ./qa.sh "%" 
+augroup END
 
 Plug 'vim-commentary'
 Plug 'vim-surround'

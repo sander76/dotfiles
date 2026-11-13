@@ -22,6 +22,9 @@ export TERM=xterm-256color
 # make vim the manpage viewer.
 export MANPAGER="vim +MANPAGER --not-a-term -"
 
+# to comply with alliander allowed containers.
+export RYUK_CONTAINER_IMAGE="testcontainers/ryuk:0.14.0"
+
 set_vi_cursor() {
   if [[ "$KEYMAP" == vicmd ]]; then
     print -n $'\e[2 q'
@@ -74,6 +77,9 @@ export FZF_CTRL_T_OPTS="
   "
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 
+chpwd() {
+  [[ -f ./act.zsh ]] && source ./act.zsh
+}
 
 alias l='ls -lah --color=auto'
 alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh --common-folder ~/alliander/common'
@@ -83,12 +89,19 @@ alias gpf="git push --force-with-lease --force-if-includes"
 alias grbc="git rebase --continue"
 alias gcm="git commit -m"
 alias gs="git status"
+alias gd="git difftool"
 alias notes="vi ~/alliander/notes.md"
 alias vimdiff="vim -d"
 
 # alias r="cd $(git rev-parse --show-toplevel)"
 alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 alias pc='pycharm'
+
+alias py="ptpython"
+
+# cd into the root of the git folder.
+alias r='cd $(git rev-parse --show-toplevel)'
+alias gitopen='gh browse -b $(git branch --show-current)'
 
 bindkey '^[[Z' reverse-menu-complete
 zstyle ':completion:*' menu select interactive
@@ -126,3 +139,4 @@ fpath=(/Users/sander.teunissen/.docker/completions $fpath)
 autoload -Uz compinit
 (( ${+_comps[docker]} )) || compinit
 # End of Docker CLI completions
+
