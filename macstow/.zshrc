@@ -1,6 +1,6 @@
-# HISTFILE=~/.zsh_history
-# HISTSIZE=10000
-# SAVEHIST=10000
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
 
 eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
@@ -77,10 +77,6 @@ export FZF_CTRL_T_OPTS="
   "
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 
-chpwd() {
-  [[ -f ./act.zsh ]] && source ./act.zsh
-}
-
 alias l='ls -lah --color=auto'
 alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh --common-folder ~/alliander/common'
 alias gco="git checkout"
@@ -139,4 +135,8 @@ fpath=(/Users/sander.teunissen/.docker/completions $fpath)
 autoload -Uz compinit
 (( ${+_comps[docker]} )) || compinit
 # End of Docker CLI completions
+
+source "$HOME/repos/dotfiles/macstow/env_act.zsh"
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd env_act
 

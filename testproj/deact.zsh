@@ -1,0 +1,2 @@
+echo "deactivating"
+deactivate
