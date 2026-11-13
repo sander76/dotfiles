@@ -7,8 +7,8 @@ set -euo pipefail
 # Get root directory from command line argument, default to current directory
 ROOT_DIR="${1:-.}"
 
-# Find folders containing Python files and show relative paths
-find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -name "*.py" -exec dirname {} \; | sort -u
+# Find Python test folders under a /tests/ path and show relative paths
+find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -path '*/tests/*' -name "*.py" -exec dirname {} \; | sort -u
 
-# Find Python files and show relative paths
-find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -name "test_*.py" -print | sort
+# Find Python test files under a /tests/ path and show relative paths
+find "$ROOT_DIR" -type d -name ".venv" -prune -o -type f -path '*/tests/*' -name "test_*.py" -print | sort

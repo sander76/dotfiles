@@ -127,7 +127,7 @@ hi qfLineNr        guifg=#3b4261 guibg=#1a1b26 ctermfg=60 ctermbg=234
 hi DiffAdd         guifg=#9ece6a guibg=#20303b ctermfg=149 ctermbg=237
 hi DiffChange      guifg=#7aa2f7 guibg=#1b2a3b ctermfg=75 ctermbg=236
 hi DiffDelete      guifg=#f7768e guibg=#37222c ctermfg=210 ctermbg=235
-hi DiffText        guifg=#89ddff guibg=#2ac3de ctermfg=117 ctermbg=44 cterm=NONE
+hi DiffText        guifg=#89ddff guibg=#20303b ctermfg=117 ctermbg=44 cterm=NONE
 
 " --- Generic syntax (applies to every language, including Python) ---
 hi Comment         guifg=#565f89 ctermfg=60 cterm=italic

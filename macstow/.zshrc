@@ -2,6 +2,7 @@
 # HISTSIZE=10000
 # SAVEHIST=10000
 
+eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 # zsh history stuff. `man  zshoptions` for more info
 # or https://zsh.sourceforge.io/Doc/Release/Options.html
@@ -62,9 +63,10 @@ venv_prompt() {
 setopt PROMPT_SUBST
 PROMPT='$(venv_prompt)%F{208}%~ >%f'
 
+source <(fzf --zsh)
 # fzf and keybindings.
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
-FZF_ALT_C_COMMAND= source <(fzf --zsh)
+# FZF_ALT_C_COMMAND= source <(fzf --zsh)
 # export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="
@@ -74,7 +76,7 @@ export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 
 
 alias l='ls -lah --color=auto'
-alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh' '~/alliander/common'
+alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh --common-folder ~/alliander/common'
 alias gco="git checkout"
 alias gp="git push"
 alias gpf="git push --force-with-lease --force-if-includes"
@@ -89,7 +91,7 @@ alias pts='source ~/repos/dotfiles/scripts/pts.zsh'
 alias pc='pycharm'
 
 bindkey '^[[Z' reverse-menu-complete
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu select interactive
 # fuzzy matching completion.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 setopt menu_complete
@@ -103,7 +105,13 @@ APPLESCRIPT
 }
 
 _fd_py_widget() {
-  selection=$(from_buffer | tail -n 100 | selektor "[\w\/\-\.]+\.py" "[\w\/\-\.]+\.toml")
+    selection=$(from_buffer | tail -n 100 | selektor - \
+        "[\w\/\-\.]+\.py" \
+        "[\w\/\-\.]+\.toml" \
+        "[\w\/\-\.]+\.py:\d{1,4}" \
+        "[\w\/\-\.]+\.py:\d{1,4}:\d{1,4}" \
+        "[\w\/\-\.]+\.py::[\w\-\.]+" \
+    )
   BUFFER+="$selection"
   CURSOR=${#BUFFER}
   zle reset-prompt # to clean up messy prompt
@@ -111,9 +119,7 @@ _fd_py_widget() {
 zle -N _fd_py_widget
 bindkey '^X' _fd_py_widget
 
-eval "$(/Users/sander.teunissen/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
-source <(fzf --zsh)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/sander.teunissen/.docker/completions $fpath)

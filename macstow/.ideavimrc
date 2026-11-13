@@ -1,4 +1,5 @@
 let mapleader = " "
+let g:ruff_format_script = $HOME . '/repos/dotfiles/scripts/ruff-format.sh'
 
 map <leader>g <Action>(FindInPath)
 map <leader>f <Action>(GotoFile)
@@ -17,10 +18,13 @@ inoremap jj <Esc>
 
 let g:NERDTreeMapActivateNode = '<CR>'
 let g:NERDTreeMapOpenSplit = '<Nop>'
+let g:NERDTreeMapJumpParent = '<Nop>'
 let g:NERDTreeMapQuit = 'q'
 let g:NERDTreeMapRename = 'c'
 let g:NERDTreeQuitOnOpen = 1
 
+autocmd FileType nerdtree nnoremap <buffer> y <Action>(Copy)
+autocmd FileType nerdtree nnoremap <buffer> p <Action>(Paste)
 autocmd BufWritePost *.py execute '!ruff format --line-length 120 %'
 
 Plug 'vim-commentary'
@@ -29,5 +33,8 @@ Plug 'nerdtree'
 
 set incsearch
 
+set clipboard+=unnamed
+
 set ignorecase
 set smartcase
+
