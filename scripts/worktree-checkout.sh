@@ -6,47 +6,16 @@
 set -e
 
 branch_name=""
-common_files_dir=""
 
 usage() {
-    echo "Usage: worktree-checkout.sh <branch-name> [--common-folder <folder>]"
+    echo "Usage: worktree-checkout.sh <branch-name>"
 }
 
-while (($#)); do
-    case "$1" in
-        --common-folder)
-            if (($# < 2)); then
-                usage
-                exit 1
-            fi
-            common_files_dir="$2"
-            shift 2
-            ;;
-        -*)
-            echo "Unknown option '$1'."
-            usage
-            exit 1
-            ;;
-        *)
-            if [[ -n "$branch_name" ]]; then
-                usage
-                exit 1
-            fi
-            branch_name="$1"
-            shift
-            ;;
-    esac
-done
-
-if [[ -z "$branch_name" ]]; then
+if [[ $# -ne 1 ]]; then
     usage
     exit 1
 fi
-
-if [[ -n "$common_files_dir" && ! -d "$common_files_dir" ]]; then
-    echo "Common folder '$common_files_dir' does not exist."
-    exit 1
-fi
+branch_name="$1"
 
 # Determine the type of branch and set folder name accordingly
 if [[ "$branch_name" == origin/* ]]; then
@@ -111,9 +80,13 @@ fi
 
 echo "Worktree created successfully at: ../$folder_name"
 
-if [[ -n "$common_files_dir" ]]; then
-    cp -r "$common_files_dir"/. "../$folder_name/"
-    echo "Copied contents from $common_files_dir to ../$folder_name"
-fi
-
 git -C "../$folder_name" commit --allow-empty --no-verify -m "$(basename "../$folder_name")"
+
+worktree_path="$(cd "../$folder_name" && pwd)"
+worktree_parent="$(dirname "$worktree_path")"
+
+if [[ -f "$worktree_parent/__bootstrap.sh" ]]; then
+    bash "$worktree_parent/__bootstrap.sh" "$worktree_path"
+elif [[ -f "$worktree_parent/__bootstrap.zsh" ]]; then
+    zsh "$worktree_parent/__bootstrap.zsh" "$worktree_path"
+fi

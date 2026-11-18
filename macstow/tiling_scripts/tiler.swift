@@ -211,3 +211,11 @@ guard let positionValue = AXValueCreate(.cgPoint, &position),
         "Allow Tiler access in System Settings > Privacy & Security > Accessibility, then try again."
     )
 }
+
+guard NSRunningApplication(processIdentifier: targetPID)?.activate() == true else {
+    showError("Unable to Focus Window", "The window's application could not be activated.")
+}
+
+guard AXUIElementPerformAction(targetWindow, kAXRaiseAction as CFString) == .success else {
+    showError("Unable to Focus Window", "The tiled window could not be brought to the front.")
+}

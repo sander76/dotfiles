@@ -70,15 +70,16 @@ source <(fzf --zsh)
 # fzf and keybindings.
 # Set up fzf key bindings and fuzzy completion, but disable Ctrl-T and Alt-C
 # FZF_ALT_C_COMMAND= source <(fzf --zsh)
-# export FZF_DEFAULT_COMMAND='fd --strip-cwd-prefix'
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='find . \( -name .venv -o -name .git -o -name .versify_cache -o -name __pycache__ \) -prune -o -print'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="
   --bind 'ctrl-d:reload(find . \( -name .venv -o -name .git -o -name .versify_cache -o -name __pycache__ \) -prune -o -type d -print)'
   "
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down'
 
 alias l='ls -lah --color=auto'
-alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh --common-folder ~/alliander/common'
+alias gwt='~/repos/dotfiles/scripts/worktree-checkout.sh'
 alias gco="git checkout"
 alias gp="git push"
 alias gpf="git push --force-with-lease --force-if-includes"

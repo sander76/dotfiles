@@ -1,11 +1,11 @@
 # This file is sourced from .zshrc.
-typeset -g current_act=${current_act:-NONE}
+typeset -g current_env=${current_env:-NONE}
 
 _env_act_find_file() {
   local dir=${PWD:A}
   while true; do
-    if [[ -f "$dir/act.zsh" ]]; then
-      print -r -- "$dir/act.zsh"
+    if [[ -f "$dir/env.zsh" ]]; then
+      print -r -- "$dir/env.zsh"
       return 0
     fi
     [[ "$dir" == "/" ]] && break
@@ -14,39 +14,45 @@ _env_act_find_file() {
   return 1
 }
 
+_env_act_clear_functions() {
+  (( $+functions[env_activate] )) && unset -f env_activate
+  (( $+functions[env_deactivate] )) && unset -f env_deactivate
+  return 0
+}
+
 env_act() {
-  local next_act=NONE
+  local next_env=NONE
 
-  next_act=$(_env_act_find_file) || next_act=NONE
+  next_env=$(_env_act_find_file) || next_env=NONE
 
+  [[ "$next_env" == "$current_env" ]] && return 0
 
-  #   next_act     current_act
-  #   -----------------------------------------
-  #   None         None          Do nothing
-  #   act_1.zsh    None          run act_1.zsh
-  #   act_1.zsh    act_1.zsh     Do nothing
-  #   act_2.zsh    act_1.zsh     run deact_1 run act_2
-  #   None         act_1.zsh     reun deact_1
-  #
-  # Either both are NONE or are actual act files but are identical.
-  # In both cases we do nothing.
-  [[ "$next_act" == "$current_act" ]] && return 0
-
-  if [[ "$next_act" != NONE && ! -f "${next_act:h}/deact.zsh" ]]; then
-    print -u2 -- "env_act: missing deact.zsh for $next_act"
-    return 1
+  if [[ "$current_env" != NONE ]]; then
+    env_deactivate || return 1
+    current_env=NONE
+    _env_act_clear_functions
   fi
 
-  if [[ "$next_act" != NONE ]]; then
-    if [[ "$current_act" != NONE ]]; then
-      source "${current_act:h}/deact.zsh"
+  if [[ "$next_env" != NONE ]]; then
+    _env_act_clear_functions
+
+    if ! source "$next_env"; then
+      print -u2 -- "env_act: failed to load $next_env"
+      _env_act_clear_functions
+      return 1
     fi
-    source "$next_act"
-    current_act=$next_act
+
+    if (( ! $+functions[env_activate] || ! $+functions[env_deactivate] )); then
+      print -u2 -- "env_act: $next_env must define env_activate and env_deactivate"
+      _env_act_clear_functions
+      return 1
+    fi
+
+    if ! env_activate; then
+      _env_act_clear_functions
+      return 1
+    fi
+    current_env=$next_env
     return 0
-  fi
-  if [[ "$current_act" != NONE ]]; then
-    source "${current_act:h}/deact.zsh"
-    current_act=NONE
   fi
 }
